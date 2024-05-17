@@ -54,9 +54,25 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 3. “Como usuario visita, quiero poder tener acceso a la información de la página, como su propósito, quiénes son los creadores, y cómo puedo contactarlos, entre otros detalles relevantes”. 
 
 ## Diagrama Entidad-Relación
+<img src="assets/DiagramaER.png" alt="Diagrama Entidad Relación" />
 
 ## Diseño Web
+### Vistas principales y ejemplos de aplicación
+### Vistas Landing Page
+<img src="assets/Views/ViewsLandingPage/Captura de pantalla 2024-05-17 192728.png" alt="Landing page computador" />
+
+<img src="assets/Views/ViewsLandingPage/Captura de pantalla 2024-05-17 192744.png" alt="Landing page tablet" />
+
+<img src="assets/Views/ViewsLandingPage/Captura de pantalla 2024-05-17 192757.png" alt="Landing page celular" />
+
+### Vistas Profile Page
+<img src="assets/Views/ViewsProfilePage/Captura de pantalla 2024-05-17 192937.png" alt="Profile page computador" />
+
+<img src="assets/Views/ViewsProfilePage/Captura de pantalla 2024-05-17 192948.png" alt="Profile page tablet" />
+
+<img src="assets/Views/ViewsProfilePage/Captura de pantalla 2024-05-17 193004.png" alt="Profile page celular" />
+
+### Vistas Login Page
 
 ### Documento de diseño
 
-### Vistas principales
