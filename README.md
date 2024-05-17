@@ -2,9 +2,11 @@
 
 ## Descripción general
 * ¿De qué se tratará el proyecto?
+
 El proyecto consistirá en crear una red social para fanáticos del cine. En la página web los usuarios podrán compartir sus opiniones sobre películas, rankearlas, crear playlists de películas e incluso crear parties para ver películas con sus amigos. Además, los usuarios podrán seguirse entre ellos y chatear. 
 
 * ¿Cuál es el fin o la utilidad del proyecto? 
+
 Este proyecto es una red social de películas que proporciona una plataforma integral para que los amantes del cine interactúen, descubran nuevas películas, compartan sus opiniones y exploren el mundo del cine de manera colaborativa. En esta plataforma se pueden descubrir nuevas películas gracias a las críticas y recomendaciones de otros miembros de la comunidad, puedes realizar un seguimiento de tus películas vistas, puedes crear listas personalizadas que te permiten planificar las películas que veras después, los usuarios pueden escribir críticas y reseñas de películas lo cual permite a los usuarios que están considerando ver cierta película tener una fuente de información y también se puede recomendar películas a otros miembros de la comunidad. 
 
 * ¿Quiénes son los usuarios objetivo de su aplicación? 
