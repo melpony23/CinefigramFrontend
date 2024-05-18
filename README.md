@@ -65,6 +65,8 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 
 <img src="assets/Views/ViewsLandingPage/Captura de pantalla 2024-05-17 192757.png" alt="Landing page celular" />
 
+<img src="assets/Views/ViewsLandingPage/ejemplo_aplicacion_landing.jpg" alt="Landing page aplicaciones" />
+
 ### Vistas Profile Page
 <img src="assets/Views/ViewsProfilePage/Captura de pantalla 2024-05-17 192937.png" alt="Profile page computador" />
 
@@ -72,7 +74,31 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 
 <img src="assets/Views/ViewsProfilePage/Captura de pantalla 2024-05-17 193004.png" alt="Profile page celular" />
 
+<img src="assets/Views/ViewsProfilePage/ejemplo_aplicacion_perfil.jpg" alt="Profile page aplicaciones" />
+
+
 ### Vistas Login Page
 
+<img src="assets/Views/ViewsLoginPage/pc_login.png" alt="Login page computador" />
+
+<img src="assets/Views/ViewsLoginPage/ipad_login.png" alt="Login Page ipad" />
+
+<img src="assets/Views/ViewsLoginPage/celu_login.png" alt="Login Page iphone" />
+
+<img src="assets/Views/ViewsLoginPage/ejemplo_aplicacion_login.jpg" alt="Login Page aplicaciones" />
+
+
 ### Documento de diseño
+
+<img src="assets/Doc_disenho/Colores principales.jpg" alt="colores principales" />
+
+<img src="assets/Doc_disenho/Colores Secundaris.jpg" alt="colores secundarios" />
+
+<img src="assets/Doc_disenho/Colores neutros.jpg" alt="colores neutros" />
+
+<img src="assets/Doc_disenho/Colores alertas.jpg" alt="colores alerta" />
+
+<img src="assets/Doc_disenho/logos.jpg" alt="logos" />
+
+<img src="assets/Doc_disenho/tipografias.jpg" alt="tipofgrafias" />
 
