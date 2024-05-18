@@ -73,6 +73,12 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 <img src="assets/Views/ViewsProfilePage/Captura de pantalla 2024-05-17 193004.png" alt="Profile page celular" />
 
 ### Vistas Login Page
+<img src="assets/Views/ViewsLoginPage/Captura de pantalla 2024-05-17 200211.png" alt="Login page computador" />
+
+<img src="assets/Views/ViewsLoginPage/Captura de pantalla 2024-05-17 200224.png" alt="Login page tablet" />
+
+<img src="assets/Views/ViewsLoginPage/Captura de pantalla 2024-05-17 200234.png" alt="Login page celular" />
+
 
 ### Documento de diseño
 
