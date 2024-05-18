@@ -85,15 +85,6 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 <img src="assets/Views/ViewsLoginPage/Captura de pantalla 2024-05-17 200234.png" alt="Login page celular" />
 
 
-<img src="assets/Views/ViewsLoginPage/pc_login.png" alt="Login page computador" />
-
-<img src="assets/Views/ViewsLoginPage/ipad_login.png" alt="Login Page ipad" />
-
-<img src="assets/Views/ViewsLoginPage/celu_login.png" alt="Login Page iphone" />
-
-<img src="assets/Views/ViewsLoginPage/ejemplo_aplicacion_login.jpg" alt="Login Page aplicaciones" />
-
-
 ### Documento de diseño
 
 <img src="assets/Doc_disenho/Colores principales.jpg" alt="colores principales" />
