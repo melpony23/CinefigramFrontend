@@ -78,11 +78,14 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 
 
 ### Vistas Login Page
-<img src="assets/Views/ViewsLoginPage/Captura de pantalla 2024-05-17 200211.png" alt="Login page computador" />
 
-<img src="assets/Views/ViewsLoginPage/Captura de pantalla 2024-05-17 200224.png" alt="Login page tablet" />
+<img src="assets/Views/ViewsLoginPage/pc_login.png" alt="Login page computador" />
 
-<img src="assets/Views/ViewsLoginPage/Captura de pantalla 2024-05-17 200234.png" alt="Login page celular" />
+<img src="assets/Views/ViewsLoginPage/ipad_login.png" alt="Login Page ipad" />
+
+<img src="assets/Views/ViewsLoginPage/celu_login.png" alt="Login Page iphone" />
+
+<img src="assets/Views/ViewsLoginPage/ejemplo_aplicacion_login.jpg" alt="Login Page aplicaciones" />
 
 
 ### Documento de diseño
