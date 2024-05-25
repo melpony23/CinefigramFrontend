@@ -1,4 +1,6 @@
 # AMIMIR_frontend
+### Link a la página
+https://beautiful-bombolone-66a0df.netlify.app/
 
 ## Descripción general
 * ¿De qué se tratará el proyecto?
