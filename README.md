@@ -104,3 +104,6 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 
 <img src="assets/Doc_disenho/tipografias.jpg" alt="tipofgrafias" />
 
+## Referencias
+
+* Code Complete. (2023, June 22). Responsive Navbar in React using React Router | Beginner Tutorial [Video]. YouTube. https://www.youtube.com/watch?v=17l6AOc8s10 (routes en el navbar)
