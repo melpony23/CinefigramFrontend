@@ -1,0 +1,24 @@
+.custom-navbar {
+    background-color: #07021E; /* color del navbar */
+    color: #ffffff; 
+}
+
+.custom-navbar .nav {
+    flex-grow: 1;
+    align-items: right;
+}
+
+.nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9em;
+    color: white; /* Color inicial de los enlaces */
+    transition: color 0.2s ease-in-out; /* Transición suave para el cambio de color chat gpt*/
+}
+
+.nav-link:hover {
+    color: #BC2528; /* Color de los enlaces al pasar el cursor */
+}
+
+.nav-link-yellow:hover {
+    color: #F6AE2D; /* Color de los enlaces al pasar el cursor */
+}
