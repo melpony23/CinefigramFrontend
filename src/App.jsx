@@ -1,5 +1,5 @@
 import React from 'react';
-import './landing_page.css';
+import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar/Navbar';
 import { CrearCuenta } from './components/pages/CrearCuenta';
@@ -8,19 +8,25 @@ import { Listas } from './components/pages/Listas';
 import { Comunidad } from './components/pages/Comunidad';
 import { Peliculas } from './components/pages/Peliculas';
 import { Nosotros } from './components/pages/Nosotros';
+import LandingPage from './components/pages/LandingPage';
+import Instrucciones from './components/pages/Instrucciones';
 
 function App() {
   return (
     <div className='App'>
       <Navbar />
-      <Routes>
-        <Route path='/nosotros' element={<Nosotros />} />
-        <Route path='/peliculas' element={<Peliculas />} />
-        <Route path='/login' element={<IniciarSesion />} />
-        <Route path='/sign-up' element={<CrearCuenta />} />
-        <Route path='/listas' element={<Listas />} />
-        <Route path='/comunidad' element={<Comunidad />} />
-      </Routes>
+      <div className='content'> 
+        <Routes>
+          <Route path='/nosotros' element={<Nosotros />} />
+          <Route path='/peliculas' element={<Peliculas />} />
+          <Route path='/login' element={<IniciarSesion />} />
+          <Route path='/sign-up' element={<CrearCuenta />} />
+          <Route path='/listas' element={<Listas />} />
+          <Route path='/comunidad' element={<Comunidad />} />
+          <Route path='/' element={<LandingPage />} />
+          <Route path='/instrucciones' element={<Instrucciones />} />
+        </Routes>
+      </div>
     </div>
   );
 }

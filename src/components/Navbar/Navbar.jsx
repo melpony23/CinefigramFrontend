@@ -9,7 +9,7 @@ export const Navbar = () => {
         <header className="p-3 custom-navbar">
             <div className="container">
                 <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <Link to="/home" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <Link to="/" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                         <img src={logo} alt="Logo" width="120" height="40" className="me-2" />
                     </Link>
 
@@ -21,11 +21,17 @@ export const Navbar = () => {
                         <li><Link to="/comunidad" className="nav-link px-2">Comunidad</Link></li>
                         <li><Link to="/nosotros" className="nav-link px-2">Sobre nosotros</Link></li>
                     </ul>
-                    <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex align-items-center" role="search">
+                    <form className="col-12 col-lg-auto mb-1 mb-lg-0 me-lg-3 d-flex align-items-center" role="search">
                         <div className="input-group">
                             <input type="search" className="form-control rounded-pill pl-4" style={{ fontFamily: 'Inter, sans-serif' }} placeholder="Buscar..." aria-label="Buscar" />
                         </div>
                     </form>
+                    <Link to="/instrucciones">
+                        <button class="button" data-text="Awesome">
+                            <span class="actual-text">&nbsp;instrucciones&nbsp;</span>
+                            <span aria-hidden="true" class="hover-text">&nbsp;instrucciones&nbsp;</span>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </header>
