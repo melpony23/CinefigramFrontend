@@ -2,20 +2,20 @@ import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar/Navbar';
-import { CrearCuenta } from './components/pages/CrearCuenta';
-import { IniciarSesion } from './components/pages/IniciarSesion';
-import { Listas } from './components/pages/Listas';
-import { Comunidad } from './components/pages/Comunidad';
-import { Peliculas } from './components/pages/Peliculas';
-import { Nosotros } from './components/pages/Nosotros';
-import LandingPage from './components/pages/LandingPage';
-import Instrucciones from './components/pages/Instrucciones';
+import { CrearCuenta } from './pages/CrearCuenta';
+import { IniciarSesion } from './pages/IniciarSesion';
+import { Listas } from './pages/Listas';
+import { Comunidad } from './pages/Comunidad';
+import { Peliculas } from './pages/Peliculas';
+import { Nosotros } from './pages/Nosotros';
+import LandingPage from './pages/LandingPage';
+import Instrucciones from './pages/Instrucciones';
 
 function App() {
   return (
     <div className='App'>
       <Navbar />
-      <div className='content'> 
+      <div className='content'>
         <Routes>
           <Route path='/nosotros' element={<Nosotros />} />
           <Route path='/peliculas' element={<Peliculas />} />
@@ -34,7 +34,7 @@ function App() {
 export default App;
 
 // const [count, setCount] = useState(0)
-  {/* <div className="card">
+{/* <div className="card">
       <button onClick={() => setCount((count) => count + 1)}>
         count is {count}
       </button>

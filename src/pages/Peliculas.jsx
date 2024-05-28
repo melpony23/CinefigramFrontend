@@ -3,13 +3,10 @@ import "./Peliculas.css"
 
 export const Peliculas = () => {
     return (
-        <body>
-            <div>
-                <h1>Hola peliculas</h1>
-            </div>
-        </body>
+        <div>
+            <h1>Hola peliculas</h1>
+        </div>
     );
 };
 
 export default Peliculas;
-
