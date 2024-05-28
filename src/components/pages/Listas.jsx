@@ -3,9 +3,11 @@ import "./Listas.css"
 
 export const Listas = () => {
     return (
-        <div>
-            <h1>Hola listas</h1>
-        </div>
+        <body>
+            <div>
+                <h1>Hola listas</h1>
+            </div>
+        </body>
     );
 };
 
