@@ -15,7 +15,7 @@ function App() {
   return (
     <div className='App'>
       <Navbar />
-      <div className='content'> 
+      <div className='content'>
         <Routes>
           <Route path='/nosotros' element={<Nosotros />} />
           <Route path='/peliculas' element={<Peliculas />} />
@@ -34,7 +34,7 @@ function App() {
 export default App;
 
 // const [count, setCount] = useState(0)
-  {/* <div className="card">
+{/* <div className="card">
       <button onClick={() => setCount((count) => count + 1)}>
         count is {count}
       </button>

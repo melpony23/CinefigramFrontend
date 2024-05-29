@@ -3,11 +3,9 @@ import "./Nosotros.css"
 
 export const Nosotros = () => {
     return (
-        <body>
-            <div>
-                <h1>Hola nosotros</h1>
-            </div>
-        </body>
+        <div>
+            <h1>Hola nosotros</h1>
+        </div>
     );
 };
 
