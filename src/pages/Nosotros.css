@@ -23,6 +23,12 @@
     transform: translateY(0px);
 }
 
+@media (max-width: 1191px){
+    .separador{
+        padding-top: 50px;
+    }
+}
+
 @media (max-width: 991px){
     .separador{
         padding-top: 100px;

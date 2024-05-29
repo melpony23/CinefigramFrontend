@@ -9,23 +9,23 @@ export const Nosotros = () => {
     
     //Codigo para la animacion de aparicion
     window.addEventListener('scroll', function() {
-        var components = document.querySelectorAll('.fade-in');
-        for (var i = 0; i < elements.length; i++) {
+        var components = document.querySelectorAll(".fade-in");
+        for (var i = 0; i < components.length; i++) {
           var windowHeight = window.innerHeight;
           var top = components[i].getBoundingClientRect().top;
-          var trigger = 150;
+          var trigger = 25;
           if (top < windowHeight - trigger) {
-            components[i].classList.add('visible');
+            components[i].classList.add("visible");
           }
           else{
-            components[i].classList.remove('visible');
+            components[i].classList.remove("visible");
           }
         }
       });
     return (
         <div className='ContenedorCards'>
-            <div className='separador'><h1>d</h1></div>
-            <div className='fade-in'>
+            <div className='separador'><h2>s</h2></div>
+            <div className=''>
                 <ImgLeft imgUrl = {logo} integrante="¿Quienes Somos?" descripcion="Somos un grupo de estudiantes de la universidad catolica de chile, amantes de las peliculas y la programacion.
                 Este sitio web es nuestro proyecto para el curso IIC2513, consiste en una red social para fanaticos del cine, donde los usuarios puedan compartir sus opiniones sobre películas, rankearlas, 
                 crear playlists de películas e incluso crear parties para ver películas con sus amigos."/>
@@ -43,9 +43,7 @@ export const Nosotros = () => {
                 <ImgRight imgUrl = {imgPrueba} integrante="Vice" descripcion="HOLAKJKHSakdhfalksjdflkdjhladfkalksdjfalksdjfaklsjd
                 ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"/>
             </div>
-            
-            
-            
+
         </div>
     );
 };
