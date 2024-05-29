@@ -2,14 +2,14 @@ import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar/Navbar';
-import { CrearCuenta } from './components/pages/CrearCuenta';
-import { IniciarSesion } from './components/pages/IniciarSesion';
-import { Listas } from './components/pages/Listas';
-import { Comunidad } from './components/pages/Comunidad';
-import { Peliculas } from './components/pages/Peliculas';
-import { Nosotros } from './components/pages/Nosotros';
-import LandingPage from './components/pages/LandingPage';
-import Instrucciones from './components/pages/Instrucciones';
+import { CrearCuenta } from './pages/CrearCuenta';
+import { IniciarSesion } from './pages/IniciarSesion';
+import { Listas } from './pages/Listas';
+import { Comunidad } from './pages/Comunidad';
+import { Peliculas } from './pages/Peliculas';
+import { Nosotros } from './pages/Nosotros';
+import LandingPage from './pages/LandingPage';
+import Instrucciones from './pages/Instrucciones';
 
 function App() {
   return (
