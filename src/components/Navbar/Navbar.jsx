@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css';
-import logo from '../../assets/Logo_horizontal_png.png'; // Asegúrate de que la ruta sea correcta
+import logo from '../../assets/Logo_horizontal_png.png';
 
 export const Navbar = () => {
     return (
         <header className="p-3 custom-navbar">
             <div className="container">
-                <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <div className="d-flex flex-wrap align-items-center justify-content-center  logo-nav">
                     <Link to="/" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                         <img src={logo} alt="Logo" width="120" height="40" className="me-2" />
                     </Link>
