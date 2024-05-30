@@ -1,0 +1,42 @@
+
+.ContenedorCards{
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("/src/assets/foto_portada.jpg");
+    background-color: #FFFFFF;
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    padding-left: 10%;
+}
+
+.separador{
+    padding-top: 0;
+}
+
+.fade-in{
+    opacity: 0;
+    transform: translateY(150px);
+    transition: opacity 0.5s ease;
+}
+
+.fade-in.visible{
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+@media (max-width: 1191px){
+    .separador{
+        padding-top: 50px;
+    }
+}
+
+@media (max-width: 991px){
+    .separador{
+        padding-top: 100px;
+    }
+}
+
+@media (max-width: 768px){
+    .separador{
+        padding-top: 150px;
+    }
+}
