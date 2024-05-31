@@ -1,0 +1,77 @@
+/*Medidas y contenedores --------------------------------------------------*/
+.peliculas-container {
+    padding-top: 10vh; 
+    background-color: #07021E;
+}
+
+.search-bar {
+   justify-content: center;
+}
+
+.peliculas-destacadas {
+  text-align: center;
+}
+
+.contenedor-pelicula {
+    margin-left: 17%;
+    margin-right: 17%;
+    padding-top: 0; /* Remover el espacio superior */
+    padding-bottom: 6%; 
+}
+
+/*Fomatos de letras --------------------------------------------------------*/
+
+.card-title-peliculas {
+    color: white;
+    font-size: 1.5em;
+    font-family: 'Inter', sans-serif;
+    margin-left: 17%;
+
+}
+
+.title-card-2 {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/*Decoracion hr ----------------------------------------------------------------*/
+
+.decorator-separator-movie {
+  border: none;
+  height: 0.2em;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  margin-left: 17%;
+  margin-right: 17%;
+  box-shadow: 0 0 10px, 0 0 20px, 0 0 30px, 0 0 40px;
+}
+
+/* Pseudo-elementos compartidos */
+.decorator-separator-movie::before, .decorator-separator-movie::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  filter: blur(5px);
+  opacity: 1;
+  z-index: -1;
+}
+
+/* Clase específica para el color rojo */
+.decorator-separator-movie-red {
+  background-color: #BC2528;
+  box-shadow: 0 0 10px #BC2528, 0 0 20px #BC2528, 0 0 30px #BC2528, 0 0 40px #BC2528;
+}
+
+.decorator-separator-movie-red::before, .decorator-separator-red::after {
+  background-color: #BC2528;
+}
+
+.peliculas-destacadas .movie-poster {
+    width: 30vh; /* Ancho más grande para las imágenes de película */
+    height: 40vh; /* Altura más grande para las imágenes de película */
+}
