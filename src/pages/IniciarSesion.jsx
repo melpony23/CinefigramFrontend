@@ -3,9 +3,11 @@ import "./IniciarSesion.css"
 
 export const IniciarSesion = () => {
     return (
-        <div>
-            <h1>Hola login</h1>
-        </div>
+        <body>
+            <div>
+                <h1>Hola login</h1>
+            </div>
+        </body>
     );
 };
 

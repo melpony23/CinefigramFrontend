@@ -1,0 +1,56 @@
+@media (max-width: 991px){
+    .Presentation-Card{
+        grid-template-columns: 1fr;
+        grid-gap: 50px;
+    }
+
+    .Presentation-Card .ContenedorContenidos{
+        padding-left: 0;
+        
+    }
+}
+
+@media (max-width: 768px){
+    .Presentation-Card{
+        width: 90%;
+    }
+
+    .Presentation-Card .ContenedorContenidos h2{
+        font-size: 30px;
+        padding-bottom: 20px;
+    }
+    
+    .Presentation-Card .ContenedorContenidos p{
+        line-height: 24px;
+    }
+}
+
+@media (max-width: 575px){
+    .Presentation-Card .ContenedorContenidos{
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .Presentation-Card .ContenedorContenidos span.titulo{
+        font-size: 20px;
+    }
+
+    .Presentation-Card .ContenedorContenidos h2{
+        font-size: 25px;
+        text-align: center;
+    }
+    
+    .Presentation-Card .ContenedorContenidos p{
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    .Presentation-Card .ContenedorContenidos p{
+        font-size: 16px;
+        line-height: 25px;
+        padding-bottom: 25px;
+        max-width: 300px; 
+        overflow-wrap: break-word;
+        text-align: justify;
+    }
+}

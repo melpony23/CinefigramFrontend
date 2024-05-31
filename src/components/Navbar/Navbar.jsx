@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css';
-import logo from '../../assets/Logo_horizontal_png.png';
+import logo from '../../../assets/Logo_horizontal_png.png'
 
 export const Navbar = () => {
     return (
@@ -27,9 +27,9 @@ export const Navbar = () => {
                         </div>
                     </form>
                     <Link to="/instrucciones">
-                        <button class="button" data-text="Awesome">
-                            <span class="actual-text">&nbsp;instrucciones&nbsp;</span>
-                            <span aria-hidden="true" class="hover-text">&nbsp;instrucciones&nbsp;</span>
+                        <button className="button" data-text="Awesome">
+                            <span className="actual-text">&nbsp;instrucciones&nbsp;</span>
+                            <span aria-hidden="true" className="hover-text">&nbsp;instrucciones&nbsp;</span>
                         </button>
                     </Link>
                 </div>
