@@ -3,10 +3,12 @@ import "./Nosotros.css"
 import {ImgLeft} from "../components/AboutUs-Cards/ImgLeft-Cards"
 import {ImgRight} from "../components/AboutUs-Cards/ImgRight-Cards"
 import logo from "../assets/Logo_png.png"
+import fotoMel from "../assets/Foto_Mel.jpg"
+import fotoKate from "../assets/Foto_kate.jpg"
+
 export const Nosotros = () => {
     //Aca hay que poner las imagenes
     const imgPrueba = "https://w7.pngwing.com/pngs/741/68/png-transparent-user-computer-icons-user-miscellaneous-cdr-rectangle-thumbnail.png"
-    
     //Codigo para la animacion de aparicion
     window.addEventListener('scroll', function() {
         var components = document.querySelectorAll(".fade-in");
@@ -31,17 +33,17 @@ export const Nosotros = () => {
                 crear playlists de películas e incluso crear parties para ver películas con sus amigos."/>
             </div>
             <div className='fade-in'>
-                <ImgRight imgUrl = {imgPrueba} integrante="Kate" descripcion="HOLAKJKHSAFKJFKAJHSJAGJHGFKYGJYGEKFUEYAGKYFGA
-                sdddssssssssssssssssssssssssssssssss\n"/>
+                <ImgRight imgUrl = {fotoKate} integrante="Kate" descripcion="Hola soy Kate. Estoy en el major de de software 
+                con Minor en data science y soy de la generacion 2021. No tengo una pelicula favorita y soy Tauro."/>
             </div>
             <div className='fade-in'>
-                <ImgRight imgUrl = {imgPrueba} integrante="Mel" descripcion="HOLAKJKHSakdhfalksjdflkdjhladfkalksdjfalksdjfaklsjd.
-                hfakdsjfhalksjlkdfhasdk.fkjashdlkajsfhlakjh.ajfhkshfkad.
-                skjdfalksdjfaslkjdfaslkdjalsdjflaksdjfalksdfjlaksdjfalsk"/>
+                <ImgRight imgUrl = {fotoMel} integrante="Mel" descripcion="Hola soy Mel. Estoy en el major de de software 
+                y en el Minor de data science. Soy de la generacion 2021, mi pelicula favorita es flipped y soy Picsis."/>
             </div>
             <div className='fade-in'>
-                <ImgRight imgUrl = {imgPrueba} integrante="Vice" descripcion="HOLAKJKHSakdhfalksjdflkdjhladfkalksdjfalksdjfaklsjd
-                ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"/>
+                <ImgRight imgUrl = {imgPrueba} integrante="Vice" descripcion="Hola soy Vice. Estoy en el major de software y en el minor de
+                de fundamentos de la computación. Soy de la generacion 2021, y no tengo pelicula favorita pero en su tiempo me gustaba mucho
+                Manchester by the sea, tambien soy tauro.  "/>
             </div>
 
         </div>
