@@ -8,8 +8,6 @@
 .movie-app {
     overflow-x: auto; /* Permitir el desplazamiento horizontal */
     white-space: nowrap; /* Evitar que las imágenes se envuelvan a la siguiente línea */
-    padding-bottom: 20px; /* Agregar espacio inferior para evitar solapamiento con la barra de desplazamiento */
-    margin-bottom: -20px; /* Compensar el espacio añadido para mantener la alineación */
     position: relative; /* Establecer posición relativa para el desplazamiento personalizado */
 }
 

@@ -1,6 +1,6 @@
 
 .ContenedorCards{
-    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("/src/assets/foto_portada.jpg");
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("assets/foto_portada.jpg");
     background-color: #FFFFFF;
     width: 100%;
     min-height: 100vh;

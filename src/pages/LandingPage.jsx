@@ -85,14 +85,16 @@ export const LandingPage = () => {
     ]);
 
     return (
-        <div className='landing'>
+        <div className="landing-page-container">
             <div className='portada_img'>
                 <div className='card-presentation'>
-                    <h1 className='font-custome-tittle'>Cinefigram</h1>
-                    <h3>La red social para los amantes del cine</h3>
+                    <h1>Cinefigram</h1>
+                    <h3 className='text-align-center'>La red social para los amantes del cine</h3>
+                    <center>
                     <button className="cssbuttons-io">
                         <span>Únete hoy!</span>
                     </button>
+                    </center>
                 </div>
             </div>
             <div className='grid-container'>
@@ -108,12 +110,11 @@ export const LandingPage = () => {
                 <div className='grid-item2'>
                     <h4 className='font-custome-tittle card-title-2'>Listas populares</h4>
                     <hr className='decorator-separator-2 decorator-separator-yellow'/>
-                    <div>
-                        <div className='playlist-row'> 
-                            <img src={playlistImage} alt='playlist-png'  className="playlist-png"/>
-                        </div>
+                    <div className='playlist-row'> 
+                        <img src={playlistImage} alt='playlist-png'  className="playlist-png"/>
                         <InfoCard />
                     </div>
+                    
                 </div>
             </div>
         </div>
