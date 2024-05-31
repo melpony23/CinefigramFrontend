@@ -1,0 +1,45 @@
+.info-card {
+    background-color: unset;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    margin-left: 30%;
+
+}
+
+.grid-item {
+    text-align: center;
+}
+
+.title-card {
+    font-size: 1em;
+}
+
+.number-like {
+    font-size: 0.7em;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    color: white;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .flex-item {
+    margin: 0 10px; /* espacio entre los elementos */
+  }
+  
+  
+  @media (max-width: 767px) {
+    .info-card {
+        margin-left: 20%;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .info-card {
+        margin-left: 37%;
+    }
+  }

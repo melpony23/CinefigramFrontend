@@ -1,0 +1,166 @@
+.contenido {
+    background-color: #07021E;
+    width: 100%;
+}
+
+.contenido_principal {
+    padding-left: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-control-next {
+    justify-content: right;
+}
+
+.carousel-control-prev {
+    justify-content: left;
+}
+
+.titulo {
+    width: 90%;
+    padding-bottom: 2%;
+}
+
+.container_cards {
+    display: grid;
+    overflow-x: hidden;
+    border-radius: 10px;
+}
+
+.contenedor_carrusel {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+}
+
+.carousel.slide {
+    width: 100%;
+}
+
+.Botones {
+    width: 100%;
+    padding-bottom: 5%;
+    display: flex;
+    align-items: first baseline;
+}
+
+.texto_boton {
+    font-family: 'Inter', sans-serif;
+    font-size: medium;
+    color: #FFFEFF;
+}
+
+.boton {
+    background-color: #07021E;
+    border-width: 1px;
+    border-color: #F6AE2D;
+    font-family: 'Inter', sans-serif;
+    margin-left: 15px;
+    color: #F6AE2D;
+}
+
+.titulo_info_pag {
+    font-family: 'Inter', sans-serif;
+    color: #FFFEFF;
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 549px) {
+    .separador {
+        padding-top: 55%;
+    }
+
+    .titulo_info_pag {
+        font-size: x-large;
+    }
+
+    .separador_chico {
+        height: 50px;
+    }
+}
+
+@media screen and (min-width: 550px) and (max-width: 649px) {
+    .separador {
+        padding-top: 40%;
+    }
+
+    .titulo_info_pag {
+        font-size: x-large;
+    }
+
+    .separador_chico {
+        height: 70px;
+    }
+}
+
+@media screen and (min-width: 650px) and (max-width: 767px) {
+    .separador {
+        padding-top: 35%;
+    }
+
+    .titulo_info_pag {
+        font-size: x-large;
+    }
+
+    .separador_chico {
+        height: 70px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 989px) {
+    .separador {
+        padding-top: 25%;
+    }
+
+    .titulo_info_pag {
+        font-size: xx-large;
+    }
+
+    .separador_chico {
+        height: 100px;
+    }
+}
+
+@media screen and (min-width: 990px) {
+    .separador {
+        padding-top: 20%;
+    }
+
+    .titulo_info_pag {
+        font-size: xx-large;
+    }
+
+    .separador_chico {
+        height: 100px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .separador {
+        padding-top: 15%;
+    }
+
+    .titulo_info_pag {
+        font-size: xx-large;
+    }
+
+    .separador_chico {
+        height: 100px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .separador {
+        padding-top: 10%;
+    }
+
+    .titulo_info_pag {
+        font-size: xx-large;
+    }
+
+    .separador_chico {
+        height: 100px;
+    }
+}

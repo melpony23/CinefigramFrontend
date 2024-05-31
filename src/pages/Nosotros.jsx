@@ -2,9 +2,9 @@ import React from 'react'
 import "./Nosotros.css"
 import {ImgLeft} from "../components/AboutUs-Cards/ImgLeft-Cards"
 import {ImgRight} from "../components/AboutUs-Cards/ImgRight-Cards"
-import logo from "../assets/Logo_png.png"
 import fotoMel from "../assets/Foto_Mel.jpg"
 import fotoKate from "../assets/Foto_kate.jpg"
+import logo from "../../assets/Logo_png.png"
 
 export const Nosotros = () => {
     //Aca hay que poner las imagenes

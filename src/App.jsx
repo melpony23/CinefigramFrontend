@@ -13,9 +13,9 @@ import Instrucciones from './pages/Instrucciones';
 
 function App() {
   return (
-    <div className='App'>
+    <div className='App w-100'>
       <Navbar />
-      <div className='content'>
+      <div className='w-100'>
         <Routes>
           <Route path='/nosotros' element={<Nosotros />} />
           <Route path='/peliculas' element={<Peliculas />} />
