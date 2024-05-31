@@ -3,6 +3,7 @@ import "./Instrucciones.css"
 import { useState } from 'react';
 import Info_Page_Card from '../components/Info_Pag-Cards/Info_Pag-Cards';
 import Carousel from 'react-bootstrap/Carousel';
+import Landingpageview from '../../assets/Views/ViewsLandingPage/Landingpage_view.png'
 
 function AlertButton({ message, children }) {
     return (
@@ -30,35 +31,35 @@ export const Instrucciones = () => {
                         <Carousel.Item>
                             <div className='container_cards'>
                                 <Info_Page_Card
-                                    imagen={"/src/assets/Landing_page.png"} texto_pag={"En nuestra página de películas encontrarás todas las películas de nuestra plataforma, organizadas según popularidad y cantidad de reviews. Podrás leer las reviews que han dejado nuestros usuario, y si inicias sesión, podrás publicar reviews en cualquier película, además de dar like y dejar comentarios en otras reviews."} nombre_pag={"Landing page"}>
+                                    imagen={Landingpageview} texto_pag={"En nuestra página de películas encontrarás todas las películas de nuestra plataforma, organizadas según popularidad y cantidad de reviews. Podrás leer las reviews que han dejado nuestros usuario, y si inicias sesión, podrás publicar reviews en cualquier película, además de dar like y dejar comentarios en otras reviews."} nombre_pag={"Landing page"}>
                                 </Info_Page_Card>
                             </div>
                         </Carousel.Item>
                         <Carousel.Item>
                             <div className='container_cards'>
                                 <Info_Page_Card
-                                    imagen={"/src/assets/Landing_page.png"} texto_pag={"En nuestra página de películas encontrarás todas las películas de nuestra plataforma, organizadas según popularidad y cantidad de reviews. Podrás leer las reviews que han dejado nuestros usuario, y si inicias sesión, podrás publicar reviews en cualquier película, además de dar like y dejar comentarios en otras reviews."} nombre_pag={"Películas"}>
+                                    imagen={Landingpageview} texto_pag={"En nuestra página de películas encontrarás todas las películas de nuestra plataforma, organizadas según popularidad y cantidad de reviews. Podrás leer las reviews que han dejado nuestros usuario, y si inicias sesión, podrás publicar reviews en cualquier película, además de dar like y dejar comentarios en otras reviews."} nombre_pag={"Películas"}>
                                 </Info_Page_Card>
                             </div>
                         </Carousel.Item>
                         <Carousel.Item>
                             <div className='container_cards'>
                                 <Info_Page_Card
-                                    imagen={"/src/assets/Landing_page.png"} texto_pag={"En nuestra página de películas encontrarás todas las películas de nuestra plataforma, organizadas según popularidad y cantidad de reviews. Podrás leer las reviews que han dejado nuestros usuario, y si inicias sesión, podrás publicar reviews en cualquier película, además de dar like y dejar comentarios en otras reviews."} nombre_pag={"Listas"}>
+                                    imagen={Landingpageview} texto_pag={"En nuestra página de películas encontrarás todas las películas de nuestra plataforma, organizadas según popularidad y cantidad de reviews. Podrás leer las reviews que han dejado nuestros usuario, y si inicias sesión, podrás publicar reviews en cualquier película, además de dar like y dejar comentarios en otras reviews."} nombre_pag={"Listas"}>
                                 </Info_Page_Card>
                             </div>
                         </Carousel.Item>
                         <Carousel.Item>
                             <div className='container_cards'>
                                 <Info_Page_Card
-                                    imagen={"/src/assets/Landing_page.png"} texto_pag={"En nuestra página de películas encontrarás todas las películas de nuestra plataforma, organizadas según popularidad y cantidad de reviews. Podrás leer las reviews que han dejado nuestros usuario, y si inicias sesión, podrás publicar reviews en cualquier película, además de dar like y dejar comentarios en otras reviews."} nombre_pag={"Comunidad"}>
+                                    imagen={Landingpageview} texto_pag={"En nuestra página de películas encontrarás todas las películas de nuestra plataforma, organizadas según popularidad y cantidad de reviews. Podrás leer las reviews que han dejado nuestros usuario, y si inicias sesión, podrás publicar reviews en cualquier película, además de dar like y dejar comentarios en otras reviews."} nombre_pag={"Comunidad"}>
                                 </Info_Page_Card>
                             </div>
                         </Carousel.Item>
                         <Carousel.Item>
                             <div className='container_cards'>
                                 <Info_Page_Card
-                                    imagen={"/src/assets/Landing_page.png"} texto_pag={"En nuestra página de películas encontrarás todas las películas de nuestra plataforma, organizadas según popularidad y cantidad de reviews. Podrás leer las reviews que han dejado nuestros usuario, y si inicias sesión, podrás publicar reviews en cualquier película, además de dar like y dejar comentarios en otras reviews."} nombre_pag={"Sobre nosotros"}>
+                                    imagen={Landingpageview} texto_pag={"En nuestra página de películas encontrarás todas las películas de nuestra plataforma, organizadas según popularidad y cantidad de reviews. Podrás leer las reviews que han dejado nuestros usuario, y si inicias sesión, podrás publicar reviews en cualquier película, además de dar like y dejar comentarios en otras reviews."} nombre_pag={"Sobre nosotros"}>
                                 </Info_Page_Card>
                             </div>
                         </Carousel.Item>
