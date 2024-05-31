@@ -61,11 +61,11 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 ## Diseño Web
 ### Vistas principales y ejemplos de aplicación
 ### Vistas Landing Page
-<img src="assets/Views/ViewsLandingPage/Captura de pantalla 2024-05-17 192728.png" alt="Landing page computador" />
+<img src="assets/Views/ViewsLandingPage/Landingpage_view.png" alt="Landing page computador" />
 
-<img src="assets/Views/ViewsLandingPage/Captura de pantalla 2024-05-17 192744.png" alt="Landing page tablet" />
+<img src="assets/Views/ViewsLandingPage/LandingViewM.png" alt="Landing page tablet" />
 
-<img src="assets/Views/ViewsLandingPage/Captura de pantalla 2024-05-17 192757.png" alt="Landing page celular" />
+<img src="assets/Views/ViewsLandingPage/LandingViewC.png" alt="Landing page celular" />
 
 <img src="assets/Views/ViewsLandingPage/ejemplo_aplicacion_landing.jpg" alt="Landing page aplicaciones" />
 
