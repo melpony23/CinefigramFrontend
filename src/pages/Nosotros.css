@@ -1,6 +1,6 @@
 
 .ContenedorCards{
-    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("assets/foto_portada.jpg");
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("../../assets/foto_portada.jpg");
     background-color: #FFFFFF;
     width: 100%;
     min-height: 100vh;
@@ -8,9 +8,7 @@
     padding-left: 10%;
 }
 
-.separador{
-    padding-top: 0;
-}
+
 
 .fade-in{
     opacity: 0;
@@ -21,22 +19,4 @@
 .fade-in.visible{
     opacity: 1;
     transform: translateY(0px);
-}
-
-@media (max-width: 1191px){
-    .separador{
-        padding-top: 50px;
-    }
-}
-
-@media (max-width: 991px){
-    .separador{
-        padding-top: 100px;
-    }
-}
-
-@media (max-width: 768px){
-    .separador{
-        padding-top: 150px;
-    }
 }
