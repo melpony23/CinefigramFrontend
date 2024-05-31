@@ -1,0 +1,20 @@
+.info-card {
+    background-color: unset;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    margin-right: 7em;
+
+}
+
+.grid-item {
+    text-align: center;
+}
+
+.title-card {
+    font-size: 1em;
+}
+
+.number-like {
+    font-size: 0.7em;
+}

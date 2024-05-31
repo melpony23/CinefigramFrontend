@@ -107,3 +107,5 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 ## Referencias
 
 * Code Complete. (2023, June 22). Responsive Navbar in React using React Router | Beginner Tutorial [Video]. YouTube. https://www.youtube.com/watch?v=17l6AOc8s10 (routes en el navbar)
+
+* Web Tech. (2022, December 28). ReactJS Like And Dislike Button | like button in react js  | Web Tech [Video]. YouTube. https://www.youtube.com/watch?v=mfaPBGJGxrE (componente likes)
