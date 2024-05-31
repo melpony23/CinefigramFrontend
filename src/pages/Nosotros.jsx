@@ -2,7 +2,7 @@ import React from 'react'
 import "./Nosotros.css"
 import {ImgLeft} from "../components/AboutUs-Cards/ImgLeft-Cards"
 import {ImgRight} from "../components/AboutUs-Cards/ImgRight-Cards"
-import logo from "../assets/Logo_png.png"
+import logo from "../../assets/Logo_png.png"
 export const Nosotros = () => {
     //Aca hay que poner las imagenes
     const imgPrueba = "https://w7.pngwing.com/pngs/741/68/png-transparent-user-computer-icons-user-miscellaneous-cdr-rectangle-thumbnail.png"
