@@ -11,70 +11,70 @@ export const LandingPage = () => {
             Title: 'Bohemian rhapsody',
             Year: '2018',
             Type: 'movie',
-            Poster: 'assets/bohemian-rhapsody.jpg'
+            Poster: '../../assets/bohemian-rhapsody.jpg'
         },
         {
             key: 2, 
             Title: 'Django',
             Year: '2012',
             Type: 'movie',
-            Poster: 'assets/django.png'
+            Poster: '../../assets/django.png'
         },
         {
             key: 3, 
             Title: 'Blade Runner 2049',
             Year: '2017',
             Type: 'movie',
-            Poster: 'assets/blade-runner.png'
+            Poster: '../../assets/blade-runner.png'
         },
         {
             key: 4, 
             Title: 'Little miss sunshine',
             Year: '2006',
             Type: 'movie',
-            Poster: 'assets/miss-sunshine.png'
+            Poster: '../../assets/miss-sunshine.png'
         },
         {
             key: 5, 
             Title: 'Amelie',
             Year: '2001',
             Type: 'movie',
-            Poster:'assets/amelie.png'
+            Poster:'../../assets/amelie.png'
         },
         {   
             key: 6, 
             Title: 'Bohemian rhapsody',
             Year: '2018',
             Type: 'movie',
-            Poster: 'assets/bohemian-rhapsody.jpg'
+            Poster: '../../assets/bohemian-rhapsody.jpg'
         },
         {
             key: 7, 
             Title: 'Django',
             Year: '2012',
             Type: 'movie',
-            Poster: 'assets/django.png'
+            Poster: '../../assets/django.png'
         },
         {
             key: 8, 
             Title: 'Blade Runner 2049',
             Year: '2017',
             Type: 'movie',
-            Poster: 'assets/blade-runner.png'
+            Poster: '../../assets/blade-runner.png'
         },
         {
             key: 9, 
             Title: 'Little miss sunshine',
             Year: '2006',
             Type: 'movie',
-            Poster: 'assets/miss-sunshine.png'
+            Poster: '../../assets/miss-sunshine.png'
         },
         {
             key: 10, 
             Title: 'Amelie',
             Year: '2001',
             Type: 'movie',
-            Poster:'assets/amelie.png'
+            Poster:'../../assets/amelie.png'
         }
     ]);
 
@@ -107,7 +107,7 @@ export const LandingPage = () => {
                     <hr className='decorator-separator-2 decorator-separator-yellow'/>
                     <div>
                         <div className='playlist-row'> 
-                            <img src='assets/portada_playlist.png' alt='playlist-png'  className="playlist-png"/>
+                            <img src='../../assets/portada_playlist.png' alt='playlist-png'  className="playlist-png"/>
                         </div>
                         <InfoCard />
                     </div>
