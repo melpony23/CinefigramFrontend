@@ -1,0 +1,8 @@
+.flex-item {
+    margin: 0.2em; /* Elimina todos los márgenes de los elementos flexibles */
+  }
+
+.flex-container {
+   text-align: center;
+   justify-content: center;
+}

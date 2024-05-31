@@ -108,9 +108,9 @@ export const LandingPage = () => {
                     </div>
                 </div>
                 <div className='grid-item2'>
+                    <div className='playlist-row'> 
                     <h4 className='font-custome-tittle card-title-2'>Listas populares</h4>
                     <hr className='decorator-separator-2 decorator-separator-yellow'/>
-                    <div className='playlist-row'> 
                         <img src={playlistImage} alt='playlist-png'  className="playlist-png"/>
                         <InfoCard />
                     </div>

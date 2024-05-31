@@ -1,8 +1,10 @@
+/*chat GPT ayuda para manejar los tamanhos y hacerlos responsivos*/
 .movie-poster {
     width: 18vh;
     height: 25vh;
     display: inline-block; /* Mostrar las imágenes en línea */
     margin-right: 1em; /* Espacio entre las imágenes */
+    margin-bottom: 2vh;
 }
 
 .movie-app {
@@ -20,6 +22,7 @@
 .movie-app::-webkit-scrollbar-thumb {
     background-color: #888; /* Color del pulgar de la barra de desplazamiento */
     border-radius: 4px; /* Bordes redondeados del pulgar */
+    margin-top: 5vh;
 }
 
 .movie-app::-webkit-scrollbar-track {
