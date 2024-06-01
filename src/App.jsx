@@ -10,6 +10,7 @@ import { Peliculas } from './pages/Peliculas';
 import { Nosotros } from './pages/Nosotros';
 import LandingPage from './pages/LandingPage';
 import Instrucciones from './pages/Instrucciones';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/instrucciones' element={<Instrucciones />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import MovieList from '../components/MovieList/MovieList';
 import InfoCard from '../components/InfoCard/InfoCard';
@@ -91,9 +92,11 @@ export const LandingPage = () => {
                     <h1>Cinefigram</h1>
                     <h3 className='text-align-center'>La red social para los amantes del cine</h3>
                     <center>
-                    <button className="cssbuttons-io">
-                        <span>Únete hoy!</span>
-                    </button>
+                    <Link to="/sign-up">
+                        <button className="cssbuttons-io">
+                            <span>Únete hoy!</span>
+                        </button>
+                    </Link>
                     </center>
                 </div>
             </div>
