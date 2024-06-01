@@ -27,7 +27,7 @@ const InfoCard = () => {
               <FontAwesomeIcon
                 icon={isLike? faHeartSolid : faHeartRegular}
                 onClick={onLikeButtonClick}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", color: isLike ? "#BC2528" : "#BC2528"}}
               />
               <p className="number-like">{like}</p>
             </div>

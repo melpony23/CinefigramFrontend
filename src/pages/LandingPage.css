@@ -229,6 +229,14 @@ z-index: -1;
   .grid-item2 {
     margin-left: 0;
   }
+  .playlist-png {
+    width: 40vh;
+    height: 30vh
+  }
+  .row .movie-poster {
+    width: 20vh; /* Ancho más grande para las imágenes de película */
+    height: 25vh; /* Altura más grande para las imágenes de película */
+  }
 }
 
 
@@ -252,4 +260,14 @@ z-index: -1;
   margin-left: 4em;
    
   }
+
+  .playlist-png{
+    width: 30vh;
+    height: 20vh
+  }
+
+  .row .movie-poster {
+    width: 15vh; /* Ancho más grande para las imágenes de película */
+    height: 20vh; /* Altura más grande para las imágenes de película */
+}
 }

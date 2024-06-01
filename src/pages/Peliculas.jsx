@@ -94,6 +94,13 @@ export const Peliculas = () => {
                     <MovieList movies={movies} />
                 </div>
             </div>
+            <h5 className='card-title-peliculas-h5'>Peliculas variadas </h5>
+            <hr className='decorator-separator-movie decorator-separator-movie-red'/>
+            <div className='contenedor-pelicula'>
+                <div className='peliculas-variadas'>
+                    <MovieList movies={movies} />
+                </div>
+            </div>
         </div>
     );
 };

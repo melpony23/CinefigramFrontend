@@ -1,8 +1,12 @@
 .flex-item {
-    margin: 0.2em; /* Elimina todos los márgenes de los elementos flexibles */
+    margin: 0em; /* Elimina todos los márgenes de los elementos flexibles */
   }
 
 .flex-container {
    text-align: center;
    justify-content: center;
+}
+
+.number-action {
+  font-size: 0.7em;
 }

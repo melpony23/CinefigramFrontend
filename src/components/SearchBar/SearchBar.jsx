@@ -21,7 +21,7 @@ const SearchBar = ({ onSearch }) => {
         type="text"
         value={query}
         onChange={handleChange}
-        placeholder="Buscar una pelicula..."
+        placeholder="Buscar ..."
         className="search-input"
       />
       <button type="submit" className="search-button button-gris">
