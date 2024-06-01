@@ -7,18 +7,13 @@
     height: 2%;
 }
 
-.Texto_pag {
-    font-size: medium;
-}
-
 .Nombre_pag {
     font-size: x-large;
 }
 
 @media screen and (max-width: 499px) {
     .Info_pag {
-        grid-template-rows: 50% 50%;
-        max-height: 800px;
+        height: 580px;
     }
 
     .Imagen_container {
@@ -38,9 +33,13 @@
         padding-right: 2%;
         padding-left: 2%;
         text-align: justify;
-        padding-top: 5%;
+        padding-top: 30px;
         padding-bottom: 10%;
         width: 100%;
+    }
+
+    .Texto_pag {
+        font-size: medium;
     }
 }
 
@@ -70,6 +69,11 @@
         padding-top: 5%;
         padding-bottom: 1%;
         width: 100%;
+
+    }
+
+    .Texto_pag {
+        font-size: medium;
     }
 
 }
@@ -98,5 +102,9 @@
         padding-left: 5%;
         padding-bottom: 4%;
         width: 100%;
+    }
+
+    .Texto_pag {
+        font-size: large;
     }
 }

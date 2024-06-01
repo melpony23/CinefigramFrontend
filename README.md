@@ -61,6 +61,7 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 ## Diseño Web
 ### Vistas principales y ejemplos de aplicación
 ### Vistas Landing Page
+
 <img src="assets/Views/ViewsLandingPage/lading-page-pc.png" alt="Landing page computador" />
 
 <img src="assets/Views/ViewsLandingPage/landing-page-tablet.png" alt="Landing page tablet" />
@@ -92,9 +93,9 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 
 ### Documento de diseño
 
-<img src="assets/Doc_disenho/Colores principales.jpg" alt="colores principales" />
+<img src="assets/Doc_disenho/ColoresPrimarios.png" alt="colores principales" />
 
-<img src="assets/Doc_disenho/Colores Secundaris.jpg" alt="colores secundarios" />
+<img src="assets/Doc_disenho/ColoresSecundarios.png" alt="colores secundarios" />
 
 <img src="assets/Doc_disenho/Colores neutros.jpg" alt="colores neutros" />
 

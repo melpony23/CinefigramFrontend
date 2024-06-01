@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Info_Pag-Cards.css";
 
-const Info_Page_Card = ({imagen, nombre_pag, texto_pag}) => {
+const Info_Page_Card = ({imagen, nombre_pag, texto_pag1, texto_pag2 }) => {
 
     return (
         <div className="Info_pag">
@@ -11,9 +11,9 @@ const Info_Page_Card = ({imagen, nombre_pag, texto_pag}) => {
             <div className= "Info_container"> 
                 <h3 className="Nombre_pag">{nombre_pag}</h3>
                 <div className="mini_separador"></div>
-                <p className="Texto_pag">{texto_pag}</p>
+                <p className="Texto_pag">{texto_pag1}</p>
+                <p className="Texto_pag">{texto_pag2}</p>
             </div>
-
         </div>
     )
 }
