@@ -1,0 +1,20 @@
+.Body_listas {
+    background-color: #07021E;
+    width: 100%;
+}
+
+.titulo_listas {
+    font-family: 'Inter', sans-serif;
+    color: #FFFEFF;
+    font-size: x-large;
+}
+
+.content_listas {
+    width: 100%;
+}
+
+
+.contenedor_titulo_listas {
+    display: flex;
+    justify-content: center;
+}
