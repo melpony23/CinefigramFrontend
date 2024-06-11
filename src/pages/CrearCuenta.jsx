@@ -72,23 +72,24 @@ export const CrearCuenta = () => {
                             </div>
                             {/* Tracker de validación */}
                             <div className='tracker-box'>
+                                <p>Tu Contraseña debe tener al menos:</p>
                                 <div className={numberValidated ? 'validated' : 'not-validated'}>
                                     <span className='list-icon'>
                                         {numberValidated ? <FaCheckCircle className="green" /> : <FaRegCircle />}
                                     </span>
-                                    Al menos un número
+                                    Un número
                                 </div>
                                 <div className={specialValidated ? 'validated' : 'not-validated'}>
                                     <span className='list-icon'>
                                         {specialValidated ? <FaCheckCircle className="green" /> : <FaRegCircle />}
                                     </span>
-                                    Al menos un carácter especial
+                                    Un arácter especial
                                 </div>
                                 <div className={lengthValidated ? 'validated' : 'not-validated'}>
                                     <span className='list-icon'>
                                         {lengthValidated ? <FaCheckCircle className="green" /> : <FaRegCircle />}
                                     </span>
-                                    Al menos 8 caracteres
+                                    Ocho caracteres
                                 </div>
                             </div>
                         </div>
