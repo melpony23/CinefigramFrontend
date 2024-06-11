@@ -105,7 +105,7 @@ export const LandingPage = () => {
                     <h4 className='font-custome-tittle card-title'>Películas destacadas</h4>
                     <hr className='decorator-separator decorator-separator-red'/>
                     <div>
-                        <div className='row'>
+                        <div className='movie-row'>
                             <MovieList movies={movies} />
                         </div>
                     </div>

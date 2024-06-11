@@ -1,0 +1,116 @@
+/*Medidas y contenedores --------------------------------------------------*/
+
+.portada_img_register {
+    height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url("https://payload.cargocollective.com/1/11/367710/13568488/CINEMA-CLASSICS-POSTER_RUTGERS_1340_c.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+}
+
+.form-register {
+    margin-top: 12%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.col-md-5, .col-7{
+    background-color: #07021E;
+}
+
+/*Textos y formatos --------------------------------------------------*/
+
+
+.register-text-header {
+    color: white;
+    font-size:xx-large;
+    font-family: 'Inter', sans-serif;
+
+}
+
+.register-text-label {
+    color: white;
+    font-size: medium;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    font-family: 'Inter', sans-serif;
+
+}
+
+.form-control{
+    padding: 3%;
+    border: none; /* quitar el borde */
+    box-shadow: none; /* quitar la sombra */
+}
+
+.btn {
+    margin-top: 10%;
+    padding: 4%;
+    font-size: 1.1em;
+    background-color: #1E90FF;
+    margin-bottom: 2em;
+}
+
+.form-control::placeholder {
+    color: #999; /* color del placeholder */
+}
+
+#usuario, #password, #email, #descripcion, #foto{
+    background-color: #2b283a; /* color de fondo para el campo de usuario */
+    color: white;
+    font-size: medium;
+    font-family: 'Inter', sans-serif;
+}
+
+/*Campo del password--------------------------------------------------*/
+
+.password-input {
+    position: relative;
+}
+
+.password-field {
+    padding-right: 2.5rem;
+    background-color: #2b283a;
+}
+
+.password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 0.75rem; /* ajusta la posición del icono */
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ffffff;
+}
+
+/*estilos para el validation password --------------------------*/
+
+.icon-span{
+    cursor: pointer;
+  }
+  
+  .tracker-box{
+    background-color: #2b283a;
+    font-size: 14px;
+    color: #fff;
+    letter-spacing: 0.09em;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  
+  .tracker-box div{
+    margin: 5px 0;
+  }
+  
+  .tracker-box .validated{
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+.green {
+    color: green;
+}
+
+.validated {
+    color: green;
+}

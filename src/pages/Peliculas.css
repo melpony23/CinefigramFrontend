@@ -87,3 +87,58 @@
     width: 30vh; /* Ancho más grande para las imágenes de película */
     height: 40vh; /* Altura más grande para las imágenes de película */
 }
+
+/*Media queries ------------------------------------------*/
+@media screen and (max-width: 768px) {
+  .search-bar {
+    width: 40vh;
+    margin-left: 17%;
+    margin-right: 17%;
+
+  }
+
+  .search-input {
+    width: 0vh;
+  }
+
+  .peliculas-destacadas .movie-poster {
+    width: 20vh;
+    height: 25vh;
+  }
+
+  .peliculas-variadas .movie-poster {
+    width: 15vh;
+    height: 20vh;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .search-bar {
+    width: 30vh;
+    margin-left: 17%;
+    margin-right: 17%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .grid-container {
+    flex-direction: column; /* Cambia la dirección de la grilla a columna */
+  }
+  .grid-item1 {
+    margin-left: 0;
+    margin-bottom: 2em;
+    margin-right: 2em;
+  }
+  .grid-item2 {
+    margin-left: 0;
+  }
+  .playlist-png {
+    width: 40vh;
+    height: 30vh
+  }
+  .row .movie-poster {
+    width: 20vh; /* Ancho más grande para las imágenes de película */
+    height: 25vh; /* Altura más grande para las imágenes de película */
+  }
+}
+
