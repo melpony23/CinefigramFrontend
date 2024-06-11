@@ -83,13 +83,13 @@ export const CrearCuenta = () => {
                                     <span className='list-icon'>
                                         {specialValidated ? <FaCheckCircle className="green" /> : <FaRegCircle />}
                                     </span>
-                                    Carácter especial
+                                    Un arácter especial
                                 </div>
                                 <div className={lengthValidated ? 'validated' : 'not-validated'}>
                                     <span className='list-icon'>
                                         {lengthValidated ? <FaCheckCircle className="green" /> : <FaRegCircle />}
                                     </span>
-                                    8 caracteres
+                                    Ocho caracteres
                                 </div>
                             </div>
                         </div>
