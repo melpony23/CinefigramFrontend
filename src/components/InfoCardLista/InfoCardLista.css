@@ -1,0 +1,20 @@
+.content_info_card_lista {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.div_autor_lista {
+    grid-column: 1;
+}
+
+.div_like_lista {
+    grid-column: 2;
+}
+
+.div_dislike_lista {
+    grid-column: 3;
+}
+
+.div_num_peliculas {
+    grid-column: 4;
+}
