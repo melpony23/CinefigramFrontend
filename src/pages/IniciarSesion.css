@@ -1,0 +1,86 @@
+/*Medidas y contenedores --------------------------------------------------*/
+
+.portada_img_login {
+    height: 81vh; /* Altura deseada para la imagen de fondo */
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("../../assets/portada-login.jpg"); /* Ruta de la imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ocupar todo el ancho disponible */
+    margin-top: 7%;
+}
+
+.form-login {
+    margin-top: 30%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.col-md-5, .col-7{
+    background-color: #07021E;
+}
+
+/*Textos y formatos --------------------------------------------------*/
+
+
+.login-text-header {
+    color: white;
+    font-size:xx-large;
+    font-family: 'Inter', sans-serif;
+
+}
+
+.login-text-label {
+    color: white;
+    font-size: medium;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    font-family: 'Inter', sans-serif;
+
+}
+
+.form-control{
+    padding: 3%;
+    border: none; /* quitar el borde */
+    box-shadow: none; /* quitar la sombra */
+}
+
+.btn {
+    margin-top: 10%;
+    padding: 4%;
+    font-size: 1.1em;
+    background-color: #1E90FF;
+}
+
+.form-control::placeholder {
+    color: #999; /* color del placeholder */
+}
+
+#usuario, #password{
+    background-color: #2b283a; /* color de fondo para el campo de usuario */
+    color: white;
+    font-size: medium;
+    font-family: 'Inter', sans-serif;
+}
+
+/*Campo del password--------------------------------------------------*/
+
+.password-input {
+    position: relative;
+}
+
+.password-field {
+    padding-right: 2.5rem;
+    background-color: #2b283a;
+}
+
+.password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 0.75rem; /* ajusta la posición del icono */
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ffffff;
+}

@@ -112,3 +112,7 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 * Web Tech. (2022, December 28). ReactJS Like And Dislike Button | like button in react js  | Web Tech [Video]. YouTube. https://www.youtube.com/watch?v=mfaPBGJGxrE (componente likes)
 
 * herdoycode. (2021, October 25). React navbar Tutorial Responsive Animated [Video]. YouTube. https://www.youtube.com/watch?v=ZJZVCg2lXSc (navbar responsivo)
+
+* GreatStack. (2023, August 14). How to make sign in & sign up form using REACT JS | ReactJS Login & Registration Form [Video]. YouTube. https://www.youtube.com/watch?v=8QgQKRcAUvM (para implementar vistas de login y registro)
+
+* JS Solutions. (2022, October 5). React Password Validation Check | Show and Hide passwords in React [Video]. YouTube. https://www.youtube.com/watch?v=mHPno0osqzY (para componente dinamico del password en registro)
