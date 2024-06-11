@@ -83,7 +83,7 @@ export const CrearCuenta = () => {
                                     <span className='list-icon'>
                                         {specialValidated ? <FaCheckCircle className="green" /> : <FaRegCircle />}
                                     </span>
-                                    Un arácter especial
+                                    Un carácter especial
                                 </div>
                                 <div className={lengthValidated ? 'validated' : 'not-validated'}>
                                     <span className='list-icon'>
