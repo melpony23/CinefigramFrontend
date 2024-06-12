@@ -1,0 +1,46 @@
+.Card_lista_chica {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    max-height: 245px;
+    justify-content: center;
+    max-width: 280px;
+}
+
+.div_imagen_lista_ch {
+    grid-row: 1;
+}
+
+.div_info_playlist_ch {
+    grid-row: 2/4;
+    display: inline-grid;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.div_titulo_lista_c {
+    grid-row: 1;
+    padding-top: 3%;
+}
+
+.div_stats_lista_c {
+    grid-row: 2;
+}
+
+.Imagen_lista {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+}
+
+.div_imagen_lista_ch {
+    max-height: 200px;
+}
+
+h3 {
+    font-family: 'Inter', sans-serif;
+    color: #FFFEFF;
+    font-size: medium;
+}
+
+.div_stats_lista_c {
+    max-width: 300px;
+}
