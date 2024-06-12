@@ -2,12 +2,12 @@ import InfoCardLista from '../InfoCardLista/InfoCardLista';
 import './ListaGrande-Card.css';
 
 const ListaGrande_Card = (props) => {
-    const {imagen, titulo, descripcion, autor, likes, dislikes, num_peliculas} = props;
+    const { imagen, titulo, descripcion, autor, likes, dislikes, num_peliculas } = props;
 
     return (
-        <body className='Card_lista_grande'>
+        <div className='Card_lista_grande'>
             <div className='div_imagen_lista_g'>
-                <img className='Imagen_lista'> src={imagen} </img>
+                <img src={imagen} className='Imagen_lista' />
             </div>
             <div className='div_info_playlist_g'>
                 <div className='div_titulo_lista_g'>
@@ -21,7 +21,7 @@ const ListaGrande_Card = (props) => {
                 </div>
 
             </div>
-        </body>
+        </div>
     )
 }
 

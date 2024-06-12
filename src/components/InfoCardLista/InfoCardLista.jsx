@@ -29,22 +29,22 @@ const InfoCardLista = (props) => {
     return (
         <div className='content_info_card_lista'>
             <div className='div_autor_lista'>
-                <p>{autor}</p>
+                <p className='info_lista autor'>{autor}</p>
             </div>
             <div className='div_like_lista'>
                 <FontAwesomeIcon icon={isLike ? ThumbsUpSolid : ThumbsUpRegular}
                     onClick={onLikeButtonClick}
-                    style={{ color: "#f6ae2d", cursor: "pointer" }} />
-                <p>{like}</p>
+                    style={{ color: "#f6ae2d", cursor: "pointer", paddingRight: '10%' }} />
+                <p className='info_lista'>{like}</p>
             </div>
             <div className='div_dislike_lista'>
                 <FontAwesomeIcon icon={isDislike ? ThumbsDownSolid : ThumbsDownRegular}
                     onClick={onDislikeButtonClick}
-                    style={{ color: "#f6ae2d", cursor: "pointer" }} />
-                <p>{dislike}</p>
+                    style={{ color: "#f6ae2d", cursor: "pointer", paddingRight: '10%' }} />
+                <p className='info_lista'>{dislike}</p>
             </div>
             <div className='div_num_peliculas'>
-                <p>{num_peliculas}</p>
+                <p className='info_lista'>{num_peliculas} movies</p>
             </div>
         </div>
     );

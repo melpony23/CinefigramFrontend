@@ -4,9 +4,9 @@ import './ListaChica-Card.css';
 const ListaChica_Card = (props) => {
     const { imagen, titulo, autor, likes, dislikes, num_peliculas } = props;
     return (
-        <body className='Card_lista_chica'>
+        <div className='Card_lista_chica'>
             <div className='div_imagen_lista_ch'>
-                <img className='Imagen_lista'> src={imagen} </img>
+                <img src={imagen} className='Imagen_lista' />
             </div>
             <div className='div_info_playlist_ch'>
                 <div className='div_titulo_lista_c'>
@@ -17,7 +17,7 @@ const ListaChica_Card = (props) => {
                 </div>
 
             </div>
-        </body>
+        </div>
     )
 }
 
