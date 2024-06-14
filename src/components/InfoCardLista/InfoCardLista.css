@@ -1,0 +1,32 @@
+.content_info_card_lista {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+}
+
+.div_autor_lista {
+    grid-column: 1;
+}
+
+.div_like_lista {
+    grid-column: 2;
+    display: flex;
+    flex-direction: row;
+}
+
+.div_dislike_lista {
+    grid-column: 3;
+    display: flex;
+    flex-direction: row;
+}
+
+.div_num_peliculas {
+    grid-column: 4;
+}
+
+.info_lista {
+    font-family: 'Inter', sans-serif;
+    font-style: regular;
+    color: #FFFEFF;
+    font-size: small;
+}
