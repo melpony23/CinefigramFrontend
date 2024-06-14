@@ -8,6 +8,7 @@ import { Listas } from './pages/Listas';
 import { Comunidad } from './pages/Comunidad';
 import { Peliculas } from './pages/Peliculas';
 import { Nosotros } from './pages/Nosotros';
+import { PeliculaPage } from "./pages/PeliculaPage"
 import LandingPage from './pages/LandingPage';
 import Instrucciones from './pages/Instrucciones';
 import Footer from './components/Footer/Footer';
@@ -26,6 +27,7 @@ function App() {
           <Route path='/comunidad' element={<Comunidad />} />
           <Route path='/' element={<LandingPage />} />
           <Route path='/instrucciones' element={<Instrucciones />} />
+          <Route path='/pelicula/:id' element={<PeliculaPage />} />
         </Routes>
       </div>
       <Footer />

@@ -1,89 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import MovieList from '../components/MovieList/MovieList';
 import InfoCard from '../components/InfoCard/InfoCard';
-import bohemianRhapsodyPoster from '../../assets/bohemian-rhapsody.jpg';
-import djangoPoster from '../../assets/django.png';
-import bladeRunnerPoster from '../../assets/blade-runner.png';
-import missSunshinePoster from '../../assets/miss-sunshine.png';
-import ameliePoster from '../../assets/amelie.png';
 import playlistImage from '../../assets/portada_playlist.png';
+import axios from 'axios';
+import VITE_BACKEND_URL from "/config";
 
 export const LandingPage = () => {
+    const [movies, setMovies] = useState([]);
+    const [gotPeliculas, setGot] = useState(false);
 
-    const [movies, setMovies] = useState([
-        {   
-            key: 1, 
-            Title: 'Bohemian rhapsody',
-            Year: '2018',
-            Type: 'movie',
-            Poster: bohemianRhapsodyPoster
+    const config_get_peliculas = {
+        headers: {
+            'Content-Type': 'application/json'
         },
-        {
-            key: 2, 
-            Title: 'Django',
-            Year: '2012',
-            Type: 'movie',
-            Poster: djangoPoster
-        },
-        {
-            key: 3, 
-            Title: 'Blade Runner 2049',
-            Year: '2017',
-            Type: 'movie',
-            Poster: bladeRunnerPoster
-        },
-        {
-            key: 4, 
-            Title: 'Little miss sunshine',
-            Year: '2006',
-            Type: 'movie',
-            Poster: missSunshinePoster
-        },
-        {
-            key: 5, 
-            Title: 'Amelie',
-            Year: '2001',
-            Type: 'movie',
-            Poster: ameliePoster
-        },
-        {   
-            key: 6, 
-            Title: 'Bohemian rhapsody',
-            Year: '2018',
-            Type: 'movie',
-            Poster: bohemianRhapsodyPoster
-        },
-        {
-            key: 7, 
-            Title: 'Django',
-            Year: '2012',
-            Type: 'movie',
-            Poster: djangoPoster
-        },
-        {
-            key: 8, 
-            Title: 'Blade Runner 2049',
-            Year: '2017',
-            Type: 'movie',
-            Poster: bladeRunnerPoster
-        },
-        {
-            key: 9, 
-            Title: 'Little miss sunshine',
-            Year: '2006',
-            Type: 'movie',
-            Poster: missSunshinePoster
-        },
-        {
-            key: 10, 
-            Title: 'Amelie',
-            Year: '2001',
-            Type: 'movie',
-            Poster: ameliePoster
-        },
-    ]);
+        method: 'get',
+        url: `${VITE_BACKEND_URL}peliculas/populares`,
+    }
+
+    useEffect(() => {
+        const getData = async () => {
+            if (!gotPeliculas) {
+
+                try {
+                    const peliculas = await axios(config_get_peliculas);
+                    setMovies(peliculas.data);
+                    console.log(peliculas.data);
+                    setGot(true);
+
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+        getData();
+    }, [])
 
     return (
         <div className="landing-page-container">
@@ -92,18 +44,18 @@ export const LandingPage = () => {
                     <h1>Cinefigram</h1>
                     <h3 className='text-align-center'>La red social para los amantes del cine</h3>
                     <center>
-                    <Link to="/sign-up">
-                        <button className="cssbuttons-io">
-                            <span>Únete hoy!</span>
-                        </button>
-                    </Link>
+                        <Link to="/sign-up">
+                            <button className="cssbuttons-io">
+                                <span>Únete hoy!</span>
+                            </button>
+                        </Link>
                     </center>
                 </div>
             </div>
             <div className='grid-container'>
                 <div className='grid-item1'>
                     <h4 className='font-custome-tittle card-title'>Películas destacadas</h4>
-                    <hr className='decorator-separator decorator-separator-red'/>
+                    <hr className='decorator-separator decorator-separator-red' />
                     <div>
                         <div className='movie-row'>
                             <MovieList movies={movies} />
@@ -111,13 +63,13 @@ export const LandingPage = () => {
                     </div>
                 </div>
                 <div className='grid-item2'>
-                    <div className='playlist-row'> 
-                    <h4 className='font-custome-tittle card-title-2'>Listas populares</h4>
-                    <hr className='decorator-separator-2 decorator-separator-yellow'/>
-                        <img src={playlistImage} alt='playlist-png'  className="playlist-png"/>
+                    <div className='playlist-row'>
+                        <h4 className='font-custome-tittle card-title-2'>Listas populares</h4>
+                        <hr className='decorator-separator-2 decorator-separator-yellow' />
+                        <img src={playlistImage} alt='playlist-png' className="playlist-png" />
                         <InfoCard />
                     </div>
-                    
+
                 </div>
             </div>
         </div>
