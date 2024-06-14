@@ -124,3 +124,52 @@ p {
 .list-icon {
     margin-right: 1em;
 }
+
+
+/* Media Query para iPad */
+@media only screen and (max-width: 1024px) {
+    .portada_img_register {
+        height: 87vh; 
+        margin-top: 5%;
+    }
+
+    .form-register {
+        margin-top: 50%; 
+        margin-left: 15%; 
+        margin-right: 15%; 
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .portada_img_register {
+        height: 0vh; /* Ajusta la altura deseada para la imagen de fondo en celulares */
+        margin-top: 0%; /* Ajusta el margen superior según sea necesario */
+    }
+
+    .form-register {
+        width: 70%; /* Ancho completo en dispositivos celulares */
+        margin-top: 15%; /* Ajusta el margen superior del formulario en celulares */
+        padding: 1.5rem; /* Ajusta el espaciado interno del formulario en celulares */
+        border-radius: 0; /* Elimina el borde redondeado en celulares */
+        justify-content: center;
+        background-color: #07021E; /* Color de fondo del formulario en celulares */
+        padding-top: 20%;
+        padding-bottom: 20%;
+        height: 100%;
+    }
+
+    .btn {
+        margin-top: 15%; /* Ajusta el margen superior del botón en celulares */
+        font-size: 1em; /* Ajusta el tamaño de fuente del botón en celulares */
+    }
+
+    .register-text-header {
+        font-size: x-large; /* Ajusta el tamaño de fuente del encabezado en celulares */
+    }
+
+    .register-text-label {
+        font-size: small; /* Ajusta el tamaño de fuente de las etiquetas en celulares */
+        margin-top: 3%; /* Ajusta el margen superior de las etiquetas en celulares */
+        margin-bottom: 1%; /* Ajusta el margen inferior de las etiquetas en celulares */
+    }
+}

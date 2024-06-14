@@ -120,25 +120,67 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1199px) {
-  .grid-container {
-    flex-direction: column; /* Cambia la dirección de la grilla a columna */
-  }
-  .grid-item1 {
-    margin-left: 0;
-    margin-bottom: 2em;
-    margin-right: 2em;
-  }
-  .grid-item2 {
-    margin-left: 0;
-  }
-  .playlist-png {
-    width: 40vh;
-    height: 30vh
-  }
-  .row .movie-poster {
-    width: 20vh; /* Ancho más grande para las imágenes de película */
-    height: 25vh; /* Altura más grande para las imágenes de película */
+@media (min-width: 1120px) and (max-width: 1199px) {
+  .search-bar {
+    width: 120vh;
+    margin-left: 17%;
+    margin-right: 17%;
+
   }
 }
+
+@media (min-width: 500px) and (max-width: 600px) {
+  .search-bar {
+    width: 40vh;
+    margin-left: 17%;
+    margin-right: 17%;
+
+  }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+  .search-bar {
+    width: 50vh;
+    margin-left: 17%;
+    margin-right: 17%;
+
+  }
+}
+
+@media (min-width: 800px) and (max-width: 900px) {
+  .search-bar {
+    width: 55vh;
+    margin-left: 17%;
+    margin-right: 17%;
+
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1120px) {
+  .search-bar {
+    width: 70vh;
+    margin-left: 17%;
+    margin-right: 17%;
+
+  }
+}
+
+@media (min-width: 1120px) and (max-width: 1400px) {
+  .search-bar {
+    width: 80vh;
+    margin-left: 17%;
+    margin-right: 17%;
+
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1700px) {
+  .search-bar {
+    width: 100vh;
+    margin-left: 17%;
+    margin-right: 17%;
+
+  }
+}
+
 
