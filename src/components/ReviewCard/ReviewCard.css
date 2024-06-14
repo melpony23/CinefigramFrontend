@@ -1,0 +1,109 @@
+.review-container {
+    background-color:  #FFFFFF;
+    display: flex;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  
+  .movie-image {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .review-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    flex: 1;
+  }
+  
+  .review-header {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 430px) {
+    .review-title {
+        font-size: 1em; 
+    }
+
+    .review-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+}
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  @media (max-width: 375px) {
+    .review-title {
+        font-size: 1em; 
+    }
+}
+  
+  .user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .user-name {
+    color: #07021E;
+  }
+  
+  .review-title {
+    flex: 1;
+    font-size: 1.2em;
+    color: #07021E;
+  }
+  
+  .review-rating {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  .review-text {
+    margin-top: 10px;
+    font-size: 1em;
+    line-height: 1.5;
+    text-align: justify;
+  }
+  
+  .flex-item {
+    margin: 0em; 
+    margin-top: auto;
+  }
+
+.review-footer {
+    margin-top: auto;
+    display: flex;
+   text-align: center;
+   
+}
+
+.number-action {
+  font-size: 0.7em;
+  color: #07021E;
+}
+
+.number-like {
+    color: #07021E;
+}
+
+.fecha-container {
+    margin-left: auto; /* Empuja la fecha hacia el extremo derecho */
+    font-size: 0.9em;
+    color: #07021E;
+  }
