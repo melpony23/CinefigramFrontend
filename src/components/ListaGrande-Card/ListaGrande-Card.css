@@ -27,6 +27,7 @@
 
 .div_descripcion_lista_g {
     grid-row: 3/5;
+    overflow-x: nowrap;
 }
 
 h4 {
