@@ -1,3 +1,2 @@
-const URL_BACK='http://localhost:3000/';
-
+const URL_BACK = 'https://amimir-backend.onrender.com/'
 export default URL_BACK;

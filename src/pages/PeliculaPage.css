@@ -1,0 +1,56 @@
+.Body_Pelicula {
+    background-color: #07021E;
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.Separador_pag_pelicula {
+    grid-row: 1;
+}
+
+.Contenido_pag_pelicula {
+    grid-row: 2/5;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.Separador_inferior_pelicula {
+    grid-row: 5;
+}
+
+
+.imagen_pag_pelicula {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+}
+
+.contenedor_imagen_pag_pelicula {
+    grid-column: 1;
+    max-height: 500px;
+}
+
+.contenedor_info_pag_pelicula {
+    grid-column: 2/4;
+    padding-right: 5%;
+}
+
+h1 {
+    color: #FFFEFF;
+}
+
+.row2_info_peli {
+    display: flex;
+    flex-direction: row;
+}
+
+.separador_row2 {
+    min-width: 7%;
+}
+
+.row3_info_peli {
+    padding-top: 4%;
+}
