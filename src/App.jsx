@@ -9,6 +9,7 @@ import { Comunidad } from './pages/Comunidad';
 import { Peliculas } from './pages/Peliculas';
 import { Nosotros } from './pages/Nosotros';
 import { PeliculaPage } from "./pages/PeliculaPage"
+import { EditPelicula } from "./pages/EditPelicula"
 import LandingPage from './pages/LandingPage';
 import Instrucciones from './pages/Instrucciones';
 import Footer from './components/Footer/Footer';
@@ -28,6 +29,7 @@ function App() {
           <Route path='/' element={<LandingPage />} />
           <Route path='/instrucciones' element={<Instrucciones />} />
           <Route path='/pelicula/:id' element={<PeliculaPage />} />
+          <Route path='/pelicula/edit/:id' element={<EditPelicula />} />
         </Routes>
       </div>
       <Footer />
