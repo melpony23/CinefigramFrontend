@@ -1,0 +1,58 @@
+.BodyEditPelicula {
+    background-color: #07021E;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 20% 60% 20%;
+    gap: 3%;
+    justify-content: center;
+}
+
+.contenedor_formulario {
+    background-color: #F6AE2D;
+    grid-row: 2;
+    grid-column: 4/6;
+    width: 100%;
+    height: fit-content;
+    border-radius: 2%;
+}
+
+.contenedor_imagen_edit_pelicula {
+    grid-row: 2;
+    grid-column: 2/4;
+    height: 100%;
+}
+
+.imagen_pag_pelicula {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+}
+
+.mb-3 {
+    padding-top: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.texto_form {
+    font-family: 'Inter', sans-serif;
+    line-height: 2;
+    font-weight: 500;
+    color: #07021E;
+    font-size: medium;
+}
+
+.texto_form_input {
+    font-family: 'Inter', sans-serif;
+    line-height: 1;
+    font-weight: 500;
+    color: #07021E;
+    font-size: small;
+}
+
+
+.contenedor_boton_submit {
+    display: flex;
+    justify-content: center;
+}

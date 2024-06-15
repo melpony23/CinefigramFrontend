@@ -54,3 +54,12 @@ h1 {
 .row3_info_peli {
     padding-top: 4%;
 }
+
+.row1_sub1 {
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+.contenedor_boton_edit_pelicula {
+    justify-self: right;
+}
