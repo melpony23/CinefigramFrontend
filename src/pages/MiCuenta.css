@@ -1,0 +1,88 @@
+/*Con ayuda de chat GPT*/
+
+.fondo-mi-cuenta {
+    background-color: #07021e;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.tittle-mi-cuenta {
+    margin-bottom: 5%;
+}
+
+
+.form-control[disabled] {
+    background-color: #f0f0f0; 
+    color: #666; 
+    cursor: not-allowed;
+  }
+
+.mi-cuenta-contenedor {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-mi-cuenta {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8em;
+}
+
+.preview-foto {
+    margin-top: 10px;
+}
+
+.img-preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.btn1 {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn1:hover {
+    background-color: #0056b3;
+}
+
+.btn2 {
+    background-color: red;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn2:hover {
+    background-color: rgb(130, 12, 12);
+}

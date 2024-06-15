@@ -1,0 +1,110 @@
+.fondo-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #07021e;
+}
+
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.banner-perfil {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(to right, black, red);
+    color: white;
+}
+
+.foto-perfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid white;
+}
+
+.foto-perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-usuario {
+    margin-left: 130px;
+    color: white;
+}
+
+.info-usuario h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+}
+
+.stats {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.stats p {
+    margin: 0;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
+/*FORMATO PARA REVIEWS. SE MUESTRAN PRIMEROS 3 Y LUEGO DESPUES IMPLEMENTAR BOTON DE VER MAS*/
+
+.carrusel-reviews {
+    position: relative;
+    width: 80%;
+   
+}
+
+.div_contenedor_reviews2 {
+    display: flex;
+    padding: 10px;
+    gap: 15px;
+}
+
+.div_contenedor_reviews .movie-image {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+}
+
+.div_contenedor_reviews .user-image {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+.div_contenedor_reviews .review-title {
+    flex: 1;
+    font-size: 1em;
+    color: #07021E;
+}
+  
+
+.font-custome-tittle  {
+    margin-top: 5%;
+    margin-right: auto;
+    padding-left: 7%;
+}
+
+.contenedor-playlis-perfil {
+    margin-right: 30%;
+    margin-bottom: 3%;
+    margin-top: 2%;
+}
