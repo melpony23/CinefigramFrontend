@@ -132,3 +132,27 @@
         margin-bottom: 1%; /* Ajusta el margen inferior de las etiquetas en celulares */
     }
 }
+
+
+/*Estilos para el mensaje banner de exito o error -------------------------*/
+
+.banner {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin-top: 4%;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+    color: white;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+}
+
+.banner.success {
+    background-color: green;
+}
+
+.banner.error {
+    background-color: red;
+}

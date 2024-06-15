@@ -1,0 +1,46 @@
+/* Alert.css */
+.custom-alert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 0;
+    margin-top: 1%;
+    border-radius: 5px;
+    font-size: 16px;
+    position: fixed;
+    top: 50px; /* Ajusta según la altura de tu header */
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    width: auto;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-alert-success {
+    background-color: rgba(154, 205, 50, 0.8); /* Color de fondo para alertas de éxito con transparencia */
+    color: #0a2510;
+}
+
+.custom-alert-error {
+    background-color: rgba(220, 53, 69, 0.8);
+    color: #2d0b0e;
+}
+
+.custom-alert-warning {
+    background-color: rgba(255, 215, 0, 0.8); /* Color de fondo para alertas de advertencia */
+    color: #342906; /* Color de texto para alertas de advertencia */
+}
+
+.custom-alert-icon {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.custom-alert-message {
+    flex: 1;
+    font-family: 'Inter', sans-serif;
+}
