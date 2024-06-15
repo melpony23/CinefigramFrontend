@@ -108,7 +108,7 @@ export const CrearCuenta = () => {
                                 type='text'
                                 id='foto'
                                 className='form-control'
-                                placeholder='Campo para archivo img'
+                                placeholder='Campo para archivo img (ingresa una url por el momento)'
                             />
                         </div>
                         <button type='submit' className='btn btn-primary form-control'>Registrarse</button>
