@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export const PeliculaPage = () => {
+    const navigate = useNavigate();
     const id = useParams().id;
     const [peli_info, setPeli_info] = useState([]);
     const [gotPeli_info, setGot] = useState(false);
@@ -55,8 +57,20 @@ export const PeliculaPage = () => {
                 </div>
                 <div className='contenedor_info_pag_pelicula'>
                     <div className='row1_info_peli'>
-                        <h1 className='Titulo_pelicula'>{peli_info.titulo}</h1>
-                        <h2> {año}</h2>
+                        <div className='row1_sub1'>
+                            <h1 className='Titulo_pelicula'>{peli_info.titulo}</h1>
+                            <div className='contenedor_boton_edit_pelicula'>
+                                <button id={peli_info.id} className="cssbuttons-io" onClick={() => { navigate(`/pelicula/edit/${id}`, { state: { titulo: peli_info.titulo, sinopsis: peli_info.sinopsis, genero: peli_info.genero, director: peli_info.director, clasificacion: peli_info.clasificacion, imagen: peli_info.imagen } }) }}>
+                                    <span>Editar</span>
+                                </button>
+                            </div>
+
+                        </div>
+                        <div className='row1_sub2'>
+                            <h2> {año}</h2>
+                        </div>
+
+
                     </div>
                     <div className='row2_info_peli'>
                         <h2>Ranking: {peli_info.ranking}</h2>
