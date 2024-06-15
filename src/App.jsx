@@ -14,6 +14,8 @@ import Instrucciones from './pages/Instrucciones';
 import Footer from './components/Footer/Footer';
 import LandingPageUser from './pages/LadingPageUser';
 import AuthProvider from './auth/AuthProvider';
+import Perfil from './pages/Perfil';
+import MiCuenta from './pages/MiCuenta';
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
             <Route path='/' element={<LandingPage />} />
             <Route path='/instrucciones' element={<Instrucciones />} />
             <Route path='/landing-user' element={<LandingPageUser />} />
+            <Route path='/perfil' element={<Perfil />} />
+            <Route path='/mi-cuenta' element={<MiCuenta />} />
           </Routes>
         </div>
         <Footer />

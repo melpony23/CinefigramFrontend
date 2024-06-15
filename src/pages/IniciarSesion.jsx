@@ -2,18 +2,18 @@ import React, { useContext, useState } from 'react';
 import "./IniciarSesion.css";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
-import Alert from '../components/Alert/Alert';
+import Alert from '../components/Alert/Alert'; // Asegúrate de que la ruta sea correcta
 import { AuthContext } from '../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export const IniciarSesion = () => {
-    const { token, setToken } = useContext(AuthContext);
+    const { setToken } = useContext(AuthContext); // No es necesario obtener el token aquí
     const [username, setUsername] = useState('');
     const [contraseña, setContraseña] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [showBanner, setShowBanner] = useState(false);
     const [bannerMessage, setBannerMessage] = useState('');
-    const [bannerType, setBannerType] = useState(''); // success o error
+    const [bannerType, setBannerType] = useState(''); // 'success', 'error', etc.
     const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
@@ -41,7 +41,6 @@ export const IniciarSesion = () => {
             const accessToken = response.data.access_token;
             setToken(accessToken);
 
-            // Realizar solicitud GET para obtener los datos del usuario
             try {
                 const userResponse = await axios.get(`/api/users/${username}`, {
                     headers: {
@@ -57,11 +56,14 @@ export const IniciarSesion = () => {
                 localStorage.setItem('email', userResponse.data.email);
 
                 showBannerMessage('Inicio de sesión exitoso', 'success');
-                navigate('/landing-user'); // Redirigir utilizando navigate
-                window.location.reload(); // Recargar la página (opcional)
+                setTimeout(() => {
+                    navigate('/landing-user'); // Redirigir utilizando navigate
+                    window.location.reload();
+                }, 1000); // Retraso antes de redirigir
+
             } catch (error) {
                 console.error('Error al obtener datos del usuario:', error);
-                showBannerMessage('Error al iniciar sesión. Por favor, intente de nuevo.', 'error');
+                showBannerMessage('Error al obtener datos del usuario.', 'error');
             }
 
         } catch (error) {

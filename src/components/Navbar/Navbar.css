@@ -188,8 +188,14 @@ a {
   text-decoration: none;
   color: #333;
   display: block;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+
 }
 
 .dropdown-item:hover {
   background-color: #f1f1f1;
 }
+
+/*estilo navbar logged in*/
+

@@ -36,12 +36,12 @@ export const ReviewCard = (props) => {
             <div className="review-header">
                 <img src={userImg} alt="User" className="user-image" />
                 <h4 className="user-name">{username}</h4>
-                <div className="header-right">
-                    <h3 className="review-title">{title}</h3>
-                </div>
                 <div className="review-rating">
                         <StarRating rating={rating} />
                     </div>
+            </div>
+            <div className="header-right">
+                <h3 className="review-title">{title}</h3>
             </div>
             <div className="review-text">
                 {text}
