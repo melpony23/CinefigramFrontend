@@ -32,6 +32,7 @@ function App() {
             <Route path='/comunidad' element={<Comunidad />} />
             <Route path='/' element={<LandingPage />} />
             <Route path='/instrucciones' element={<Instrucciones />} />
+            <Route path='/pelicula/:id' element={<PeliculaPage />} />
             <Route path='/landing-user' element={<LandingPageUser />} />
             <Route path='/perfil' element={<Perfil />} />
             <Route path='/mi-cuenta' element={<MiCuenta />} />
@@ -44,13 +45,3 @@ function App() {
 }
 
 export default App;
-
-// const [count, setCount] = useState(0)
-{/* <div className="card">
-      <button onClick={() => setCount((count) => count + 1)}>
-        count is {count}
-      </button>
-      <p>
-        Edit <code>src/App.jsx</code> and save to test HMR
-      </p>
-    </div> */}
