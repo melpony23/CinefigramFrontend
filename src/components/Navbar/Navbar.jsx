@@ -5,6 +5,7 @@ import NavbarLoggedOut from './NavbarLoggedOut';
 import NavbarLoggedIn from './NavbarLoggedIn';
 import { AuthContext } from '../../auth/AuthContext';
 import axios from 'axios';
+import VITE_BACKEND_URL from "/config";
 
 export const Navbar = () => {
   const [active, setActive] = useState("nav__menu");
@@ -16,7 +17,7 @@ export const Navbar = () => {
 
   const config = {
       'method' : 'get',
-      'url': '/api/scope/protecteduser',
+      'url': `${VITE_BACKEND_URL}scope/protecteduser`,
       'headers': {
           'Authorization' : `Bearer ${token}`
       }
