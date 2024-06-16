@@ -115,7 +115,7 @@ export const MiCuenta = () => {
         if (window.confirm('¿Estás seguro que deseas borrar tu cuenta? Esta acción no se puede deshacer.')) {
             const config = {
                 method: 'delete',
-                url: `/api/users/${username}`,
+                url: `${VITE_BACKEND_URL}users/${username}`,
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
