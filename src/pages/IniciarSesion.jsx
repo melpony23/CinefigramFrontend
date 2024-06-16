@@ -5,6 +5,7 @@ import axios from 'axios';
 import Alert from '../components/Alert/Alert'; // Asegúrate de que la ruta sea correcta
 import { AuthContext } from '../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import VITE_BACKEND_URL from "/config";
 
 export const IniciarSesion = () => {
     const { setToken } = useContext(AuthContext); // No es necesario obtener el token aquí
@@ -37,12 +38,12 @@ export const IniciarSesion = () => {
         }
 
         try {
-            const response = await axios.post('/api/login', { username, contraseña });
+            const response = await axios.post(`${VITE_BACKEND_URL}login`, { username, contraseña });
             const accessToken = response.data.access_token;
             setToken(accessToken);
 
             try {
-                const userResponse = await axios.get(`/api/users/${username}`, {
+                const userResponse = await axios.get(`${VITE_BACKEND_URL}users/${username}`, {
                     headers: {
                         Authorization: `Bearer ${accessToken}`
                     }
