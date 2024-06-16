@@ -4,6 +4,7 @@ import './Perfil.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "./Comunidad.css";
+import VITE_BACKEND_URL from "/config";
 import { ReviewCard } from '../components/ReviewCard/ReviewCard';
 import djangoPoster from '../../assets/django.png';
 import bohemianRhapsodyPoster from '../../assets/bohemian-rhapsody.jpg';
@@ -23,7 +24,7 @@ export const Perfil = () => {
     useEffect(() => {
         const config = {
             method: 'get',
-            url: `/api/scope/protecteduser`,
+            url: `${VITE_BACKEND_URL}scope/protecteduser`,
             headers: {
                 Authorization: `Bearer ${token}`,
             },

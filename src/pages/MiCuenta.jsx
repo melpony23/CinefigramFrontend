@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './MiCuenta.css';
 import Alert from '../components/Alert/Alert';
+import VITE_BACKEND_URL from "/config";
 
 export const MiCuenta = () => {
     const [username, setUsername] = useState('');
@@ -21,7 +22,7 @@ export const MiCuenta = () => {
         // Verificar si el token es válido
         const config = {
             method: 'get',
-            url: `/api/scope/protecteduser`,
+            url: `${VITE_BACKEND_URL}scope/protecteduser`,
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -84,7 +85,7 @@ export const MiCuenta = () => {
         // Actualizar datos
         const config = {
             method: 'put',
-            url: `/api/users/${username}`,
+            url: `${VITE_BACKEND_URL}users/${username}`,
             headers: {
                 Authorization: `Bearer ${token}`,
             },
