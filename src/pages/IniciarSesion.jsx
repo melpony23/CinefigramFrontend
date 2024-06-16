@@ -60,7 +60,7 @@ export const IniciarSesion = () => {
                 setTimeout(() => {
                     navigate('/landing-user'); // Redirigir utilizando navigate
                     window.location.reload();
-                }, 1000); // Retraso antes de redirigir
+                }, 3000); // Retraso antes de redirigir
 
             } catch (error) {
                 console.error('Error al obtener datos del usuario:', error);
