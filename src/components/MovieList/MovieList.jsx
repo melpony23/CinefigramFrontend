@@ -6,25 +6,23 @@ import { useNavigate } from "react-router-dom";
 const MovieList = ({ movies }) => {
     const navigate = useNavigate();
 
-    function PosterClick({ id, children }) {
-        return (
-            <div onClick={() => { navigate(`/pelicula/${id}`) }} className="movie-poster">
-                {children}
-            </div>
-        )
+    function handlePosterClick(id) {
+        navigate(`/pelicula/${id}`);
     }
 
     return (
         <div className="movie-app">
-            {movies.map(movie => (
-                <PosterClick key={movie.id} id={movie.id}>
-                    <img src={movie.imagen} alt={movie.Title} className="movie-poster" />
-                    <InfoCardMovie />
-                    <br />
-                </PosterClick>
-
-
-            ))}
+            <div className="movie-list">
+                {movies.map(movie => (
+                    <div key={movie.id} className="movie-item">
+                        <div className="poster-container" onClick={() => handlePosterClick(movie.id)}>
+                            <img src={movie.imagen} alt={movie.Title} className="movie-poster" />
+                        </div>
+                        <br></br>
+                        <InfoCardMovie movie={movie} />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

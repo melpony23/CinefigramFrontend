@@ -1,0 +1,41 @@
+.boton-volver-contenedor {
+    background-color: #07021e;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+}
+
+.boton-volver-chat {
+    color: white;
+}
+
+.container-crear-chat {
+    min-height: 64.5vh; /* Asegura que la altura mínima sea el 100% del viewport */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #07021e;
+
+  }
+  
+  .form-label-chat {
+    color: white;
+    margin-top: 10%;
+    margin-bottom: 5%;
+  }
+
+.chat-width1 {
+    width: 20em;
+}
+
+#nombre {
+    background-color: #2b283a; /* color de fondo para el campo de usuario */
+    color: white;
+    font-size: medium;
+    font-family: 'Inter', sans-serif;
+}
+
+.text-crear-chat {
+    font-size: 1.5em;
+}
