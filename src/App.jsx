@@ -17,6 +17,9 @@ import AuthProvider from './auth/AuthProvider';
 import Perfil from './pages/Perfil';
 import MiCuenta from './pages/MiCuenta';
 import EditPelicula from './pages/EditPelicula'
+import ChatRoom from './pages/ChatRoom';
+import CreateChat from './pages/CreateChat';
+import ChatList from './pages/ChatList';
 
 function App() {
   return (
@@ -38,6 +41,9 @@ function App() {
             <Route path='/landing-user' element={<LandingPageUser />} />
             <Route path='/perfil' element={<Perfil />} />
             <Route path='/mi-cuenta' element={<MiCuenta />} />
+            <Route path="/chats" element={<ChatList />} />
+            <Route path="/crear-chat" element={<CreateChat />} />
+            <Route path="/chats/:id" element={<ChatRoom />} />
           </Routes>
         </div>
         <Footer />
