@@ -16,7 +16,7 @@ export const Listas = () => {
             <div className='content_listas'>
                 <div className='contenedor_titulo_listas'>
                     <h1 className='titulo_listas'>
-                        Collect, curate, and share. Lists are the perfect way to group films.
+                        Colecciona, organiza y comparte.  Las listas son la forma perfecta de agrupar películas.
                     </h1>
                 </div>
                 <div className='contenedor_listas'>
