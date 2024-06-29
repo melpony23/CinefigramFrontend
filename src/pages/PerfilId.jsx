@@ -4,6 +4,7 @@ import './Perfil.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "./Comunidad.css";
+import { useParams } from 'react-router-dom';
 import VITE_BACKEND_URL from "/config";
 import { ReviewCard } from '../components/ReviewCard/ReviewCard';
 import djangoPoster from '../../assets/django.png';
@@ -11,49 +12,34 @@ import bohemianRhapsodyPoster from '../../assets/bohemian-rhapsody.jpg';
 import ListaGrande_Card from '../components/ListaGrande-Card/ListaGrande-Card';
 import PortadaPlaylist from '../../assets/portada_playlist.png';
 
-export const Perfil = () => {
+export const PerfilId = () => {
+    const id = useParams().id;
     const [username, setUsername] = useState(null);
     const [email, setEmail] = useState(null);
     const [fotoPerfil, setFotoPerfil] = useState(null);
     const [descripcion, setDescripcion] = useState(null);
-    const [error, setError] = useState(false);
-    const { token } = useContext(AuthContext);
     const navigate = useNavigate();
     const movie = bohemianRhapsodyPoster;
 
     useEffect(() => {
-        const config = {
-            method: 'get',
-            url: `${VITE_BACKEND_URL}scope/protecteduser`,
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        };
-
-        axios(config)
-            .then((response) => {
-                console.log('Enviaste un token bueno y estas logueado');
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log('Hubo un error, no estas logueado');
+        const serUser = async () => {
+            try {
+                const response = await axios.get(`${VITE_BACKEND_URL}userPublic/${id}`);
+                setUsername(response.data.username);
+                setEmail(response.data.email); 
+                setFotoPerfil(response.data.fotoPerfil); 
+                setDescripcion(response.data.descripcion);  
+            } catch (error) {
                 console.log(error);
-                setError(true);
-                navigate('/login');
-            });
-    }, [token, navigate]);
+                setSearchResults([]); 
+            }
+        };
+    
+        serUser();
+    
+    }, [id]);
 
-    useEffect(() => {
-        const storedUsername = localStorage.getItem('username');
-        const storedEmail = localStorage.getItem('email');
-        const storedFotoPerfil = localStorage.getItem('fotoPerfil');
-        const storedDescripcion = localStorage.getItem('descripcion');
 
-        if (storedUsername) setUsername(storedUsername);
-        if (storedEmail) setEmail(storedEmail);
-        if (storedFotoPerfil) setFotoPerfil(storedFotoPerfil);
-        if (storedDescripcion) setDescripcion(storedDescripcion);
-    }, []);
 
     return (
         <div className='fondo-perfil'>
@@ -122,4 +108,4 @@ export const Perfil = () => {
     );
 };
 
-export default Perfil;
+export default PerfilId;

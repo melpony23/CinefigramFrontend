@@ -4,6 +4,7 @@ import "./CrearCuenta.css";
 import { FaEye, FaEyeSlash, FaCheckCircle, FaRegCircle } from 'react-icons/fa';
 import Alert from '../components/Alert/Alert';
 import { useNavigate } from 'react-router-dom';
+import VITE_BACKEND_URL from "/config";
 
 export const CrearCuenta = () => {
     const [username, setUsername] = useState('');
@@ -61,7 +62,7 @@ export const CrearCuenta = () => {
 
         // Envío de datos al servidor
         try {
-            const response = await axios.post('/api/signup', {
+            const response = await axios.post(`${VITE_BACKEND_URL}signup`, {
                 username,
                 email,
                 contraseña: password,
@@ -200,4 +201,3 @@ export const CrearCuenta = () => {
 };
 
 export default CrearCuenta;
-

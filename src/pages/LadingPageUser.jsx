@@ -47,7 +47,7 @@ export const LandingPageUser = () => {
     useEffect(() => {
         const config = {
             method: 'get',
-            url: '/api/scope/protecteduser',
+            url: `${VITE_BACKEND_URL}scope/protecteduser`,
             headers: {
                 Authorization: `Bearer ${token}`,
             },

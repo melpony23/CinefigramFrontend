@@ -8,6 +8,10 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
   }
+
+  .h4 {
+    color: #07021E;
+  }
   
   .movie-image {
     width: 150px;
@@ -66,7 +70,6 @@
     flex: 1;
     font-size: 1.2em;
     color: #07021E;
-    margin-top: 5%;
   }
   
   .review-rating {
@@ -107,4 +110,16 @@
     margin-left: auto; /* Empuja la fecha hacia el extremo derecho */
     font-size: 0.9em;
     color: #07021E;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
+
+.edit-section {
+  margin-left: auto; /* Empuja la fecha hacia el extremo derecho */
+    font-size: 0.9em;
+    color: #07021E;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
