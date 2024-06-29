@@ -54,7 +54,7 @@ function App() {
             <Route path="peliculas/search/:searchTerm" element={<SearchResults />} />
             <Route path="/Comments/:id" element={<CommentPage />} />
             <Route path="/comment/edit/:id" element={<EditComment />} />
-            
+
           </Routes>
         </div>
         <Footer />

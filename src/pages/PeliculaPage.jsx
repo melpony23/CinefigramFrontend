@@ -129,7 +129,13 @@ export const PeliculaPage = () => {
                     <div className='row1_info_peli'>
                         <h1 className='Titulo_pelicula'>{peli_info.titulo}</h1>
                         <div className='contenedor_boton_edit_pelicula'>
-                                <button id={peli_info.id} className="cssbuttons-io" onClick={() => { navigate(`/pelicula/edit/${id}`, { state: { titulo: peli_info.titulo, sinopsis: peli_info.sinopsis, genero: peli_info.genero, director: peli_info.director, clasificacion: peli_info.clasificacion, imagen: peli_info.imagen } }) }}>
+                                <button id={peli_info.id} className="cssbuttons-io" onClick={() => { navigate(`/pelicula/edit/${id}`, { state: { 
+                                  titulo: peli_info.titulo, 
+                                  sinopsis: peli_info.sinopsis, 
+                                  genero: peli_info.genero, 
+                                  director: peli_info.director, 
+                                  clasificacion: peli_info.clasificacion, 
+                                  imagen: peli_info.imagen } }) }}>
                                     <span>Editar</span>
                                 </button>
                             </div>

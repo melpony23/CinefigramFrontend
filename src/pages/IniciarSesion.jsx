@@ -38,12 +38,15 @@ export const IniciarSesion = () => {
         }
 
         try {
-            const response = await axios.post(`${VITE_BACKEND_URL}login`, { username, contraseña });
+            const response = await axios.post(`${VITE_BACKEND_URL}login`, { username, contraseña }, {
+                withCredentials: true
+            });
             const accessToken = response.data.access_token;
             setToken(accessToken);
 
             try {
                 const userResponse = await axios.get(`${VITE_BACKEND_URL}users/${username}`, {
+                    withCredentials: true,
                     headers: {
                         Authorization: `Bearer ${accessToken}`
                     }
@@ -56,6 +59,8 @@ export const IniciarSesion = () => {
                 localStorage.setItem('descripcion', userResponse.data.descripcion);
                 localStorage.setItem('verificacion', userResponse.data.verificacion);
                 localStorage.setItem('email', userResponse.data.email);
+                localStorage.setItem('userId', userResponse.data.id);
+                localStorage.setItem('esAdmin', userResponse.data.esAdmin);
 
                 showBannerMessage('Inicio de sesión exitoso', 'success');
                 setTimeout(() => {
