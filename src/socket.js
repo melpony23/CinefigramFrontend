@@ -1,15 +1,25 @@
-// socket.js
-import io from 'socket.io-client';
+// socket.js (cliente)
+import { io } from 'socket.io-client';
 
-// Usa la URL completa proporcionada por OnRender
-const socket = io('https://amimir-backend.onrender.com', {
-  path: '/socket.io', // Asegúrate de que este path coincida con el backend
-  transports: ['websocket'], // Usa solo WebSocket para evitar el polling si no es necesario
+// Conexión sin token de acceso
+const socket = io('https://amimir-backend.onrender.com');
+
+socket.on('connect', () => {
+  console.log('Conexión establecida con el servidor WebSocket');
+});
+
+socket.on('message', (data) => {
+  console.log('Nuevo mensaje recibido:', data);
+});
+
+socket.on('disconnect', () => {
+  console.log('Desconectado del servidor WebSocket');
 });
 
 export default socket;
 
-// // socket.js
+
+// export default socket;
 
 // import io from 'socket.io-client';
 
