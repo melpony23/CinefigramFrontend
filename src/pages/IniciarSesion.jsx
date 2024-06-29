@@ -53,6 +53,7 @@ export const IniciarSesion = () => {
                 });
 
                 // Almacenar datos del usuario en localStorage
+                localStorage.setItem('userId', userResponse.data.id);
                 localStorage.setItem('username', userResponse.data.username);
                 localStorage.setItem('fotoPerfil', userResponse.data.fotoPerfil);
                 localStorage.setItem('descripcion', userResponse.data.descripcion);
