@@ -20,6 +20,7 @@ import EditPelicula from './pages/EditPelicula'
 import ChatRoom from './pages/ChatRoom';
 import CreateChat from './pages/CreateChat';
 import ChatList from './pages/ChatList';
+import SearchResults from './pages/SearchResults'
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
             <Route path="/chats" element={<ChatList />} />
             <Route path="/crear-chat" element={<CreateChat />} />
             <Route path="/chats/:id" element={<ChatRoom />} />
+            <Route path="peliculas/search/:searchTerm" element={<SearchResults />} />
           </Routes>
         </div>
         <Footer />

@@ -1,0 +1,9 @@
+.search-results {
+    padding-top: 10%;
+    background-color: #07021e;
+    min-height: 89vh;
+}
+
+.title-result-search {
+    margin-left: 2em;
+}
