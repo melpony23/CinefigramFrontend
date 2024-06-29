@@ -1,159 +1,234 @@
-import React from 'react';
-import "./EditPelicula.css"
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import VITE_BACKEND_URL from "/config";
-import { useParams, useSearchParams } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import "./EditPelicula.css";
+import { useParams, useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { AuthContext } from '../auth/AuthContext'; // Asegúrate de importar correctamente el contexto de autenticación
+import VITE_BACKEND_URL from '/config'; // Asumiendo que VITE_BACKEND_URL está correctamente definido en tu archivo de configuración
 
-
-
-export const EditPelicula = () => {
+const EditPelicula = () => {
+    const { token } = useContext(AuthContext); // Obtener el token del contexto de autenticación
     const id = useParams().id;
     const navigate = useNavigate();
-    const [peli_info, setPeli_info] = useState([]);
-    const [gotPeli_info, setGot] = useState(false);
-    const [edit_titulo, setTitulo] = useState(peli_info.titulo);
-    const [edit_sinopsis, setSinopsis] = useState(peli_info.sinopsis);
-    const [edit_genero, setGenero] = useState(peli_info.genero);
-    const [edit_director, setDirector] = useState(peli_info.director);
-    const [edit_clasificacion, setClasificacion] = useState(peli_info.clasificacion);
-    const [edit_mode, setEditMode] = useState(true)
+    const [peliInfo, setPeliInfo] = useState({});
+    const [gotPeliInfo, setGotPeliInfo] = useState(false);
+    const [editTitulo, setEditTitulo] = useState('');
+    const [editSinopsis, setEditSinopsis] = useState('');
+    const [editGenero, setEditGenero] = useState('');
+    const [editDirector, setEditDirector] = useState('');
+    const [editClasificacion, setEditClasificacion] = useState('');
+    const [editMode, setEditMode] = useState(true);
+    const [error, setError] = useState(false);
 
     // Llamado para obtener info de la película
-    const config_get_peli_info = {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        method: 'get',
-        url: `${VITE_BACKEND_URL}peliculas/unica/${id}`,
-    }
-
     useEffect(() => {
-        const getData = async () => {
-            if (!gotPeli_info) {
-                try {
-                    const info_peli = await axios(config_get_peli_info);
-                    setPeli_info(info_peli.data);
-                    setGot(true);
-
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-        }
-        getData();
-
-    }, [id])
-
-    // Para editar la película
-    function change_edit_mode() {
-        console.log(edit_mode)
-        if (edit_mode) {
-            const update_pelicula = async () => {
-                const titulo = (edit_titulo == undefined ? peli_info.titulo : edit_titulo);
-                const sinopsis = (edit_sinopsis == undefined ? peli_info.sinopsis : edit_sinopsis);
-                const genero = (edit_genero == undefined ? peli_info.genero : edit_genero);
-                const director = (edit_director == undefined ? peli_info.director : edit_director);
-                const clasificacion = (edit_clasificacion == undefined ? peli_info.clasificacion : edit_clasificacion);
-
-                const config_update_pelicula = {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${VITE_BACKEND_URL}peliculas/unica/${id}`, {
                     headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    method: 'patch',
-                    url: `${VITE_BACKEND_URL}peliculas/${id}`,
-                    data: {
-                        'id': `${id}`,
-                        'titulo': `${titulo}`,
-                        'sinopsis': `${sinopsis}`,
-                        'genero': `${genero}`,
-                        'director': `${director}`,
-                        'clasificacion': `${clasificacion}`,
-
+                        'Content-Type': 'application/json'
                     }
-                }
-                try {
-                    const response_update = await axios(config_update_pelicula);
-                    console.log(response_update);
-                    navigate(`/pelicula/${id}`);
-                }
-                catch (error) {
-                    console.log(error);
-                }
+                });
+                setPeliInfo(response.data);
+                setEditTitulo(response.data.titulo);
+                setEditSinopsis(response.data.sinopsis);
+                setEditGenero(response.data.genero);
+                setEditDirector(response.data.director);
+                setEditClasificacion(response.data.clasificacion);
+                setGotPeliInfo(true);
+            } catch (error) {
+                console.error('Error fetching movie info:', error);
             }
-            update_pelicula()
+        };
+
+        fetchData();
+    }, [id]);
+
+    // Verificar si el usuario es administrador al cargar el componente
+    useEffect(() => {
+        const checkAdminStatus = async () => {
+            const config = {
+                method: 'get',
+                url: `${VITE_BACKEND_URL}scope/protectedadmin`,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                withCredentials: true // Asegura que las credenciales se envíen con la solicitud
+            };
+
+            try {
+                const response = await axios(config);
+                console.log('Enviaste un token válido y estás logueado.');
+                console.log(response);
+            } catch (error) {
+                console.log('Error:', error);
+                setError(true); // Establecer el estado de error
+            }
+        };
+
+        checkAdminStatus();
+    }, [token]);
+
+    // Función para manejar cambios en los inputs del formulario
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        switch (name) {
+            case 'titulo':
+                setEditTitulo(value);
+                break;
+            case 'sinopsis':
+                setEditSinopsis(value);
+                break;
+            case 'genero':
+                setEditGenero(value);
+                break;
+            case 'director':
+                setEditDirector(value);
+                break;
+            case 'clasificacion':
+                setEditClasificacion(value);
+                break;
+            default:
+                break;
         }
-        setEditMode(!edit_mode)
-    }
+    };
 
-    function onInputTitulo(e) {
-        setTitulo(e.target.value);
-    }
+    // Función para enviar los cambios al backend
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    function onInputSinopsis(e) {
-        setSinopsis(e.target.value);
-    }
+        // Verificar nuevamente el estado de administrador antes de actualizar
+        if (!editMode || error) {
+            console.log('No estás autorizado para editar esta película.');
+            return;
+        }
 
-    function onInputGenero(e) {
-        setGenero(e.target.value);
-    }
+        const updateData = {
+            titulo: editTitulo,
+            sinopsis: editSinopsis,
+            genero: editGenero,
+            director: editDirector,
+            clasificacion: editClasificacion
+        };
 
-    function onInputDirector(e) {
-        setDirector(e.target.value);
-    }
+        const config = {
+            method: 'patch',
+            url: `${VITE_BACKEND_URL}peliculas/${id}`,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            data: updateData
+        };
 
-    function onInputClasificacion(e) {
-        setClasificacion(e.target.value);
-    }
-    return (
-        <body className='BodyEditPelicula'>
-            <div className='contenedor_imagen_edit_pelicula'>
-                <img src={peli_info.imagen} className='imagen_pag_pelicula' />
+        try {
+            const response = await axios(config);
+            console.log('Película actualizada:', response.data);
+            navigate(`/pelicula/${id}`);
+        } catch (error) {
+            console.error('Error actualizando película:', error);
+        }
+    };
+
+    // Renderizado condicional para mostrar mensaje de error de permisos
+    if (error) {
+        return (
+            <div className='error-view'>
+                <h2 className='error-title-edit'>No estás autorizado para editar esta película.</h2>
+                <center>
+                    <Button onClick={() => navigate('/peliculas')} className='boton-volver-peliculas'>Volver a la página de películas</Button>
+                </center>
             </div>
-            <div className='contenedor_formulario'>
-                <Form>
-                    <Form.Group className="mb-3" controlId="Titulo">
-                        <Form.Label className='texto_form'>Titulo</Form.Label>
-                        <Form.Control className='texto_form_input' type="input" value={edit_titulo} placeholder={peli_info.titulo} onChange={onInputTitulo} />
+        );
+    }
+
+    // Renderizado del formulario de edición
+    return (
+        <div className="BodyEditPelicula">
+            <div className="contenedor_imagen_edit_pelicula">
+                <img src={peliInfo.imagen} className="imagen_pag_pelicula" alt="Imagen de la película" />
+            </div>
+            <div className="contenedor_formulario">
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3" controlId="formTitulo">
+                        <Form.Label className="texto_form">Título</Form.Label>
+                        <Form.Control
+                            className="texto_form_input"
+                            type="text"
+                            name="titulo"
+                            value={editTitulo}
+                            placeholder={peliInfo.titulo}
+                            onChange={handleInputChange}
+                            required
+                        />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="sinopsis">
-                        <Form.Label className='texto_form'>Sinopsis</Form.Label>
-                        <Form.Control className='texto_form_input' as="textarea" value={edit_sinopsis} placeholder={peli_info.sinopsis} rows={3} onChange={onInputSinopsis} />
+                    <Form.Group className="mb-3" controlId="formSinopsis">
+                        <Form.Label className="texto_form">Sinopsis</Form.Label>
+                        <Form.Control
+                            className="texto_form_input"
+                            as="textarea"
+                            name="sinopsis"
+                            value={editSinopsis}
+                            placeholder={peliInfo.sinopsis}
+                            onChange={handleInputChange}
+                            rows={3}
+                            required
+                        />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId='genero'>
-                        <Form.Label className='texto_form'>Genero</Form.Label>
-                        <Form.Control className='texto_form_input' type="input" value={edit_genero} placeholder={peli_info.genero} onChange={onInputGenero} />
+                    <Form.Group className="mb-3" controlId="formGenero">
+                        <Form.Label className="texto_form">Género</Form.Label>
+                        <Form.Control
+                            className="texto_form_input"
+                            type="text"
+                            name="genero"
+                            value={editGenero}
+                            placeholder={peliInfo.genero}
+                            onChange={handleInputChange}
+                            required
+                        />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId='director'>
-                        <Form.Label className='texto_form'>Director</Form.Label>
-                        <Form.Control className='texto_form_input' type="input" value={edit_director} placeholder={peli_info.director} onChange={onInputDirector} />
+                    <Form.Group className="mb-3" controlId="formDirector">
+                        <Form.Label className="texto_form">Director</Form.Label>
+                        <Form.Control
+                            className="texto_form_input"
+                            type="text"
+                            name="director"
+                            value={editDirector}
+                            placeholder={peliInfo.director}
+                            onChange={handleInputChange}
+                            required
+                        />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="clasificacion">
-                        <Form.Label className='texto_form'>Clasificación</Form.Label>
-                        <Form.Select className='texto_form_input' defaultValue={peli_info.clasificacion} onChange={onInputClasificacion}>
-                            <option className='texto_form_input' value={edit_clasificacion}>TE</option>
-                            <option className='texto_form_input' value={edit_clasificacion}>TE+7</option>
-                            <option className='texto_form_input' value={edit_clasificacion}>MA14</option>
-                            <option className='texto_form_input' value={edit_clasificacion}>MA18</option>
+                    <Form.Group className="mb-3" controlId="formClasificacion">
+                        <Form.Label className="texto_form">Clasificación</Form.Label>
+                        <Form.Select
+                            className="texto_form_input"
+                            name="clasificacion"
+                            value={editClasificacion}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="TE">TE</option>
+                            <option value="TE+7">TE+7</option>
+                            <option value="MA14">MA14</option>
+                            <option value="MA18">MA18</option>
                         </Form.Select>
                     </Form.Group>
-                    <div className='contenedor_boton_submit'>
-                        <Button className='boton_enviar_edit' variant="primary" onClick={change_edit_mode}>
+
+                    <div className="contenedor_boton_submit">
+                        <Button className="boton_enviar_edit" variant="primary" type="submit">
                             Enviar cambios
                         </Button>
                     </div>
-
                 </Form>
             </div>
-
-        </body >
-    )
+        </div>
+    );
 };
+
 export default EditPelicula;
