@@ -1,39 +1,23 @@
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './ReviewCard.css';
+import './CommentCard.css';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
-import {StarRating} from './starRating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faComment, faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { useNavigate } from "react-router-dom";
 
 
-export const ReviewCard = (props) => {
+export const CommentCard = (props) => {
     const navigate = useNavigate();
-    const userImg = props.userImg
     const id = props.id
-    const clickfunction = props.clickfunction
-    const movieImg = props.movieImg
-    const movieId = props.movieId
-    const rating = props.rating
-    const title = props.title
     const fecha = props.fecha
     const userId = props.userId
     const estado = props.estado
     const text = props.text
-    const [like, setLike] = useState(2302);
-    const [isLike, setIsLike] = useState(false);
     const [user_info, setUser_info] = useState([]);
     const [gotUser_info, setGot] = useState(false);
-    const [movie_info, setMovie_info] = useState([]);
-    const [gotMovie_info, setGotMovie] = useState(false);
-
-
-    
 
     useEffect(() => {
         const getUser_info = async () => {
@@ -52,69 +36,39 @@ export const ReviewCard = (props) => {
         }, [userId, gotUser_info]);
 
     const handleDeleteClick = () => {
-        props.deletefunction(props.id); //ESTA EN PELICULAPAGE
+        props.deletefunction(props.id); //ESTA EN CommentPage
     };
 
-    useEffect(() => {
-        const getMovie_info = async () => {
-            try {
-                const movieResponse = await axios.get(`${VITE_BACKEND_URL}peliculas/unica/${movieId}`);
-                setMovie_info(movieResponse.data);
-                setGotMovie(true);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
-        if (!gotMovie_info) {
-            getMovie_info();
-            }
-        }, [movieId,gotMovie_info]);
 
 
       const handleEditClick = () => {
         if (userId == localStorage.getItem("userId")) {
-            navigate(`/review/${id}`);
+            navigate(`/comment/edit/${id}`);
         } else {
-            alert("Solo puedes editar Reviews tuyas");
+            alert("Solo puedes editar Comentarios tuyas");
         }
     };
 
-    const handleCommentClick = () => {
-        navigate(`/Comments/${id}`);
-    }
+
 
 
     return (
-    <div className="review-container" >
-        <img src={movie_info.imagen} onClick={() => clickfunction(movieId)} alt="Movie" className="movie-image" 
-        style={{ cursor: "pointer", color: "#000", marginRight: "10px" }}/>
-        <div className="review-content">
-            <div className="review-header">
+    <div className="comment-container" >
+        <div className="comment-content">
+            <div className="comment-header">
                 <img src={user_info.fotoPerfil} alt="User" className="user-image" />
-                <h4 className="user-name">{user_info.username}</h4>
-                <div className="header-right">
-                    <h3 className="review-title">{title}</h3>
-                </div>
-                <div className="review-rating">
-                        <StarRating rating={rating} />
-                    </div>
+                <h4 className="user-name">{user_info.username} ha comentado lo siguiente:</h4>
             </div>
-            <div className="review-text">
+            <div className="comment-text">
                 {text}
             </div>
-            <div className="review-footer">
-                <div className="flex-item">
-                    <FontAwesomeIcon icon={faComment} onClick={handleCommentClick}
-                    style={{ cursor: "pointer", color: "#000", marginRight: "10px" }}/>
-                    <p className="number-like">Ver comentarios</p>
-                </div>
+            <div className="comment-footer">
                 <div className="edit-section">
                     <div className="fecha-container">
                         {estado}
                         {fecha}
                     </div>
-                    <div className="review-botones">
+                    <div className="comment-botones">
                         <div className="flex-item">
                             <FontAwesomeIcon
                                 icon={faEdit}

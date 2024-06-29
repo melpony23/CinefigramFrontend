@@ -122,7 +122,7 @@ export const Comunidad = () => {
                 <hr className='decorator-separator-2-lista decorator-separator-red-lista' />
                 
                 <div className='div_reviews'>
-                    <h1 className='titulo_seccion_reviews'> Reviews mas votadas</h1>
+                    <h1 className='titulo_seccion_reviews'> Reviews mas positivas</h1>
                     <div className='div_contenedor_reviews'>
                     {Array.isArray(reviews) && reviews.map(review => (
                             <ReviewCard
@@ -149,7 +149,7 @@ export const Comunidad = () => {
                             Explorar Películas
                         </button>
                         <button className="boton-explorar" onClick={() => navigate('/listas')}>
-                            Explorar Playlists
+                            Explorar Listas
                         </button>
                     </div>
                 </div>

@@ -1,0 +1,39 @@
+.comment-form {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background: #333333;
+    color: #FFFEFF;
+    border-radius: 8px;
+  }
+  
+  .comment-form .form-group {
+
+  }
+  
+  .comment-form label {
+    font-weight: bold;
+  }
+  
+  .comment-form .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .comment-form .btn {
+    background-color: #1E90FF;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    margin: 10px;
+  }
+  
+  

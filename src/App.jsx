@@ -23,6 +23,8 @@ import ChatRoom from './pages/ChatRoom';
 import CreateChat from './pages/CreateChat';
 import ChatList from './pages/ChatList';
 import SearchResults from './pages/SearchResults'
+import CommentPage from './pages/CommentPage';
+import EditComment from './pages/EditComment';
 
 function App() {
   return (
@@ -50,6 +52,9 @@ function App() {
             <Route path="/crear-chat" element={<CreateChat />} />
             <Route path="/chats/:id" element={<ChatRoom />} />
             <Route path="peliculas/search/:searchTerm" element={<SearchResults />} />
+            <Route path="/Comments/:id" element={<CommentPage />} />
+            <Route path="/comment/edit/:id" element={<EditComment />} />
+            
           </Routes>
         </div>
         <Footer />

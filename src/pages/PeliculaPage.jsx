@@ -153,30 +153,6 @@ export const PeliculaPage = () => {
             <div className='div_reviews'>
                     <h1 className='titulo_seccion_reviews'> Reviews de la Pelicula</h1>
                     <div className='div_contenedor_reviews'>
-                        <ReviewCard
-                            reviewId={101}
-                            movieImg={djangoPoster}
-                            deletefunction={handleReviewDelete}
-                            estado="published:"
-                            username = "vice"
-                            userImg={user}
-                            title="De lo mejor del Director"
-                            rating={5}
-                            text="Todo lo que uno esperaria de una pelicula de tarantino, buena accion, buena trama y buenos personajes. De lo mejor que tiene el director."
-                            fecha="12-06-2024"
-                        />
-                        <ReviewCard
-                            reviewId={100}
-                            deletefunction={handleReviewDelete}
-                            movieImg={djangoPoster}
-                            estado="published:"
-                            username = "vice"
-                            userImg={user}
-                            title="De lo mejor del Director"
-                            rating={5}
-                            text="Todo lo que uno esperaria de una pelicula de tarantino, buena accion, buena trama y buenos personajes. De lo mejor que tiene el director."
-                            fecha="12-06-2024"
-                        />
                         {Array.isArray(reviews) && reviews.map(review => (
                             <ReviewCard
                                 deletefunction={handleReviewDelete}
