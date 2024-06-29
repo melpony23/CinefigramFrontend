@@ -59,6 +59,7 @@ export const IniciarSesion = () => {
                 localStorage.setItem('verificacion', userResponse.data.verificacion);
                 localStorage.setItem('email', userResponse.data.email);
                 localStorage.setItem('userId', userResponse.data.id);
+                localStorage.setItem('esAdmin', userResponse.data.esAdmin);
 
                 showBannerMessage('Inicio de sesión exitoso', 'success');
                 setTimeout(() => {
