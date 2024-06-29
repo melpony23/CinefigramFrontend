@@ -9,6 +9,22 @@
 
 .div_imagen_lista_ch {
     grid-row: 1;
+    display: inline-grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    max-height: 205px;
+}
+
+.Imagen_lista0 {
+    grid-column: 1;
+    max-width: 100%;
+
+}
+
+.Imagen_lista1 {
+    grid-column: 2;
+    max-width: 100%;
+
 }
 
 .div_info_playlist_ch {
@@ -32,9 +48,7 @@
     width: 100%;
 }
 
-.div_imagen_lista_ch {
-    max-height: 200px;
-}
+
 
 h3 {
     font-family: 'Inter', sans-serif;
@@ -49,6 +63,4 @@ h3 {
 @media screen and (min-width: 1000px)and (max-width: 1199px) {}
 
 
-@media screen and (min-width: 1200px) {
-    
-}
+@media screen and (min-width: 1200px) {}

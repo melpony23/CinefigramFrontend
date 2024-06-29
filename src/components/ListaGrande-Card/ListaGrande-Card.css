@@ -1,13 +1,30 @@
 .Card_lista_grande {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    max-height: 245px;
+    max-height: 250px;
     max-width: 740px;
 }
 
 .div_imagen_lista_g {
     grid-column: 1;
+    display: inline-grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+
 }
+
+.Imagen_lista0 {
+    grid-column: 1;
+    max-width: 100px;
+
+}
+
+.Imagen_lista1 {
+    grid-column: 2;
+    max-width: 100px;
+
+}
+
 
 .div_info_playlist_g {
     grid-column: 2/4;
