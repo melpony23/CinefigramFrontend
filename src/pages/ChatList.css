@@ -1,0 +1,114 @@
+/* ChatList.css */
+
+.lista-chats {
+    min-height: 100vh; /* Asegura que la altura mínima sea el 100% del viewport */
+    min-width: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #07021e;
+    padding-top: 5%;
+  }
+  
+  .chat-nombre-lista {
+    font-size: 1.5em;
+    color: black;
+  }
+  
+  /* Estilos para el botón personalizado */
+  .cssbuttons-io {
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 0.5em;
+    color: black;
+    letter-spacing: 0.05em;
+    border-radius: 0.8em;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(to right, #BC2528, #F6AE2D);
+    overflow: hidden;
+    margin-top: 2em;
+    margin-bottom: 5em;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .cssbuttons-io span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8em 1.2em 0.8em 1.05em;
+    text-decoration: none;
+  }
+  
+  .cssbuttons-io::before,
+  .cssbuttons-io::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    text-decoration: none;
+  }
+  
+  .cssbuttons-io::before {
+    content: "";
+    background: #F6AE2D;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+    text-decoration: none;
+  }
+  
+  .cssbuttons-io:hover::before {
+    transform: translate3d(100%, 0, 0);
+    text-decoration: none;
+  }
+  
+  .cssbuttons-io:active {
+    transform: scale(0.95);
+    text-decoration: none;
+  }
+  
+  /* Estilos para el texto del enlace dentro del botón */
+  .boton-titulo-chat {
+    color: black;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5em;
+    text-decoration: none; 
+  }
+  
+  /* Estilos para deshabilitar el color azul predeterminado del enlace */
+  .boton-titulo-chat,
+  .boton-titulo-chat:hover,
+  .boton-titulo-chat:visited,
+  .boton-titulo-chat:focus,
+  .boton-titulo-chat:active {
+    color: black;
+    text-decoration: none;
+    outline: none;
+  }
+  
+  .list-group-item {
+    width: 40em;
+    height: 10em;
+  }
+
+  .chat-descripcion-lista {
+    color: black;
+  }
+
+  .btn-size {
+    padding-top: 1%;
+    padding-bottom: 1%;
+  }
+
+  .titulo-lista-chats {
+    font-size: 2em;
+  }

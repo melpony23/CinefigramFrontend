@@ -54,6 +54,7 @@ const NavbarLoggedIn = ({ navToggle, active, icon, showLinks }) => {
                     <li><Link to="/peliculas" className="nav-link px-2">Peliculas</Link></li>
                     <li><Link to="/listas" className="nav-link px-2">Listas</Link></li>
                     <li><Link to="/comunidad" className="nav-link px-2">Comunidad</Link></li>
+                    <li><Link to="/chats" className="nav-link px-2">Chats</Link></li>
                     <li><Link to="/nosotros" className="nav-link px-2">Sobre nosotros</Link></li>
                 </ul>
 

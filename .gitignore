@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .env
+
+# Archivos Zone.Identifier
+**Zone.Identifier
