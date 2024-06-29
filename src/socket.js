@@ -2,9 +2,7 @@
 import { io } from 'socket.io-client';
 
 // Conexión sin token de acceso
-const socket = io('wss://amimir-backend.onrender.com', {
-  withCredentials: true // Solo si necesitas enviar cookies de sesión o similares
-});
+const socket = io('https://amimir-backend.onrender.com');
 
 socket.on('connect', () => {
   console.log('Conexión establecida con el servidor WebSocket');
