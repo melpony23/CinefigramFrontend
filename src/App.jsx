@@ -38,9 +38,9 @@ function App() {
             <Route path='/pelicula/:id' element={<PeliculaPage />} />
             <Route path='/pelicula/edit/:id' element={<EditPelicula />} />
             <Route path='/landing-user' element={<LandingPageUser />} />
-            <Route path='/perfil' element={<Perfil />} />
+            <Route path='/perfil/:id' element={<Perfil />} />
             <Route path='/mi-cuenta' element={<MiCuenta />} />
-            <Route path='/listas-user' element={<ListasUser />} />
+            <Route path='/listas-user/:id' element={<ListasUser />} />
             <Route path='/crear-lista' element={<CrearLista />} />
           </Routes>
         </div>

@@ -8,6 +8,7 @@ import Alert from '../Alert/Alert'; // Asegúrate de que la ruta sea correcta
 const NavbarLoggedIn = ({ navToggle, active, icon, showLinks }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [profileImage, setProfileImage] = useState(null);
+    const [id, setId] = useState(null)
     const [bannerMessage, setBannerMessage] = useState('');
     const [showBanner, setShowBanner] = useState(false);
     const navigate = useNavigate(); // Inicializar navigate
@@ -17,6 +18,10 @@ const NavbarLoggedIn = ({ navToggle, active, icon, showLinks }) => {
         const fotoPerfil = localStorage.getItem('fotoPerfil');
         if (fotoPerfil) {
             setProfileImage(fotoPerfil);
+        }
+        const StoredId = localStorage.getItem('id');
+        if (StoredId) {
+            setId(StoredId);
         }
     }, []);
 
@@ -79,8 +84,8 @@ const NavbarLoggedIn = ({ navToggle, active, icon, showLinks }) => {
                             <ul className={`dropdown-menu ${dropdownOpen ? "show" : ""}`}>
                                 <li><a className="dropdown-item" href="#">Notificaciones</a></li>
                                 <li><a className="dropdown-item" href="#">Historial de peliculas</a></li>
-                                <li><Link to='/listas-user' className='dropdown-item'>Mis listas</Link></li>
-                                <li><Link to="/perfil" className='dropdown-item'>Perfil</Link></li>
+                                <li><Link to={`/listas-user/${id}`} className='dropdown-item'>Mis listas </Link></li>
+                                <li><Link to={`/perfil/${id}`} className='dropdown-item'>Perfil</Link></li>
                                 <li><Link to="/mi-cuenta" className='dropdown-item'>Mi cuenta</Link></li>
                                 <li><hr className="dropdown-divider" /></li>
                                 <li><a className="dropdown-item" onClick={handleLogout}>Cerrar Sesion</a></li>

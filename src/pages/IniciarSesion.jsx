@@ -55,6 +55,8 @@ export const IniciarSesion = () => {
                 localStorage.setItem('descripcion', userResponse.data.descripcion);
                 localStorage.setItem('verificacion', userResponse.data.verificacion);
                 localStorage.setItem('email', userResponse.data.email);
+                localStorage.setItem('id', userResponse.data.id);
+                console.log(` local storage ${userResponse.data.id}`);
 
                 showBannerMessage('Inicio de sesión exitoso', 'success');
                 setTimeout(() => {
@@ -99,10 +101,10 @@ export const IniciarSesion = () => {
                             <div className='inputs-login'>
                                 <div className='form-group'>
                                     <label className='login-text-label'>Usuario</label>
-                                    <input 
-                                        type='text' 
-                                        id='usuario' 
-                                        className='form-control' 
+                                    <input
+                                        type='text'
+                                        id='usuario'
+                                        className='form-control'
                                         placeholder='Ingrese su usuario'
                                         value={username}
                                         onChange={handleUsernameChange}

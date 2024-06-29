@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 export const ListasUser = () => {
     const navigate = useNavigate();
+    const id = useParams().id;
+    console.log(id);
 
     return (
         <div className='Big_contenedor_listas_user'>
@@ -19,7 +21,7 @@ export const ListasUser = () => {
 
             </div>
             <div className='contenedor_boton_crear_lista'>
-                <button className="cssbuttons-io" onClick={() => {navigate('/crear-lista')}}>
+                <button className="cssbuttons-io" onClick={() => { navigate('/crear-lista') }}>
                     <span>Crear lista</span>
                 </button>
             </div>

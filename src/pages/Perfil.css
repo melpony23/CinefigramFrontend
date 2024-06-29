@@ -68,7 +68,7 @@
 .carrusel-reviews {
     position: relative;
     width: 80%;
-   
+
 }
 
 .div_contenedor_reviews2 {
@@ -88,16 +88,16 @@
     height: 20px;
     border-radius: 50%;
     margin-right: 10px;
-  }
+}
 
 .div_contenedor_reviews .review-title {
     flex: 1;
     font-size: 1em;
     color: #07021E;
 }
-  
 
-.font-custome-tittle  {
+
+.font-custome-tittle {
     margin-top: 5%;
     margin-right: auto;
     padding-left: 7%;
@@ -107,4 +107,9 @@
     margin-right: 30%;
     margin-bottom: 3%;
     margin-top: 2%;
+}
+
+.contenedor_logros {
+    display: flex;
+    flex-direction: row;
 }
