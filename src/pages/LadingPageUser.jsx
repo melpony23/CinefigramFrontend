@@ -30,7 +30,8 @@ export const LandingPageUser = () => {
         },
         method: 'get',
         url: `${VITE_BACKEND_URL}peliculas/populares`,
-    }
+        withCredentials: true // Asegura que las credenciales se envíen con la solicitud
+    };
 
     useEffect(() => {
         const getData = async () => {
@@ -60,20 +61,18 @@ export const LandingPageUser = () => {
     useEffect(() => {
         const getData = async () => {
             if (!gotPeliculas) {
-
                 try {
                     const peliculas = await axios(config_get_peliculas);
                     setMovies(peliculas.data);
 
                     setGot(true);
-
                 } catch (error) {
                     console.log(error);
                 }
             }
-        }
+        };
         getData();
-    }, [])
+    }, []);
 
     const config_get_listas = {
         method: 'get',
@@ -106,15 +105,16 @@ export const LandingPageUser = () => {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
+            withCredentials: true // Asegura que las credenciales se envíen con la solicitud
         };
 
         axios(config)
             .then((response) => {
-                console.log('Enviaste un token bueno y estas logueado');
+                console.log('Enviaste un token bueno y estás logueado');
                 console.log(response);
             })
             .catch((error) => {
-                console.log('Hubo un error, no estas logueado');
+                console.log('Hubo un error, no estás logueado');
                 console.log(error);
                 setError(true); // Establecer el estado de error
                 navigate('/login'); // Redirigir al usuario si hay un error
@@ -159,8 +159,10 @@ export const LandingPageUser = () => {
             </div>
             <div className='grid-container'>
                 <div className='grid-item1'>
-                    <h4 className='font-custome-tittle card-title'>Películas que te podrian gustar</h4>
-                    <hr className='decorator-separator decorator-separator-red' />
+
+                    <h4 className='font-custome-tittle card-title'>Películas que te podrían gustar</h4>
+                    <hr className='decorator-separator decorator-separator-red'/>
+
                     <div>
                         <div className='movie-row'>
                             <MovieList movies={moviesDestacadas} />
