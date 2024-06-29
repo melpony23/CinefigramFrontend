@@ -85,7 +85,7 @@ const NavbarLoggedIn = ({ navToggle, active, icon, showLinks }) => {
                                 <li><a className="dropdown-item" href="#">Notificaciones</a></li>
                                 <li><a className="dropdown-item" href="#">Historial de peliculas</a></li>
                                 <li><Link to={`/listas-user/${id}`} className='dropdown-item'>Mis listas </Link></li>
-                                <li><Link to={`/perfil/${id}`} className='dropdown-item'>Perfil</Link></li>
+                                <li><Link to={`/perfil-propio/${id}`} className='dropdown-item'>Perfil</Link></li>
                                 <li><Link to="/mi-cuenta" className='dropdown-item'>Mi cuenta</Link></li>
                                 <li><hr className="dropdown-divider" /></li>
                                 <li><a className="dropdown-item" onClick={handleLogout}>Cerrar Sesion</a></li>
