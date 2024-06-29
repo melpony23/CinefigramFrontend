@@ -103,8 +103,11 @@
     padding-left: 7%;
 }
 
-.contenedor-playlis-perfil {
-    margin-right: 30%;
+.contenedor-playlist-perfil {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    padding-left: 10%;
     margin-bottom: 3%;
     margin-top: 2%;
 }

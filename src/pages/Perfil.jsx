@@ -25,6 +25,32 @@ export const Perfil = () => {
     const navigate = useNavigate();
     const id = useParams().id
     const movie = bohemianRhapsodyPoster;
+    const [listas, setListas] = useState([]);
+    const [gotListas, setGotListas] = useState(false);
+
+    const config_get_listas = {
+        method: 'get',
+        url: `${VITE_BACKEND_URL}playlists/usuario/${id}`,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }
+
+    useEffect(() => {
+        const getListas = async () => {
+            if (!gotListas) {
+                try {
+                    const listas = await axios(config_get_listas);
+                    setListas(listas.data);
+                    console.log(`Llegaron listas!!`);
+                    setGotListas(true);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+        getListas();
+    }, [])
 
     const config_get_logros = {
         method: 'get',
@@ -151,9 +177,10 @@ export const Perfil = () => {
                 </div>
             </div>
             <h4 className='font-custome-tittle card-title'>Listas de {username}</h4>
-            <div className='contenedor-playlis-perfil'>
-                <ListaGrande_Card imagen={PortadaPlaylist} titulo={'Favoritas de acción'} autor={username} likes={200} dislikes={2} num_peliculas={15}
-                    descripcion={'Compilado de mis películas de acción favoritas. Explosiones! Muerte! Boom Boom!!'}></ListaGrande_Card>
+            <div className='contenedor-playlist-perfil'>
+                {listas.length == 0 ? (<h2>No tienes listas todavía. Crea una!</h2>) :
+                    (listas.map(lista => { return (<ListaGrande_Card id={lista.id} titulo={lista.titulo} autor={username} likes={2} dislikes={2} descripcion={lista.descripcion}> </ListaGrande_Card>) }))
+                }
             </div>
         </div>
     );
