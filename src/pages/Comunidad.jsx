@@ -3,14 +3,13 @@ import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import { useNavigate } from "react-router-dom";
 import "./Comunidad.css";
-import SearchBar from '../components/SearchBar/SearchBar';
+import SearchBar from '../components/SearchBarComunidad/SearchBarComunidad';
 import {ReviewCard} from '../components/ReviewCard/ReviewCard';
 import bohemianRhapsodyPoster from '../../assets/bohemian-rhapsody.jpg';
 import djangoPoster from '../../assets/django.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import ListaGrande_Card from '../components/ListaGrande-Card/ListaGrande-Card';
-import PortadaPlaylist from '../../assets/portada_playlist.png';
+
 
 export const Comunidad = () => {
     const navigate = useNavigate();
