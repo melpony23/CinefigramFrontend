@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import MovieList from '../components/MovieList/MovieList';
@@ -12,15 +12,15 @@ const LandingPage = () => {
     const [listas, setListas] = useState([]);
     const [gotListas, setGotListas] = useState(false);
 
-    const config_get_peliculas = {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        method: 'get',
-        url: `${VITE_BACKEND_URL}peliculas/populares`,
-    }
-
     useEffect(() => {
+        const config_get_peliculas = {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'get',
+            url: `${VITE_BACKEND_URL}peliculas/populares`,
+        };
+
         const getData = async () => {
             if (!gotPeliculas) {
                 try {
@@ -28,24 +28,23 @@ const LandingPage = () => {
                     setMovies(peliculas.data);
                     console.log(peliculas.data);
                     setGot(true);
-
                 } catch (error) {
                     console.log(error);
                 }
             }
         }
         getData();
-    }, [config_get_peliculas, gotPeliculas]);
-
-    const config_get_listas = {
-        method: 'get',
-        url: `${VITE_BACKEND_URL}playlists/`,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    }
+    }, [gotPeliculas]);
 
     useEffect(() => {
+        const config_get_listas = {
+            method: 'get',
+            url: `${VITE_BACKEND_URL}playlists/`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        };
+
         const getListas = async () => {
             if (!gotListas) {
                 try {
@@ -59,7 +58,7 @@ const LandingPage = () => {
             }
         }
         getListas();
-    }, [])
+    }, [gotListas]);
 
     return (
         <div className="landing-page-container">
@@ -91,8 +90,8 @@ const LandingPage = () => {
                         <h4 className='font-custome-tittle card-title-2'>Listas populares</h4>
                         <hr className='decorator-separator-2 decorator-separator-yellow' />
                         <div>
-                            {listas.length == 0 ? (<h2>No hay listas para mostrar</h2>) :
-                                (<ListaChica_Card id={listas[0].id} titulo={listas[0].titulo} likes={2} dislikes={2} > </ListaChica_Card>)
+                            {listas.length === 0 ? (<h2>No hay listas para mostrar</h2>) :
+                                (<ListaChica_Card id={listas[0].id} titulo={listas[0].titulo} likes={2} dislikes={2} />)
                             }
                         </div>
                     </div>
@@ -103,3 +102,4 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+

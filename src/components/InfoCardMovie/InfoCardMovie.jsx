@@ -8,8 +8,6 @@ import PropTypes from 'prop-types';
 import VITE_BACKEND_URL from '/config'; // Asegúrate de importar la URL correcta de tu backend
 
 const InfoCardMovie = ({ ranking, movie }) => {
-    const [like, setLike] = useState(2302);
-    const [isLike, setIsLike] = useState(false);
     const [numReviews, setNumReviews] = useState(0); // Estado para almacenar el número de reviews
 
     useEffect(() => {
@@ -25,10 +23,6 @@ const InfoCardMovie = ({ ranking, movie }) => {
         fetchReviewCount();
     }, [movie.id]);
 
-    const onLikeButtonClick = () => {
-        setLike(like + (isLike ? -1 : 1));
-        setIsLike(!isLike);
-    };
 
     // Truncar el ranking a un decimal
     const truncatedRanking = Number(ranking).toFixed(1);
@@ -36,13 +30,14 @@ const InfoCardMovie = ({ ranking, movie }) => {
     return (
         <div className="flex-container">
             <div className="flex-item">
-                <FontAwesomeIcon icon={faComment} />
+                <FontAwesomeIcon 
+                icon={faComment}
+                style={{ color: "#FFFFFF" }}/>
                 <p className="ranking-movie">{numReviews}</p>
             </div>
             <div className="flex-item">
                 <FontAwesomeIcon
                     icon={faStarSolid}
-                    onClick={onLikeButtonClick}
                     style={{ color: "#F6AE2D" }}
                 />
                 <p className="ranking-movie">{truncatedRanking}</p>

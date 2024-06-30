@@ -4,8 +4,6 @@ import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import ListaGrande_Card from '../components/ListaGrande-Card/ListaGrande-Card';
-import PortadaPlaylist from '../../assets/portada_playlist.png';
 import ListaGrandeUser from '../components/ListaGrandeUser/ListaGrandeUser';
 
 export const ListasUser = () => {

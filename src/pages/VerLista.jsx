@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import "./VerLista.css";
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import { useParams } from 'react-router-dom';
 
-export const VerLista = () => {
-    const id = useParams().id;
+const VerLista = () => {
+    const { id } = useParams();
     const [lista, setLista] = useState([]);
     const [gotLista, setGotLista] = useState(false);
     const [imagen, setImagen] = useState([]);
@@ -13,73 +13,77 @@ export const VerLista = () => {
     const [autor, setAutor] = useState(null);
     const [gotAutor, setGotAutor] = useState(false);
 
-    const config_get_lista = {
-        method: 'get',
-        url: `${VITE_BACKEND_URL}playlists/unica/${id}`,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    }
-    const config_get_imagen = {
-        method: 'get',
-        url: `${VITE_BACKEND_URL}playlists/${id}/imagen`,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    }
-    const config_get_autor = {
-        method: 'get',
-        url: `${VITE_BACKEND_URL}playlists/${id}/autor`,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    }
-
     useEffect(() => {
-        const getAutor = async () => {
-            if (!gotAutor) {
-                try {
-                    const autor = await axios(config_get_autor);
-                    setAutor(autor.data);
-                    setGotAutor(true);
-                } catch (error) {
-                    console.log(error);
-                }
-            }
+        const config_get_lista = {
+            method: 'get',
+            url: `${VITE_BACKEND_URL}playlists/unica/${id}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
         }
-        getAutor();
-    }, [])
 
-    useEffect(() => {
         const getLista = async () => {
             if (!gotLista) {
                 try {
-                    const lista = await axios(config_get_lista);
-                    setLista(lista.data);
+                    const listaResponse = await axios(config_get_lista);
+                    setLista(listaResponse.data);
                     setGotLista(true);
                 } catch (error) {
                     console.log(error);
                 }
             }
         }
-        getLista();
-    }, [])
 
+        getLista();
+    }, [id, gotLista]);
 
     useEffect(() => {
+        const config_get_imagen = {
+            method: 'get',
+            url: `${VITE_BACKEND_URL}playlists/${id}/imagen`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }
+
         const getImagen = async () => {
             if (!gotImagen) {
                 try {
-                    const imagen = await axios(config_get_imagen);
-                    setImagen(imagen.data);
+                    const imagenResponse = await axios(config_get_imagen);
+                    setImagen(imagenResponse.data);
                     setGotImagen(true);
                 } catch (error) {
                     console.log(error);
                 }
             }
         }
+
         getImagen();
-    }, [lista, gotLista])
+    }, [id, gotImagen]);
+
+    useEffect(() => {
+        const config_get_autor = {
+            method: 'get',
+            url: `${VITE_BACKEND_URL}playlists/${id}/autor`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }
+
+        const getAutor = async () => {
+            if (!gotAutor) {
+                try {
+                    const autorResponse = await axios(config_get_autor);
+                    setAutor(autorResponse.data);
+                    setGotAutor(true);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+
+        getAutor();
+    }, [id, gotAutor]);
 
     return (
         <body className='contenedor_lista_page'>
@@ -95,17 +99,17 @@ export const VerLista = () => {
                     <h2>{lista.descripcion}</h2>
                 </div>
                 <div className='imagenes_peli_lista_page'>
-                    {imagen.length == 0 ? (<h2>No tienes listas todavía. Crea una!</h2>) :
-                        (imagen.map(imagen => { return (<img className='imagenpelilista' src={imagen} />) }))
-                    }
+                    {imagen.length === 0 ? (
+                        <h2>No tienes listas todavía. ¡Crea una!</h2>
+                    ) : (
+                        imagen.map((imagenItem, index) => (
+                            <img key={index} className='imagenpelilista' src={imagenItem} alt={`Imagen ${index}`} />
+                        ))
+                    )}
                 </div>
             </div>
-
-
         </body>
     )
 }
-
-
 
 export default VerLista;

@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './SearchBarPlaylist.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import VITE_BACKEND_URL from '/config';
+import PropTypes from 'prop-types';
 
 const SearchBarPlaylist = ({ parentCallback }) => {
     const [query, setQuery] = useState('');
@@ -18,17 +16,16 @@ const SearchBarPlaylist = ({ parentCallback }) => {
         event.preventDefault();
         if (query.trim() !== '') {
             console.log([query]);
-            const pelis = peliculas.concat([query])
+            const pelis = peliculas.concat([query]);
             setPeliculas(pelis);
             console.log(`en search bar ${pelis}`);
             parentCallback(pelis);
         }
-
     };
 
     return (
         <div className='busqueda-y-lista'>
-            <fieldset className="search-bar1" >
+            <fieldset className="search-bar1">
                 <input
                     type="text"
                     value={query}
@@ -41,11 +38,14 @@ const SearchBarPlaylist = ({ parentCallback }) => {
                 </button>
             </fieldset>
             <ul>
-                {peliculas.length == 0 ? (<br></br>) : (peliculas.map(pelicula => <li key={pelicula}>{pelicula}</li>))}
+                {peliculas.length === 0 ? <br /> : peliculas.map((pelicula, index) => <li key={index}>{pelicula}</li>)}
             </ul>
         </div>
-
     );
+};
+
+SearchBarPlaylist.propTypes = {
+    parentCallback: PropTypes.func,
 };
 
 export default SearchBarPlaylist;

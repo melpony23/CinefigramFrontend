@@ -1,7 +1,5 @@
-
-import React from 'react';
 import "./CrearLista.css"
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import { useParams } from 'react-router-dom';
@@ -9,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import SearchBarPlaylist from '../components/SearchBarPlaylist/SearchBarPlaylist';
-
 
 export const CrearLista = () => {
     const id = useParams().id;
@@ -37,6 +34,7 @@ export const CrearLista = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         const config_post_playlist = {
             headers: {
                 'Content-Type': 'application/json',
@@ -45,6 +43,7 @@ export const CrearLista = () => {
             url: `${VITE_BACKEND_URL}playlists/`,
             data: { 'usuarioId': `${id}`, 'titulo': `${titulo}`, 'descripcion': `${descripcion}`, 'esPublica': `${privacidad}` }
         }
+
         const config_get_peliculas = {
             headers: {
                 'Content-Type': 'application/json',
@@ -54,7 +53,7 @@ export const CrearLista = () => {
         }
 
         try {
-            const peliculas = await axios(config_get_peliculas);
+            const peliculasResponse = await axios(config_get_peliculas);
             const response_post_playlist = await axios(config_post_playlist);
 
             const config_post_playlistpelicula = {
@@ -63,9 +62,10 @@ export const CrearLista = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: { 'array': `${peliculas.data}`, 'id_playlist': `${response_post_playlist.data}` }
+                data: { 'array': `${peliculasResponse.data}`, 'id_playlist': `${response_post_playlist.data}` }
             }
-            const response = await axios(config_post_playlistpelicula);
+
+            await axios(config_post_playlistpelicula);
             navigate(`/listas-user/${id}`);
 
         } catch (error) {
@@ -94,10 +94,6 @@ export const CrearLista = () => {
                             onChange={onInputDescripcion}
                             required>
                         </Form.Control>
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="formPeliculas">
-
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formPrivacidad">
