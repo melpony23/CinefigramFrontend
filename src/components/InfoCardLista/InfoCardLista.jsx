@@ -29,18 +29,7 @@ const InfoCardLista = ({ autor, likes, dislikes, num_peliculas }) => {
             <div className='div_autor_lista'>
                 <p className='info_lista autor'>{autor}</p>
             </div>
-            <div className='div_like_lista'>
-                <FontAwesomeIcon icon={isLike ? ThumbsUpSolid : ThumbsUpRegular}
-                    onClick={onLikeButtonClick}
-                    style={{ color: "#f6ae2d", cursor: "pointer", paddingRight: '10%' }} />
-                <p className='info_lista'>{like}</p>
-            </div>
-            <div className='div_dislike_lista'>
-                <FontAwesomeIcon icon={isDislike ? ThumbsDownSolid : ThumbsDownRegular}
-                    onClick={onDislikeButtonClick}
-                    style={{ color: "#f6ae2d", cursor: "pointer", paddingRight: '10%' }} />
-                <p className='info_lista'>{dislike}</p>
-            </div>
+
             <div className='div_num_peliculas'>
                 <p className='info_lista'>{num_peliculas} movies</p>
             </div>
