@@ -100,7 +100,7 @@ export const Comunidad = () => {
                         {searchSuccesful && (
                             <div className='usuarios-famosos'>
                             <h2 >Resultados de búsqueda:</h2>
-                                <div className='usuario'>
+                                <div className='usuario' onClick={() => navigate(`/perfil/${user.id}`)} style={{ cursor: 'pointer' }}>
                                     <img src={searchResults.fotoPerfil} alt='Usuario encontrado' />
                                     <p>{searchResults.username}</p>
                                 </div>
