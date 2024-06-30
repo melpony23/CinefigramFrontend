@@ -2,16 +2,17 @@ import { useState, useEffect, useMemo } from 'react';
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import MovieList from '../components/MovieList/MovieList';
-import InfoCard from '../components/InfoCard/InfoCard';
-import playlistImage from '../../assets/portada_playlist.png';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
+import ListaChica_Card from '../components/ListaChica-Card/ListaChica-Card';
 
 const LandingPage = () => {
     const [movies, setMovies] = useState([]);
     const [gotPeliculas, setGot] = useState(false);
+    const [listas, setListas] = useState([]);
+    const [gotListas, setGotListas] = useState(false);
 
-    const config_get_peliculas = useMemo(() => ({
+    const config_get_peliculas = {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -35,6 +36,30 @@ const LandingPage = () => {
         }
         getData();
     }, [config_get_peliculas, gotPeliculas]);
+
+    const config_get_listas = {
+        method: 'get',
+        url: `${VITE_BACKEND_URL}playlists/`,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }
+
+    useEffect(() => {
+        const getListas = async () => {
+            if (!gotListas) {
+                try {
+                    const listas = await axios(config_get_listas);
+                    setListas(listas.data);
+                    console.log(`Llegaron listas!!`);
+                    setGotListas(true);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+        getListas();
+    }, [])
 
     return (
         <div className="landing-page-container">
@@ -65,8 +90,11 @@ const LandingPage = () => {
                     <div className='playlist-row'>
                         <h4 className='font-custome-tittle card-title-2'>Listas populares</h4>
                         <hr className='decorator-separator-2 decorator-separator-yellow' />
-                        <img src={playlistImage} alt='playlist-png' className="playlist-png" />
-                        <InfoCard />
+                        <div>
+                            {listas.length == 0 ? (<h2>No hay listas para mostrar</h2>) :
+                                (<ListaChica_Card id={listas[0].id} titulo={listas[0].titulo} likes={2} dislikes={2} > </ListaChica_Card>)
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

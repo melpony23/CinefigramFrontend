@@ -26,6 +26,8 @@ import ChatList from './pages/ChatList';
 import SearchResults from './pages/SearchResults'
 import CommentPage from './pages/CommentPage';
 import EditComment from './pages/EditComment';
+import EditarLista from './pages/EditarLista';
+import VerLista from './pages/VerLista';
 
 function App() {
   return (
@@ -48,7 +50,7 @@ function App() {
             <Route path='/perfil-propio/:id' element={<Perfil />} />
             <Route path='/mi-cuenta' element={<MiCuenta />} />
             <Route path='/listas-user/:id' element={<ListasUser />} />
-            <Route path='/crear-lista' element={<CrearLista />} />
+            <Route path='/crear-lista/:id' element={<CrearLista />} />
             <Route path='/review/:id' element={<EditReview/>} />
             <Route path='/perfil/:id' element={<PerfilId />} />
             <Route path="/chats" element={<ChatList />} />
@@ -57,6 +59,9 @@ function App() {
             <Route path="peliculas/search/:searchTerm" element={<SearchResults />} />
             <Route path="/Comments/:id" element={<CommentPage />} />
             <Route path="/comment/edit/:id" element={<EditComment />} />
+            <Route path="/lista/:id" element={<VerLista/>}/>
+            <Route path="/lista/edit/:id" element={<EditarLista/>}/>
+            
               
           </Routes>
         </div>

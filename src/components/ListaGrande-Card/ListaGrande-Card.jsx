@@ -3,7 +3,9 @@ import './ListaGrande-Card.css';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types'; // Importa PropTypes
+
 
 const ListaGrande_Card = (props) => {
     const { id, titulo, descripcion, likes, dislikes } = props;
@@ -11,6 +13,12 @@ const ListaGrande_Card = (props) => {
     const [gotImagen, setGotImagen] = useState(false);
     const [autor, setAutor] = useState(null);
     const [gotAutor, setGotAutor] = useState(false);
+    const navigate = useNavigate();
+
+    function handlePosterClick(id) {
+        navigate(`/lista/${id}`);
+    }
+
 
     useEffect(() => {
         const getImagen = async () => {
@@ -57,7 +65,7 @@ const ListaGrande_Card = (props) => {
     }, [id, gotAutor]); 
 
     return (
-        <div className='Card_lista_grande'>
+        <div key={id} className='Card_lista_grande' onClick={() => handlePosterClick(id)}>
             <div className='div_imagen_lista_g'>
                 {imagen[0] && <img src={imagen[0]} className='Imagen_lista0' alt="Imagen 0" />}
                 {imagen[1] && <img src={imagen[1]} className='Imagen_lista1' alt="Imagen 1" />}

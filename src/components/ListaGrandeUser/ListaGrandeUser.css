@@ -1,0 +1,63 @@
+.Card_lista_grande2 {
+    display: grid;
+    grid-template-columns: 35% 50% 15%;
+    max-height: 250px;
+    width: 100%;
+}
+
+.div_imagen_lista_g {
+    grid-column: 1;
+    display: inline-grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+
+}
+
+.Imagen_lista0 {
+    grid-column: 1;
+    max-width: 100px;
+
+}
+
+.Imagen_lista1 {
+    grid-column: 2;
+    max-width: 100px;
+
+}
+.Imagen_lista2 {
+    grid-column: 3;
+    max-width: 100px;
+
+}
+
+
+.div_info_playlist_gg {
+    grid-column: 2;
+    display: inline-grid;
+    grid-template-rows: repeat(4, 1fr);
+    margin-left: 4%;
+}
+
+.div_titulo_lista_g {
+    grid-row: 1;
+}
+
+.div_stats_lista_g {
+    grid-row: 2;
+    justify-self: left;
+}
+
+.div_descripcion_lista_g {
+    grid-row: 3/5;
+    overflow-x: nowrap;
+}
+
+h4 {
+    font-family: 'Inter', sans-serif;
+    color: #FFFEFF;
+    font-size: small;
+}
+
+.div_boton_editar {
+    grid-column: 3;
+}
