@@ -46,8 +46,10 @@ export const Perfil = () => {
         const getListas = async () => {
             if (!gotListas) {
                 try {
+
                     const response = await axios(config_get_listas);
                     setListas(response.data);
+                  
                     setGotListas(true);
                 } catch (error) {
                     console.log(error);
@@ -201,22 +203,17 @@ export const Perfil = () => {
             </div>
 
             <h4 className='font-custome-tittle card-title'>Listas de {username}</h4>
-            <div className='contenedor-playlist-perfil'>
-                {listas.length === 0 ? (
-                    <h2>No tienes listas todavía. ¡Crea una!</h2>
-                ) : (
-                    listas.map(lista => (
-                        <ListaGrande_Card
-                            key={lista.id}
-                            id={lista.id}
-                            titulo={lista.titulo}
-                            autor={username}
-                            likes={2} // Aquí puedes añadir la lógica para obtener likes
-                            dislikes={2} // Aquí puedes añadir la lógica para obtener dislikes
-                            descripcion={lista.descripcion}
-                        />
-                    ))
-                )}
+
+            <div >
+                {listas.length == 0 ? (<h2>No tienes listas todavía. Crea una!</h2>) :
+                    (<div className='contenedor-playlist-perfil'>
+                        <ListaGrande_Card id={listas[0].id} titulo={listas[0].titulo} autor={username} descripcion={listas[0].descripcion}> </ListaGrande_Card>
+                        <ListaGrande_Card id={listas[1].id} titulo={listas[1].titulo} autor={username} descripcion={listas[1].descripcion}> </ListaGrande_Card>
+                    </div>
+
+                    )
+                }
+
             </div>
         </div>
     );

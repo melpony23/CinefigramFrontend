@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import './InfoCardLista.css';
 
-const InfoCardLista = ({ autor, num_peliculas }) => {
+
+const InfoCardLista = (props) => {
+    const { autor, privacidad, show_privacidad, num_peliculas } = props;
+
     // const [like, setLike] = useState(likes);
     // const [isLike, setIsLike] = useState(false);
 
@@ -18,14 +21,17 @@ const InfoCardLista = ({ autor, num_peliculas }) => {
     //     setIsDislike(!isDislike);
     // };
 
+
     return (
         <div className='content_info_card_lista'>
             <div className='div_autor_lista'>
                 <p className='info_lista autor'>{autor}</p>
             </div>
-
             <div className='div_num_peliculas'>
                 <p className='info_lista'>{num_peliculas} movies</p>
+            </div>
+            <div className='div_privacidad'>
+                <p className='info_lista'> {privacidad}</p>
             </div>
         </div>
     );

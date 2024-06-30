@@ -1,22 +1,20 @@
-
-import React from 'react';
-import "./CrearLista.css"
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import "./EditarLista.css";
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
-import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import SearchBarPlaylist from '../components/SearchBarPlaylist/SearchBarPlaylist';
 
-
-export const CrearLista = () => {
-    const id = useParams().id;
+export const EditarLista = () => {
     const navigate = useNavigate();
-    const [titulo, setTitulo] = useState(null);
-    const [descripcion, setDescripcion] = useState(null);
-    const [privacidad, setPrivacidad] = useState(null);
+    const id = useParams().id;
+    const [lista, setLista] = useState([]);
+    const [gotLista, setGotLista] = useState(false);
+    const [imagen, setImagen] = useState([]);
+    const [gotImagen, setGotImagen] = useState(false);
     const [peliculas, setPeliculas] = useState([]);
 
     const handleCallback = (childData) => {
@@ -35,48 +33,37 @@ export const CrearLista = () => {
         setPrivacidad(e.target.value)
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const config_post_playlist = {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'post',
-            url: `${VITE_BACKEND_URL}playlists/`,
-            data: { 'usuarioId': `${id}`, 'titulo': `${titulo}`, 'descripcion': `${descripcion}`, 'esPublica': `${privacidad}` }
-        }
-        const config_get_peliculas = {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'get',
-            url: `${VITE_BACKEND_URL}peliculas/find_peliculas?search=${peliculas}`
-        }
 
-        try {
-            const peliculas = await axios(config_get_peliculas);
-            const response_post_playlist = await axios(config_post_playlist);
-
-            const config_post_playlistpelicula = {
-                method: 'post',
-                url: `${VITE_BACKEND_URL}playlistpeliculas/`,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: { 'array': `${peliculas.data}`, 'id_playlist': `${response_post_playlist.data}` }
-            }
-            const response = await axios(config_post_playlistpelicula);
-            navigate(`/listas-user/${id}`);
-
-        } catch (error) {
-            console.error('Error al crear la playlist:', error);
-        }
+    const config_get_lista = {
+        method: 'get',
+        url: `${VITE_BACKEND_URL}playlists/unica/${id}`,
+        headers: {
+            'Content-Type': 'application/json'
+        },
     }
 
+    useEffect(() => {
+        const getLista = async () => {
+            if (!gotLista) {
+                try {
+                    const lista = await axios(config_get_lista);
+                    setLista(lista.data);
+                    setGotLista(true);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+        getLista();
+    }, [])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    }
     return (
         <div className='Big_contenedor_crear_lista'>
             <div className='contenedor_titulo_new_playlist'>
-                <h1 >Nueva lista</h1>
+                <h1 >Editar lista</h1>
             </div>
             <div className='contenedor_form_playlist'>
                 <Form onSubmit={handleSubmit}>
@@ -125,4 +112,4 @@ export const CrearLista = () => {
     );
 };
 
-export default CrearLista;
+export default EditarLista;

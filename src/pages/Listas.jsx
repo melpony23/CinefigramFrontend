@@ -4,12 +4,15 @@ import ListaChica_Card from '../components/ListaChica-Card/ListaChica-Card';
 import ListaGrande_Card from '../components/ListaGrande-Card/ListaGrande-Card';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
+import { useNavigate } from "react-router-dom";
 
 const Listas = () => {
     const [listasPopulares, setListasPopulares] = useState([]);
     const [gotListasPopulares, setGotListasPopulares] = useState(false);
     const [listas, setListas] = useState([]);
     const [gotListas, setGotListas] = useState(false);
+    
+
 
     useEffect(() => {
         const config_get_listas_pop = {
