@@ -1,17 +1,15 @@
-import React from "react";
+import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './cards.css';
 import './responsive.css';
 
-
 export const ImgLeft = (props) => {
-    const imgUrl = props.imgUrl
-    const integrante = props.integrante
-    const descripcion = props.descripcion
+    const { imgUrl, integrante, descripcion } = props; // Desestructuración de las props
+
     return (
         <div className="Presentation-Card">
             <div className="ContenedorImg">
-                <img src={imgUrl} alt=""></img>
+                <img src={imgUrl} alt="" />
             </div>
             <div className="ContenedorContenidos">
                 <div className="Contenido">
@@ -24,4 +22,11 @@ export const ImgLeft = (props) => {
             </div>
         </div>
     );
+};
+
+// Definir PropTypes para las propiedades esperadas
+ImgLeft.propTypes = {
+    imgUrl: PropTypes.string.isRequired,
+    integrante: PropTypes.string.isRequired,
+    descripcion: PropTypes.string.isRequired,
 };

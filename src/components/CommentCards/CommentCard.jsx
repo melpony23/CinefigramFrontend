@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import PropTypes from 'prop-types'; // Importa PropTypes
+import { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CommentCard.css';
 import axios from 'axios';
@@ -8,14 +9,9 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { useNavigate } from "react-router-dom";
 
-
 export const CommentCard = (props) => {
     const navigate = useNavigate();
-    const id = props.id
-    const fecha = props.fecha
-    const userId = props.userId
-    const estado = props.estado
-    const text = props.text
+    const { id, fecha, userId, estado, text, deletefunction } = props; // Desestructura las props
     const [user_info, setUser_info] = useState([]);
     const [gotUser_info, setGot] = useState(false);
 
@@ -32,63 +28,69 @@ export const CommentCard = (props) => {
 
         if (userId && !gotUser_info) {
             getUser_info();
-            }
-        }, [userId, gotUser_info]);
+        }
+    }, [userId, gotUser_info]);
 
     const handleDeleteClick = () => {
-        props.deletefunction(props.id); //ESTA EN CommentPage
+        deletefunction(id); // Utiliza el id directamente
     };
 
-
-
-      const handleEditClick = () => {
-        if (userId == localStorage.getItem("userId")) {
+    const handleEditClick = () => {
+        if (userId === localStorage.getItem("userId")) {
             navigate(`/comment/edit/${id}`);
         } else {
             alert("Solo puedes editar Comentarios tuyas");
         }
     };
 
-
-
-
     return (
-    <div className="comment-container" >
-        <div className="comment-content">
-            <div className="comment-header">
-                <img src={user_info.fotoPerfil} alt="User" className="user-image" />
-                <h4 className="user-name">{user_info.username} ha comentado lo siguiente:</h4>
-            </div>
-            <div className="comment-text">
-                {text}
-            </div>
-            <div className="comment-footer">
-                <div className="edit-section">
-                    <div className="fecha-container">
-                        {estado}
-                        {fecha}
-                    </div>
-                    <div className="comment-botones">
-                        <div className="flex-item">
-                            <FontAwesomeIcon
-                                icon={faEdit}
-                                onClick={handleEditClick}
-                                style={{ cursor: "pointer", color: "#000", marginRight: "10px" }}
-                            />
-                            <p className="number-like">Editar</p>
+        <div className="comment-container">
+            <div className="comment-content">
+                <div className="comment-header">
+                    <img src={user_info.fotoPerfil} alt="User" className="user-image" />
+                    <h4 className="user-name">{user_info.username} ha comentado lo siguiente:</h4>
+                </div>
+                <div className="comment-text">
+                    {text}
+                </div>
+                <div className="comment-footer">
+                    <div className="edit-section">
+                        <div className="fecha-container">
+                            {estado} - {fecha}
+                        </div>
+                        <div className="comment-botones">
+                            <div className="flex-item">
+                                <FontAwesomeIcon
+                                    icon={faEdit}
+                                    onClick={handleEditClick}
+                                    style={{ cursor: "pointer", color: "#000", marginRight: "10px" }}
+                                />
+                                <p className="number-like">Editar</p>
                             </div>
                             <div className="flex-item">
-                            <FontAwesomeIcon
-                                icon={faTrash}
-                                onClick={handleDeleteClick}
-                                style={{ cursor: "pointer", color: "#000" }}
-                            />
-                            <p className="number-like">Delete</p>
+                                <FontAwesomeIcon
+                                    icon={faTrash}
+                                    onClick={handleDeleteClick}
+                                    style={{ cursor: "pointer", color: "#000" }}
+                                />
+                                <p className="number-like">Delete</p>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     );
 };
+
+// Definir PropTypes para las propiedades esperadas
+CommentCard.propTypes = {
+    id: PropTypes.number.isRequired, // ID del comentario como número
+    fecha: PropTypes.string.isRequired, // Fecha como cadena
+    userId: PropTypes.number.isRequired, // ID del usuario como número
+    estado: PropTypes.string.isRequired, // Estado del comentario como cadena
+    text: PropTypes.string.isRequired, // Texto del comentario como cadena
+    deletefunction: PropTypes.func.isRequired, // Función de eliminación como función
+};
+
+export default CommentCard;

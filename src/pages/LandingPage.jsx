@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import MovieList from '../components/MovieList/MovieList';
@@ -7,22 +7,21 @@ import playlistImage from '../../assets/portada_playlist.png';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 
-export const LandingPage = () => {
+const LandingPage = () => {
     const [movies, setMovies] = useState([]);
     const [gotPeliculas, setGot] = useState(false);
 
-    const config_get_peliculas = {
+    const config_get_peliculas = useMemo(() => ({
         headers: {
             'Content-Type': 'application/json'
         },
         method: 'get',
         url: `${VITE_BACKEND_URL}peliculas/populares`,
-    }
+    }), []); // No incluir VITE_BACKEND_URL en las dependencias de useMemo
 
     useEffect(() => {
         const getData = async () => {
             if (!gotPeliculas) {
-
                 try {
                     const peliculas = await axios(config_get_peliculas);
                     setMovies(peliculas.data);
@@ -35,7 +34,7 @@ export const LandingPage = () => {
             }
         }
         getData();
-    }, [])
+    }, [config_get_peliculas, gotPeliculas]);
 
     return (
         <div className="landing-page-container">
@@ -69,7 +68,6 @@ export const LandingPage = () => {
                         <img src={playlistImage} alt='playlist-png' className="playlist-png" />
                         <InfoCard />
                     </div>
-
                 </div>
             </div>
         </div>

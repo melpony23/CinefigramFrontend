@@ -1,8 +1,8 @@
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { useNavigate,  Link} from 'react-router-dom';
-import React, { useEffect, useState, useContext } from 'react';
-import VITE_BACKEND_URL from "/config";
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../auth/AuthContext';
+import VITE_BACKEND_URL from "/config";
 import "./CreateChat.css";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importar Bootstrap CSS
 
@@ -23,9 +23,8 @@ const CreateChat = () => {
     };
 
     axios(config)
-      .then((response) => {
+      .then(() => {
         console.log('Enviaste un token bueno y estás logueado');
-        console.log(response);
       })
       .catch((error) => {
         console.log('Hubo un error, no estás logueado');
@@ -58,7 +57,7 @@ const CreateChat = () => {
     };
   
     axios(config)
-      .then(response => {
+      .then(() => {
         navigate('/chats');
       })
       .catch(error => {

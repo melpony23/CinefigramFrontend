@@ -1,119 +1,83 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../auth/AuthContext';
 import './Perfil.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import "./Comunidad.css";
-import VITE_BACKEND_URL from "/config";
-import { ReviewCard } from '../components/ReviewCard/ReviewCard';
+import ListaGrande_Card from '../components/ListaGrande-Card/ListaGrande-Card';
+import Logro from '../components/Logro/Logro';
 import djangoPoster from '../../assets/django.png';
 import bohemianRhapsodyPoster from '../../assets/bohemian-rhapsody.jpg';
-import ListaGrande_Card from '../components/ListaGrande-Card/ListaGrande-Card';
-import PortadaPlaylist from '../../assets/portada_playlist.png';
-import Logro from '../components/Logro/Logro';
+import ReviewCard from '../components/ReviewCard/ReviewCard'; // Asegúrate de importar ReviewCard desde la ubicación correcta
+import VITE_BACKEND_URL from "/config";
 
 export const Perfil = () => {
     const [username, setUsername] = useState(null);
-    const [email, setEmail] = useState(null);
     const [fotoPerfil, setFotoPerfil] = useState(null);
     const [descripcion, setDescripcion] = useState(null);
-    const [error, setError] = useState(false);
     const { token } = useContext(AuthContext);
     const [logros, setLogros] = useState([]);
     const [gotLogros, setGotLogros] = useState(false);
-    const navigate = useNavigate();
-    const id = useParams().id
+    const { id } = useParams();
     const movie = bohemianRhapsodyPoster;
     const [listas, setListas] = useState([]);
     const [gotListas, setGotListas] = useState(false);
 
-    const config_get_listas = {
-        method: 'get',
-        url: `${VITE_BACKEND_URL}playlists/usuario/${id}`,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    }
+    useEffect(() => {
+        const storedUsername = localStorage.getItem('username');
+        const storedFotoPerfil = localStorage.getItem('fotoPerfil');
+        const storedDescripcion = localStorage.getItem('descripcion');
+
+        if (storedUsername) setUsername(storedUsername);
+        if (storedFotoPerfil) setFotoPerfil(storedFotoPerfil);
+        if (storedDescripcion) setDescripcion(storedDescripcion);
+    }, []);
 
     useEffect(() => {
+        const config_get_listas = {
+            method: 'get',
+            url: `${VITE_BACKEND_URL}playlists/usuario/${id}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        };
+
         const getListas = async () => {
             if (!gotListas) {
                 try {
-                    const listas = await axios(config_get_listas);
-                    setListas(listas.data);
-                    console.log(`Llegaron listas!!`);
+                    const response = await axios(config_get_listas);
+                    setListas(response.data);
                     setGotListas(true);
                 } catch (error) {
                     console.log(error);
                 }
             }
-        }
+        };
         getListas();
-    }, [])
-
-    const config_get_logros = {
-        method: 'get',
-        url: `${VITE_BACKEND_URL}users/${id}/logros`,
-        headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        },
-    };
-
-    const config = {
-        method: 'get',
-        url: `${VITE_BACKEND_URL}scope/protecteduser`,
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    };
+    }, [id, gotListas]);
 
     useEffect(() => {
-        axios(config)
-            .then((response) => {
-                console.log('Enviaste un token bueno y estas logueado');
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log('Hubo un error, no estas logueado');
-                console.log(error);
-                setError(true);
-                navigate('/login');
-            });
-    }, [token, navigate]);
+        const config_get_logros = {
+            method: 'get',
+            url: `${VITE_BACKEND_URL}users/${id}/logros`,
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+        };
 
-
-    useEffect(() => {
-        const storedUsername = localStorage.getItem('username');
-        const storedEmail = localStorage.getItem('email');
-        const storedFotoPerfil = localStorage.getItem('fotoPerfil');
-        const storedDescripcion = localStorage.getItem('descripcion');
-
-        if (storedUsername) setUsername(storedUsername);
-        if (storedEmail) setEmail(storedEmail);
-        if (storedFotoPerfil) setFotoPerfil(storedFotoPerfil);
-        if (storedDescripcion) setDescripcion(storedDescripcion);
-    }, []);
-
-
-    useEffect(() => {
         const getLogros = async () => {
             if (!gotLogros) {
                 try {
-                    console.log(`id usuario al llamar ruta: ${id}`)
-                    const logros = await axios(config_get_logros);
-                    setLogros(logros.data);
-                    console.log(`info logros: ${logros.data}`);
+                    const response = await axios(config_get_logros);
+                    setLogros(response.data);
                     setGotLogros(true);
-
                 } catch (error) {
                     console.log(error);
                 }
             }
-        }
+        };
         getLogros();
-    }, [])
+    }, [id, gotLogros, token]);
 
     return (
         <div className='fondo-perfil'>
@@ -140,8 +104,8 @@ export const Perfil = () => {
             </div>
             <h4 className='font-custome-tittle card-title'>Logros de {username}</h4>
             <div className='contenedor_logros'>
-                {logros.length == 0 ? (<h2>No tienes logros todavía</h2>) :
-                    (logros.map(logro => { return (<Logro key={logro.id} titulo={logro.titulo} logo={logro.logo}></Logro>) }))
+                {logros.length === 0 ? (<h2>No tienes logros todavía</h2>) :
+                    (logros.map(logro => (<Logro key={logro.id} titulo={logro.titulo} logo={logro.logo} />)))
                 }
             </div>
             <h4 className='font-custome-tittle card-title'>Reviews de {username}</h4>
@@ -178,8 +142,8 @@ export const Perfil = () => {
             </div>
             <h4 className='font-custome-tittle card-title'>Listas de {username}</h4>
             <div className='contenedor-playlist-perfil'>
-                {listas.length == 0 ? (<h2>No tienes listas todavía. Crea una!</h2>) :
-                    (listas.map(lista => { return (<ListaGrande_Card id={lista.id} titulo={lista.titulo} autor={username} likes={2} dislikes={2} descripcion={lista.descripcion}> </ListaGrande_Card>) }))
+                {listas.length === 0 ? (<h2>No tienes listas todavía. Crea una!</h2>) :
+                    (listas.map(lista => (<ListaGrande_Card key={lista.id} id={lista.id} titulo={lista.titulo} autor={username} likes={2} dislikes={2} descripcion={lista.descripcion} />)))
                 }
             </div>
         </div>
@@ -187,3 +151,4 @@ export const Perfil = () => {
 };
 
 export default Perfil;
+

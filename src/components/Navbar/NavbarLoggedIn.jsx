@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Importar useNavigate
+import { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types'; // Importar PropTypes para la validación de tipos
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../../../assets/Logo_horizontal_png.png';
 import { AuthContext } from '../../auth/AuthContext';
-import Alert from '../Alert/Alert'; // Asegúrate de que la ruta sea correcta
+import Alert from '../Alert/Alert';
 
 const NavbarLoggedIn = ({ navToggle, active, icon, showLinks }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [profileImage, setProfileImage] = useState(null);
-    const [id, setId] = useState(null)
+    const [id, setId] = useState(null);
     const [bannerMessage, setBannerMessage] = useState('');
     const [showBanner, setShowBanner] = useState(false);
-    const navigate = useNavigate(); // Inicializar navigate
+    const navigate = useNavigate();
     const { logout } = useContext(AuthContext);
 
     useEffect(() => {
@@ -36,13 +37,13 @@ const NavbarLoggedIn = ({ navToggle, active, icon, showLinks }) => {
         window.location.reload();
     };
 
-    const showBannerMessage = (message, type) => {
+    const showBannerMessage = (message) => {
         setBannerMessage(message);
         setShowBanner(true);
 
         setTimeout(() => {
             setShowBanner(false);
-        }, 3000); // El banner se oculta después de 3 segundos
+        }, 3000);
     };
 
     return (
@@ -71,9 +72,6 @@ const NavbarLoggedIn = ({ navToggle, active, icon, showLinks }) => {
                     </div>
 
                     <div className={`links-container ${showLinks ? "show-links" : ""} d-flex align-items-center`}>
-                        <form className="input-group" role="search">
-                            <input type="search" className="form-control rounded-pill pl-4" style={{ fontFamily: 'Inter, sans-serif' }} placeholder="Buscar..." aria-label="Buscar" />
-                        </form>
                         <div className="dropdown text-end ms-3">
                             <a href="#" className="d-block link-body-emphasis text-decoration-none dropdown-toggle" onClick={toggleDropdown} aria-expanded={dropdownOpen}>
                                 {profileImage ? (
@@ -97,6 +95,14 @@ const NavbarLoggedIn = ({ navToggle, active, icon, showLinks }) => {
             </div>
         </header>
     );
+};
+
+// Validación de tipos para las props
+NavbarLoggedIn.propTypes = {
+    navToggle: PropTypes.func.isRequired,
+    active: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+    showLinks: PropTypes.bool.isRequired,
 };
 
 export default NavbarLoggedIn;

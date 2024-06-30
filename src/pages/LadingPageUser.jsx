@@ -1,17 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Mueve esto dentro del componente
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LandingPageUser.css';
 import { AuthContext } from '../auth/AuthContext';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import ListaChica_Card from '../components/ListaChica-Card/ListaChica-Card';
 import MovieList from '../components/MovieList/MovieList';
-import InfoCard from '../components/InfoCard/InfoCard';
-import playlistImage from '../../assets/portada_playlist.png';
 
 export const LandingPageUser = () => {
-    const { token } = useContext(AuthContext); // Asegúrate de que AuthContext esté definido correctamente
-    const navigate = useNavigate(); // Debe estar dentro del componente
+    const { token } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [error, setError] = useState(false);
 
     const [movies, setMovies] = useState([]);
@@ -24,65 +22,64 @@ export const LandingPageUser = () => {
     const [listas, setListas] = useState([]);
     const [gotListas, setGotListas] = useState(false);
 
-    const config_get_peliculas_destacadas = {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        method: 'get',
-        url: `${VITE_BACKEND_URL}peliculas/populares`,
-        withCredentials: true // Asegura que las credenciales se envíen con la solicitud
-    };
-
     useEffect(() => {
+        const config_get_peliculas_destacadas = {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'get',
+            url: `${VITE_BACKEND_URL}peliculas/populares`,
+            withCredentials: true
+        };
+
         const getData = async () => {
             if (!gotPeliculasDestacadas) {
-
                 try {
                     const peliculas = await axios(config_get_peliculas_destacadas);
                     setMoviesDestacadas(peliculas.data);
                     setGotDestacadas(true);
-
                 } catch (error) {
                     console.log(error);
                 }
             }
-        }
-        getData();
-    }, [])
+        };
 
-    const config_get_peliculas = {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        method: 'get',
-        url: `${VITE_BACKEND_URL}peliculas`,
-    }
+        getData();
+    }, [gotPeliculasDestacadas]); // Dependencia: gotPeliculasDestacadas
 
     useEffect(() => {
+        const config_get_peliculas = {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'get',
+            url: `${VITE_BACKEND_URL}peliculas`,
+        };
+
         const getData = async () => {
             if (!gotPeliculas) {
                 try {
                     const peliculas = await axios(config_get_peliculas);
                     setMovies(peliculas.data);
-
                     setGot(true);
                 } catch (error) {
                     console.log(error);
                 }
             }
         };
-        getData();
-    }, []);
 
-    const config_get_listas = {
-        method: 'get',
-        url: `${VITE_BACKEND_URL}playlists/`,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    }
+        getData();
+    }, [gotPeliculas]); // Dependencia: gotPeliculas
 
     useEffect(() => {
+        const config_get_listas = {
+            method: 'get',
+            url: `${VITE_BACKEND_URL}playlists/`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        };
+
         const getListas = async () => {
             if (!gotListas) {
                 try {
@@ -94,9 +91,10 @@ export const LandingPageUser = () => {
                     console.log(error);
                 }
             }
-        }
+        };
+
         getListas();
-    }, [])
+    }, [gotListas]); // Dependencia: gotListas
 
     useEffect(() => {
         const config = {
@@ -105,7 +103,7 @@ export const LandingPageUser = () => {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
-            withCredentials: true // Asegura que las credenciales se envíen con la solicitud
+            withCredentials: true
         };
 
         axios(config)
@@ -116,24 +114,21 @@ export const LandingPageUser = () => {
             .catch((error) => {
                 console.log('Hubo un error, no estás logueado');
                 console.log(error);
-                setError(true); // Establecer el estado de error
-                navigate('/login'); // Redirigir al usuario si hay un error
+                setError(true);
+                navigate('/login');
             });
 
-    }, [token, navigate]);
+    }, [token, navigate]); // Dependencias: token y navigate
 
     useEffect(() => {
-        // Obtener el nombre de usuario del localStorage
         const username = localStorage.getItem('username');
 
-        // Actualizar username en el estado
         if (username) {
             setUsername(username);
         }
 
     }, []);
 
-    // Si hay un error, renderiza un mensaje de error o redirige
     if (error) {
         return <div className="error-message">Error al cargar la página. Por favor, inténtelo de nuevo.</div>;
     }
@@ -159,10 +154,8 @@ export const LandingPageUser = () => {
             </div>
             <div className='grid-container'>
                 <div className='grid-item1'>
-
                     <h4 className='font-custome-tittle card-title'>Películas que te podrían gustar</h4>
-                    <hr className='decorator-separator decorator-separator-red'/>
-
+                    <hr className='decorator-separator decorator-separator-red' />
                     <div>
                         <div className='movie-row'>
                             <MovieList movies={moviesDestacadas} />
@@ -174,15 +167,15 @@ export const LandingPageUser = () => {
                         <h4 className='font-custome-tittle card-title-2'>Listas populares</h4>
                         <hr className='decorator-separator-2 decorator-separator-yellow' />
                         <div>
-                            {listas.length == 0 ? (<h2>No hay listas para mostrar</h2>) :
-                                (<ListaChica_Card id={listas[0].id} titulo={listas[0].titulo} likes={2} dislikes={2} > </ListaChica_Card>)
+                            {listas.length === 0 ? <h2>No hay listas para mostrar</h2> :
+                                <ListaChica_Card id={listas[0].id} titulo={listas[0].titulo} likes={2} dislikes={2} />
                             }
                         </div>
                     </div>
                 </div>
             </div>
-            <br></br>
-            <br></br>
+            <br />
+            <br />
             <div className='grid-container'>
                 <div className='grid-item1'>
                     <h4 className='font-custome-tittle card-title'>Películas agregadas recientemente</h4>
@@ -198,16 +191,15 @@ export const LandingPageUser = () => {
                         <h4 className='font-custome-tittle card-title-2'>Listas populares</h4>
                         <hr className='decorator-separator-2 decorator-separator-yellow' />
                         <div>
-                            {listas.length == 0 ? (<h2>No hay listas para mostrar</h2>) :
-                                (<ListaChica_Card id={listas[1].id} titulo={listas[1].titulo} likes={2} dislikes={2} > </ListaChica_Card>)
+                            {listas.length === 0 ? <h2>No hay listas para mostrar</h2> :
+                                <ListaChica_Card id={listas[1].id} titulo={listas[1].titulo} likes={2} dislikes={2} />
                             }
                         </div>
                     </div>
                 </div>
             </div>
-            <br></br>
-            <br></br>
-
+            <br />
+            <br />
         </div>
     );
 };
