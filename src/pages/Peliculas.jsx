@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import "./Peliculas.css";
 import SearchBar from '../components/SearchBar/SearchBar';
 import MovieList from '../components/MovieList/MovieList';
@@ -7,12 +7,11 @@ import VITE_BACKEND_URL from "/config";
 
 export const Peliculas = () => {
     const [movies, setMovies] = useState([]);
-    const [gotPeliculas, setGot] = useState(false);
+    const [gotPeliculas, setGotPeliculas] = useState(false);
     const [moviesDestacadas, setMoviesDestacadas] = useState([]);
-    const [gotPeliculasDestacadas, setGotDestacadas] = useState(false);
+    const [gotPeliculasDestacadas, setGotPeliculasDestacadas] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
     const [searched, setSearched] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const getData = async () => {
@@ -20,14 +19,14 @@ export const Peliculas = () => {
                 try {
                     const peliculas = await axios.get(`${VITE_BACKEND_URL}peliculas/populares`);
                     setMoviesDestacadas(peliculas.data);
-                    setGotDestacadas(true);
+                    setGotPeliculasDestacadas(true);
                 } catch (error) {
                     console.log(error);
                 }
             }
         };
         getData();
-    }, []);
+    }, [gotPeliculasDestacadas]);
 
     useEffect(() => {
         const getData = async () => {
@@ -35,17 +34,16 @@ export const Peliculas = () => {
                 try {
                     const peliculas = await axios.get(`${VITE_BACKEND_URL}peliculas`);
                     setMovies(peliculas.data);
-                    setGot(true);
+                    setGotPeliculas(true);
                 } catch (error) {
                     console.log(error);
                 }
             }
         };
         getData();
-    }, []);
+    }, [gotPeliculas]);
 
     const handleSearch = async (searchTerm) => {
-        setSearchTerm(searchTerm);
         try {
             const response = await axios.get(`${VITE_BACKEND_URL}peliculas/search?search=${searchTerm}`);
             setSearchResults(response.data);

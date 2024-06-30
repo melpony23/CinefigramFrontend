@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
@@ -6,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import "./EditReview.css"
 import { useParams } from 'react-router-dom';
 import ReviewForm from '../components/ReviewCard/ReviewForm';
-import { ReviewCard } from '../components/ReviewCard/ReviewCard';
 
 export const EditReview = () => {
     const navigate = useNavigate();

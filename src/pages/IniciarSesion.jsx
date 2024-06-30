@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import "./IniciarSesion.css";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';

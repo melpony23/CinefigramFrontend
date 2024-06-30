@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { StarRatingForm } from './starRatingForm';
+import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ReviewForm.css';
 
-const ReviewForm = ({ movieId, submitfunction, reviewData }) => {
+const ReviewForm = ({ submitfunction, reviewData }) => {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
   const [rating, setRating] = useState(0);
@@ -67,5 +68,15 @@ const ReviewForm = ({ movieId, submitfunction, reviewData }) => {
     </form>
   );
 };
+
+ReviewForm.propTypes = {
+  movieId: PropTypes.number.isRequired,
+  submitfunction: PropTypes.func.isRequired,
+  reviewData: PropTypes.shape({
+    titulo: PropTypes.string,
+    texto: PropTypes.string,
+    calificacion: PropTypes.number,
+  }),
+}
 
 export default ReviewForm;

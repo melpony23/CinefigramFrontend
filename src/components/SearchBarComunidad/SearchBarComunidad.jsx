@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
+import PropTypes from 'prop-types';
 import './SearchBarComunidad.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBarComunidad = ({ onSearch }) => {
   const [query, setQuery] = useState('');
 
   const handleChange = (event) => {
@@ -31,4 +32,8 @@ const SearchBar = ({ onSearch }) => {
   );
 };
 
-export default SearchBar;
+SearchBarComunidad.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+};
+
+export default SearchBarComunidad;

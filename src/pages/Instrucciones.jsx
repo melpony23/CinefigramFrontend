@@ -1,10 +1,10 @@
-import React from 'react'
 import "./Instrucciones.css"
 import { useState } from 'react';
 import Info_Page_Card from '../components/Info_Pag-Cards/Info_Pag-Cards';
 import Carousel from 'react-bootstrap/Carousel';
 import Landingpageview from '../../assets/Views/ViewsLandingPage/Landingpage_view.png';
 import AboutUsView from '../../assets/Views/about_us_view.png';
+import PropTypes from 'prop-types'; // Importa PropTypes
 
 function AlertButton({ message, children }) {
     return (
@@ -13,6 +13,12 @@ function AlertButton({ message, children }) {
         </button>
     );
 }
+
+// Agrega PropTypes para validar props
+AlertButton.propTypes = {
+    message: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
+};
 
 export const Instrucciones = () => {
     const [index, setIndex] = useState(0);

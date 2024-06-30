@@ -72,7 +72,7 @@ export const PeliculaPage = () => {
     const handleReviewSubmit = async (reviewData) => {
         const estado = "published";
         const fecha = new Date().toISOString();
-        if (!token) {
+        if (!localStorage.getItem("token")) {
             alert("Debes estar logueado para dejar una review.");
             return;
         }
@@ -86,17 +86,21 @@ export const PeliculaPage = () => {
                 fecha: fecha,
                 peliculaId: id,
                 usuarioId: localStorage.getItem('userId'),                               
-                
             });
-            console.log(response.data.estado)
+            const { review, logros } = response.data;
+            if (logros.length > 0) {
+                logros.forEach(logro => {
+                alert(`¡Felicidades! Has obtenido el logro: ${logro.titulo}`);
+            });
+            }
             setReviews(prevReviews => {
                 if (Array.isArray(prevReviews)) {
-                    return [...prevReviews, response.data];
+                    return [...prevReviews, review];
                 } else {
-                    return [response.data];
+                    return [review];
                 }
             });
-            console.log('Review creada:', response.data);
+            console.log('Review creada:', review);
         } catch (error) {
             console.log(localStorage.getItem('userId'))
             console.error('Error al crear la review:', error);

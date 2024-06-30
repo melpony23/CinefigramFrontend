@@ -1,25 +1,22 @@
-import React, { useState, useEffect, useContext} from 'react';
-import { AuthContext } from '../auth/AuthContext';
-import './Perfil.css';
+import { useState, useEffect} from 'react';
+import './PerfilId.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import "./Comunidad.css";
 import { useParams } from 'react-router-dom';
 import VITE_BACKEND_URL from "/config";
 import { ReviewCard } from '../components/ReviewCard/ReviewCard';
-import djangoPoster from '../../assets/django.png';
-import bohemianRhapsodyPoster from '../../assets/bohemian-rhapsody.jpg';
 import ListaGrande_Card from '../components/ListaGrande-Card/ListaGrande-Card';
 import PortadaPlaylist from '../../assets/portada_playlist.png';
 
 export const PerfilId = () => {
     const id = useParams().id;
     const [username, setUsername] = useState(null);
-    const [email, setEmail] = useState(null);
     const [fotoPerfil, setFotoPerfil] = useState(null);
+    const [Comments, setComments] = useState([]);
+    const [logros, setLogros] = useState([]);
     const [descripcion, setDescripcion] = useState(null);
-    const navigate = useNavigate();
-    const movie = bohemianRhapsodyPoster;
+    const [reviews, setReviews] = useState([]);
+    
 
     useEffect(() => {
         const serUser = async () => {
@@ -31,13 +28,69 @@ export const PerfilId = () => {
                 setDescripcion(response.data.descripcion);  
             } catch (error) {
                 console.log(error);
-                setSearchResults([]); 
             }
         };
     
         serUser();
     
     }, [id]);
+
+    useEffect(() => {
+        const getReviews = async () => {
+            try {
+                const reviews = await axios.get(`${VITE_BACKEND_URL}reviews/usuario/${id}`);
+                setReviews(reviews.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getReviews();
+    }, [id])
+
+    useEffect(() => {
+        const getComments = async () => {
+            try {
+                const comments = await axios.get(`${VITE_BACKEND_URL}comments/usuario/${id}`);
+                setComments(comments.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getComments();
+    }, [id])
+
+    useEffect(() => {
+        const getLogros = async () => {
+            try {
+                const logros = await axios.get(`${VITE_BACKEND_URL}logros/usuarios/${id}`);
+                setLogros(logros.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getLogros();
+    }, [id])
+
+    const handleReviewDelete = async (reviewId) => {
+        const review = await axios.get(`${VITE_BACKEND_URL}reviews/${reviewId}`);
+        if (review.data.usuarioId != localStorage.getItem("userId")){
+            alert("Solo puedes eliminar Reviews tuyas");
+            return;
+        }
+        try {
+            await axios.delete(`${VITE_BACKEND_URL}reviews/${reviewId}`);
+            setReviews(prevReviews => Array.isArray(prevReviews) ? prevReviews.filter(review => review.id !== reviewId): []);
+            console.log('Review Eliminada:');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+      
+
+    const handleClickLogro = (logro) => {
+        alert(logro.descripcion)
+      };
+    
 
 
 
@@ -53,9 +106,9 @@ export const PerfilId = () => {
                     <div className="info-usuario">
                         <h1>{username}</h1>
                         <div className="stats">
-                            <p>Reviews: 10</p>
-                            <p>Seguidores: 20</p>
-                            <p>Seguidos: 15</p>
+                            <p>Reviews: {reviews.length}</p>
+                            <p>Comentarios: {Comments.length}</p>
+                            <p>Logros: {logros.length}</p>
                         </div>
                         <br></br>
                         <div>
@@ -66,37 +119,37 @@ export const PerfilId = () => {
             </div>
             <h4 className='font-custome-tittle card-title'>Logros de {username}</h4>
             <br></br>
-            <p className='align-left'>--------------- Por implementar -------------------</p>
+            <div className='div-logros'>
+                {Array.isArray(logros) && logros.length > 0 ? (logros.map(logro => (
+                        <div className='logro' onClick={() => handleClickLogro(logro)}>
+                            <img src={logro.logo} alt='Usuario listado' />
+                            <p>{logro.titulo}</p>
+                        </div>
+                    ))) : (
+                        <p> Este usuario todavia no gana ningun logro</p>
+                    )}
+            </div>
+            
+                        
             <h4 className='font-custome-tittle card-title'>Reviews de {username}</h4>
             <div className='carrusel-reviews'>
                 <div className='div_contenedor_reviews2'>
-                    <ReviewCard
-                        movieImg={movie}
-                        username={username}
-                        userImg={fotoPerfil}
-                        title="Muy buena la pelicula!"
-                        rating={4}
-                        text="Muy buena pelicula. El final no me lo esperaba."
-                        fecha="12-06-2024"
-                    />
-                    <ReviewCard
-                        movieImg={djangoPoster}
-                        username={username}
-                        userImg={fotoPerfil}
-                        title="De lo mejor del Director"
-                        rating={5}
-                        text="Todo lo que uno esperaria de una pelicula de tarantino, buena accion, buena trama y buenos personajes. De lo mejor que tiene el director."
-                        fecha="12-06-2024"
-                    />
-                    <ReviewCard
-                        movieImg={movie}
-                        username={username}
-                        userImg={fotoPerfil}
-                        title="Muy buena la pelicula!"
-                        rating={4}
-                        text="Muy buena pelicula. El final no me lo esperaba, quien diria que freddie mercury muere."
-                        fecha="12-06-2024"
-                    />
+                {Array.isArray(reviews) && reviews.length > 0 ? (reviews.map(review => (
+                            <ReviewCard
+                                deletefunction={handleReviewDelete}
+                                id={review.id}
+                                movieId = {review.peliculaId}
+                                fecha={review.fecha}
+                                userId={review.usuarioId}
+                                estado={review.estado}
+                                title={review.titulo}
+                                rating={review.calificacion}
+                                text={review.texto}
+                                
+                            />
+                        ))) : (
+                            <p>Este usuario no ha hecho reviews.</p>
+                        )}
                 </div>
             </div>
             <h4 className='font-custome-tittle card-title'>Listas de {username}</h4>

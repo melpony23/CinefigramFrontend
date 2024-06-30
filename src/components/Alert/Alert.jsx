@@ -1,8 +1,5 @@
-// Alert.jsx
-// Componente alert con ayuda de chat GPT
-
-import React from 'react';
-import { FaCheckCircle, FaTimes, FaExclamationTriangle } from 'react-icons/fa'; 
+import PropTypes from 'prop-types';
+import { FaCheckCircle, FaTimes, FaExclamationTriangle } from 'react-icons/fa';
 import './Alert.css';
 
 const Alert = ({ message, type }) => {
@@ -29,6 +26,12 @@ const Alert = ({ message, type }) => {
             </div>
         </div>
     );
+};
+
+// Definir PropTypes para las propiedades esperadas
+Alert.propTypes = {
+    message: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['success', 'error', 'warning']).isRequired,
 };
 
 export default Alert;
