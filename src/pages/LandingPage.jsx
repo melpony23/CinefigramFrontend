@@ -18,7 +18,7 @@ const LandingPage = () => {
         },
         method: 'get',
         url: `${VITE_BACKEND_URL}peliculas/populares`,
-    }), []); // No incluir VITE_BACKEND_URL en las dependencias de useMemo
+    }
 
     useEffect(() => {
         const getData = async () => {

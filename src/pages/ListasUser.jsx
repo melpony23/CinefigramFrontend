@@ -55,9 +55,7 @@ export const ListasUser = () => {
             <div className='contenedor_listas_creadas'>
                 {listas.length == 0 ? (<h2>No tienes listas todavía. Crea una!</h2>) :
                     (listas.map(lista => { return (<ListaGrandeUser key={lista.id} id={lista.id} titulo={lista.titulo} descripcion={lista.descripcion} privacidad={lista.esPublica} show_privacidad={true}> </ListaGrandeUser>) }))
-
-             
-            </div>
+                }</div>
 
         </div>
     );
