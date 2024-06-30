@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 import './InfoCardLista.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsDown as ThumbsDownSolid } from '@fortawesome/free-solid-svg-icons';
@@ -6,15 +7,12 @@ import { faThumbsDown as ThumbsDownRegular } from '@fortawesome/free-regular-svg
 import { faThumbsUp as ThumbsUpRegular } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp as ThumbsUpSolid } from '@fortawesome/free-solid-svg-icons';
 
-const InfoCardLista = (props) => {
-    const { autor, likes, dislikes, num_peliculas } = props;
-
+const InfoCardLista = ({ autor, likes, dislikes, num_peliculas }) => {
     const [like, setLike] = useState(likes);
     const [isLike, setIsLike] = useState(false);
 
     const [dislike, setDislike] = useState(dislikes);
     const [isDislike, setIsDislike] = useState(false);
-
 
     const onLikeButtonClick = () => {
         setLike(like + (isLike ? -1 : 1));
@@ -48,6 +46,14 @@ const InfoCardLista = (props) => {
             </div>
         </div>
     );
+};
+
+// Definir PropTypes para las propiedades esperadas
+InfoCardLista.propTypes = {
+    autor: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
+    dislikes: PropTypes.number.isRequired,
+    num_peliculas: PropTypes.number.isRequired,
 };
 
 export default InfoCardLista;

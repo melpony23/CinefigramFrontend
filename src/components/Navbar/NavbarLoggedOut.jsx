@@ -28,11 +28,6 @@ export const NavbarLoggedOut = ({navToggle, active, icon, showLinks}) => {
             </div>
 
             <div className={showLinks? "links-container show-links" : "links-container"}>
-                <form className="col-12 col-lg-auto mb-1 mb-lg-0 me-lg-3 d-flex align-items-center" role="search">
-                <div className="input-group">
-                    <input type="search" className="form-control rounded-pill pl-4" style={{ fontFamily: 'Inter, sans-serif' }} placeholder="Buscar..." aria-label="Buscar" />
-                </div>
-                </form>
                 <Link to="/instrucciones">
                 <button className="button" data-text="Awesome">
                     <span className="actual-text">&nbsp;instrucciones&nbsp;</span>

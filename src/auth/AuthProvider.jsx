@@ -1,23 +1,28 @@
 import { useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
+import PropTypes from 'prop-types'; // Importa PropTypes
 
-function AuthProvider({children}) {
+function AuthProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem("token") || null);
 
     useEffect(() => {
         localStorage.setItem("token", token);
-    }, [token])
+    }, [token]);
 
-    function logout(){
+    function logout() {
         setToken(null);
     }
 
     return (
-        <AuthContext.Provider value={{token, setToken, logout}}>
+        <AuthContext.Provider value={{ token, setToken, logout }}>
             {children}
         </AuthContext.Provider>
-    )
-
+    );
 }
+
+// Añade la validación de propiedades
+AuthProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 export default AuthProvider;

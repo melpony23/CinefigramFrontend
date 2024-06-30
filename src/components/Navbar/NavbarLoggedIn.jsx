@@ -66,9 +66,6 @@ const NavbarLoggedIn = ({ navToggle, active, icon, showLinks }) => {
                     </div>
 
                     <div className={`links-container ${showLinks ? "show-links" : ""} d-flex align-items-center`}>
-                        <form className="input-group" role="search">
-                            <input type="search" className="form-control rounded-pill pl-4" style={{ fontFamily: 'Inter, sans-serif' }} placeholder="Buscar..." aria-label="Buscar" />
-                        </form>
                         <div className="dropdown text-end ms-3">
                             <a href="#" className="d-block link-body-emphasis text-decoration-none dropdown-toggle" onClick={toggleDropdown} aria-expanded={dropdownOpen}>
                                 {profileImage ? (

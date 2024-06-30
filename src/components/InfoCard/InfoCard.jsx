@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import { useState } from 'react';
+import { Card} from 'react-bootstrap';
 import './InfoCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
