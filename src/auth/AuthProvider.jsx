@@ -14,7 +14,6 @@ function AuthProvider({ children }) {
     }, [token]);
 
     function logout() {
-        localStorage.clear(); // Borra todo el localStorage
         setToken(null); // Resetea el estado del token
     }
 

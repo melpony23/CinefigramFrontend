@@ -1,19 +1,20 @@
+import "./PeliculaPage.css";
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import { useParams } from 'react-router-dom';
 import ReviewForm from '../components/ReviewCard/ReviewForm';
-import { ReviewCard } from '../components/ReviewCard/ReviewCard';
+import ReviewCard from '../components/ReviewCard/ReviewCard';
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../auth/AuthContext';
 
 export const PeliculaPage = () => {
     const { token } = useContext(AuthContext);
-    const id = useParams().id;
+    const { id } = useParams();
     const navigate = useNavigate();
-    const [peli_info, setPeli_info] = useState([]);
+    const [peli_info, setPeli_info] = useState({});
     const [reviews, setReviews] = useState([]);
-    const [gotPeli_info, setGotPeli_info] = useState(false);
+    const [gotPeli_info, setGot] = useState(false);
     const [año, setAño] = useState('');
 
     useEffect(() => {
@@ -23,19 +24,19 @@ export const PeliculaPage = () => {
             },
             method: 'get',
             url: `${VITE_BACKEND_URL}peliculas/unica/${id}`,
-        }
+        };
 
         const getData = async () => {
             if (!gotPeli_info) {
                 try {
                     const info_peli = await axios(config_get_peli_info);
                     setPeli_info(info_peli.data);
-                    setGotPeli_info(true);
+                    setGot(true);
                 } catch (error) {
                     console.log(error);
                 }
             }
-        }
+        };
         getData();
     }, [id, gotPeli_info]);
 
@@ -45,19 +46,19 @@ export const PeliculaPage = () => {
                 const año = peli_info.fechaEstreno.slice(0, 4);
                 setAño(año);
             }
-        }
+        };
         getAño();
     }, [gotPeli_info, peli_info]);
 
     useEffect(() => {
         const getReviews = async () => {
             try {
-                const reviews = await axios.get(`${VITE_BACKEND_URL}reviews/pelicula/${id}`);
-                setReviews(reviews.data);
+                const response = await axios.get(`${VITE_BACKEND_URL}reviews/pelicula/${id}`);
+                setReviews(response.data);
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
         getReviews();
     }, [id]);
 
@@ -92,26 +93,26 @@ export const PeliculaPage = () => {
     };
 
     const handleReviewDelete = async (reviewId) => {
+        const review = await axios.get(`${VITE_BACKEND_URL}reviews/${reviewId}`);
+        if (review.data.usuarioId !== localStorage.getItem("userId")) {
+            alert("Solo puedes eliminar Reviews tuyas");
+            return;
+        }
         try {
-            const review = await axios.get(`${VITE_BACKEND_URL}reviews/${reviewId}`);
-            if (review.data.usuarioId !== localStorage.getItem("userId")) {
-                alert("Solo puedes eliminar tus propias reviews.");
-                return;
-            }
             await axios.delete(`${VITE_BACKEND_URL}reviews/${reviewId}`);
             setReviews(prevReviews => Array.isArray(prevReviews) ? prevReviews.filter(review => review.id !== reviewId) : []);
-            console.log('Review eliminada:', reviewId);
+            console.log('Review Eliminada:', reviewId);
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     return (
         <div className='Body_Pelicula'>
             <div className='separador'></div>
             <div className='Contenido_pag_pelicula'>
                 <div className='contenedor_imagen_pag_pelicula'>
-                    <img src={peli_info.imagen} alt="Poster de la película" className='imagen_pag_pelicula' />
+                    <img src={peli_info.imagen} className='imagen_pag_pelicula' alt="Imagen de la película" />
                 </div>
                 <div className='contenedor_info_pag_pelicula'>
                     <div className='row1_info_peli'>
@@ -127,7 +128,7 @@ export const PeliculaPage = () => {
                                         clasificacion: peli_info.clasificacion,
                                         imagen: peli_info.imagen
                                     }
-                                })
+                                });
                             }}>
                                 <span>Editar</span>
                             </button>
@@ -143,7 +144,7 @@ export const PeliculaPage = () => {
                         <h2 className='Sinopsis_pelicula'>{peli_info.sinopsis}</h2>
                     </div>
                     <div className='review-form-container'>
-                        <h2>Hacer una review</h2>
+                        <h2> Hacer una review</h2>
                         <ReviewForm movieId={id} submitfunction={handleReviewSubmit} />
                     </div>
                 </div>
@@ -154,7 +155,7 @@ export const PeliculaPage = () => {
                 <div className='div_contenedor_reviews'>
                     {Array.isArray(reviews) && reviews.map(review => (
                         <ReviewCard
-                            key={review.id} // Añadir key prop
+                            key={review.id} // Agregar la prop key con un valor único (en este caso, review.id)
                             deletefunction={handleReviewDelete}
                             id={review.id}
                             movieId={id}
