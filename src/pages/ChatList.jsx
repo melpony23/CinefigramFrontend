@@ -1,69 +1,74 @@
 import axios from 'axios';
-import React, { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import VITE_BACKEND_URL from "/config";
+import VITE_BACKEND_URL from '/config';
 import { AuthContext } from '../auth/AuthContext';
-import "./ChatList.css";
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importar Bootstrap
-import { format } from 'date-fns'; // Importar date-fns
+import './ChatList.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { format } from 'date-fns';
 
 const ChatList = () => {
   const { token } = useContext(AuthContext);
-  const [chats, setChats] = useState([]);
   const navigate = useNavigate();
+  const [chats, setChats] = useState([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const config = {
-      method: 'get',
-      url: `${VITE_BACKEND_URL}scope/protecteduser`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    axios(config)
-      .then((response) => {
-        console.log('Enviaste un token bueno y estas logueado');
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log('Hubo un error, no estas logueado');
+    const fetchUserStatus = async () => {
+      try {
+        const config = {
+          method: 'get',
+          url: `${VITE_BACKEND_URL}scope/protecteduser`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        await axios(config);
+        console.log('Enviaste un token bueno y estás logueado');
+      } catch (error) {
+        console.log('Hubo un error, no estás logueado');
         console.log(error);
         setError(true);
         navigate('/login');
-      });
-      
+      }
+    };
+
+    if (token) {
+      fetchUserStatus();
+    }
+  }, [token, navigate]);
+
+  useEffect(() => {
+    const fetchChats = async () => {
+      try {
+        const response = await axios.get(`${VITE_BACKEND_URL}chats`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setChats(response.data);
+      } catch (error) {
+        console.error('Error al obtener los chats:', error);
+        if (error.response && error.response.status === 401) {
+          navigate('/login');
+        }
+      }
+    };
+
+    if (token) {
+      fetchChats();
+    }
   }, [token, navigate]);
 
   if (error) {
     return <div className="alert alert-danger">Error al cargar la página. Por favor, inténtelo de nuevo.</div>;
   }
 
-  useEffect(() => {
-    if (token) {
-      axios.get(`${VITE_BACKEND_URL}chats`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      .then(response => {
-        setChats(response.data);
-      })
-      .catch(error => {
-        console.error('Error al obtener los chats:', error);
-        if (error.response && error.response.status === 401) {
-          navigate('/login');
-        }
-      });
-    }
-  }, [token, navigate]);
-
   return (
     <div className='lista-chats'>
       <h2 className='titulo-lista-chats text-center mb-4'>Salas de chat</h2>
       <button className="cssbuttons-io">
-        <span >
+        <span>
           <Link to="/crear-chat" className='boton-titulo-chat'>
             Crear nuevo chat
           </Link>
@@ -90,4 +95,3 @@ const ChatList = () => {
 };
 
 export default ChatList;
-

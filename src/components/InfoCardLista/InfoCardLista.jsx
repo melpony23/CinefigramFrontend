@@ -1,28 +1,22 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 import './InfoCardLista.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsDown as ThumbsDownSolid } from '@fortawesome/free-solid-svg-icons';
-import { faThumbsDown as ThumbsDownRegular } from '@fortawesome/free-regular-svg-icons';
-import { faThumbsUp as ThumbsUpRegular } from '@fortawesome/free-regular-svg-icons';
-import { faThumbsUp as ThumbsUpSolid } from '@fortawesome/free-solid-svg-icons';
 
-const InfoCardLista = ({ autor, likes, dislikes, num_peliculas }) => {
-    const [like, setLike] = useState(likes);
-    const [isLike, setIsLike] = useState(false);
+const InfoCardLista = ({ autor, num_peliculas }) => {
+    // const [like, setLike] = useState(likes);
+    // const [isLike, setIsLike] = useState(false);
 
-    const [dislike, setDislike] = useState(dislikes);
-    const [isDislike, setIsDislike] = useState(false);
+    // const [dislike, setDislike] = useState(dislikes);
+    // const [isDislike, setIsDislike] = useState(false);
 
-    const onLikeButtonClick = () => {
-        setLike(like + (isLike ? -1 : 1));
-        setIsLike(!isLike);
-    };
+    // const onLikeButtonClick = () => {
+    //     setLike(like + (isLike ? -1 : 1));
+    //     setIsLike(!isLike);
+    // };
 
-    const onDislikeButtonClick = () => {
-        setDislike(dislike + (isDislike ? -1 : 1));
-        setIsDislike(!isDislike);
-    };
+    // const onDislikeButtonClick = () => {
+    //     setDislike(dislike + (isDislike ? -1 : 1));
+    //     setIsDislike(!isDislike);
+    // };
 
     return (
         <div className='content_info_card_lista'>

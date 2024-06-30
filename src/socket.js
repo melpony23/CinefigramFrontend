@@ -2,7 +2,7 @@
 import { io } from 'socket.io-client';
 
 // Conexión sin token de acceso
-const socket = io('http://localhost:10000/');
+const socket = io('https://amimir-backend.onrender.com');
 
 socket.on('connect', () => {
   console.log('Conexión establecida con el servidor WebSocket');

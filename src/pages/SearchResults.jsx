@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import MovieList from '../components/MovieList/MovieList';
@@ -35,14 +35,14 @@ const SearchResults = () => {
     if (searchResults.length === 0) {
         return (
             <div className="search-results">
-                <h2 className="title-result-search">No se encontraron resultados de búsqueda para: "{searchTerm}"</h2>
+                <h2 className="title-result-search">No se encontraron resultados de búsqueda para: &quot;{searchTerm}&quot;</h2>
             </div>
         );
     }
 
     return (
         <div className="search-results">
-            <h2 className="title-result-search">Resultados de búsqueda para: "{searchTerm}"</h2>
+            <h2 className="title-result-search">Resultados de búsqueda para: &quot;{searchTerm}&quot;</h2>
             <MovieList movies={searchResults} />
         </div>
     );

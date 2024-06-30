@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css';
 import NavbarLoggedOut from './NavbarLoggedOut';
@@ -15,38 +15,31 @@ export const Navbar = () => {
 
   const { token } = useContext(AuthContext);
 
-  const config = {
-      'method' : 'get',
-      'url': `${VITE_BACKEND_URL}scope/protecteduser`,
-      'headers': {
-          'Authorization' : `Bearer ${token}`
-      }
-  }
-
   useEffect(() => {
-      axios(config).then((response) => {
-          console.log("Enviaste un token bueno y estas logueado");
-          console.log(response)
-          setIsAuthenticated(true);  // Usuario está autenticado
-      }).catch((error) => {
-          console.log("Hubo un error, no estas logueado");
-          console.log(error);
-          console.log(token);
-          setIsAuthenticated(false);  // Token no válido o error en la autenticación
+    const config = {
+      method: 'get',
+      url: `${VITE_BACKEND_URL}scope/protecteduser`,
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    };
 
-      })
-  }, [])
+    axios(config).then((response) => {
+      console.log("Enviaste un token bueno y estás logueado");
+      console.log(response);
+      setIsAuthenticated(true); 
+    }).catch((error) => {
+      console.log("Hubo un error, no estás logueado");
+      console.log(error);
+      console.log(token);
+      setIsAuthenticated(false); 
+    });
+  }, [token]); // Añade token como dependencia
 
   const navToggle = () => {
-    if (active === "nav__menu") {
-      setActive("nav__menu nav__active");
-    } else setActive("nav__menu");
-
-    // Icon Toggler
-    if (icon === "nav__toggler") {
-      setIcon("nav__toggler toggle");
-      setShowLinks(true);
-    } else setIcon("nav__toggler");
+    setActive(prevActive => prevActive === "nav__menu" ? "nav__menu nav__active" : "nav__menu");
+    setIcon(prevIcon => prevIcon === "nav__toggler" ? "nav__toggler toggle" : "nav__toggler");
+    setShowLinks(prevShowLinks => !prevShowLinks);
   };
 
   return (

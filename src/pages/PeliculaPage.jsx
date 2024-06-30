@@ -1,12 +1,9 @@
-import React from 'react';
-import "./PeliculaPage.css"
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import { useParams } from 'react-router-dom';
 import ReviewForm from '../components/ReviewCard/ReviewForm';
 import { ReviewCard } from '../components/ReviewCard/ReviewCard';
-import djangoPoster from '../../assets/django.png';
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../auth/AuthContext';
 
@@ -16,46 +13,41 @@ export const PeliculaPage = () => {
     const navigate = useNavigate();
     const [peli_info, setPeli_info] = useState([]);
     const [reviews, setReviews] = useState([]);
-    const [gotPeli_info, setGot] = useState(false);
-    const [año, setAño] = useState('')
-    const user = "https://w7.pngwing.com/pngs/741/68/png-transparent-user-computer-icons-user-miscellaneous-cdr-rectangle-thumbnail.png";
-    
-
-    const config_get_peli_info = {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        method: 'get',
-        url: `${VITE_BACKEND_URL}peliculas/unica/${id}`,
-    }
-
+    const [gotPeli_info, setGotPeli_info] = useState(false);
+    const [año, setAño] = useState('');
 
     useEffect(() => {
+        const config_get_peli_info = {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'get',
+            url: `${VITE_BACKEND_URL}peliculas/unica/${id}`,
+        }
+
         const getData = async () => {
             if (!gotPeli_info) {
                 try {
                     const info_peli = await axios(config_get_peli_info);
                     setPeli_info(info_peli.data);
-                    setGot(true);
-
+                    setGotPeli_info(true);
                 } catch (error) {
                     console.log(error);
                 }
             }
         }
         getData();
-
-    }, [])
+    }, [id, gotPeli_info]);
 
     useEffect(() => {
-        const getAño = async () => {
+        const getAño = () => {
             if (gotPeli_info) {
-                const año = (peli_info.fechaEstreno).slice(0, 4);
+                const año = peli_info.fechaEstreno.slice(0, 4);
                 setAño(año);
             }
         }
         getAño();
-    })
+    }, [gotPeli_info, peli_info]);
 
     useEffect(() => {
         const getReviews = async () => {
@@ -67,7 +59,7 @@ export const PeliculaPage = () => {
             }
         }
         getReviews();
-    }, [id])
+    }, [id]);
 
     const handleReviewSubmit = async (reviewData) => {
         const estado = "published";
@@ -77,7 +69,6 @@ export const PeliculaPage = () => {
             return;
         }
         try {
-            
             const response = await axios.post(`${VITE_BACKEND_URL}reviews`, {
                 titulo: reviewData.title,
                 texto: reviewData.text,
@@ -85,10 +76,8 @@ export const PeliculaPage = () => {
                 estado: estado,
                 fecha: fecha,
                 peliculaId: id,
-                usuarioId: localStorage.getItem('userId'),                               
-                
+                usuarioId: localStorage.getItem('userId'),
             });
-            console.log(response.data.estado)
             setReviews(prevReviews => {
                 if (Array.isArray(prevReviews)) {
                     return [...prevReviews, response.data];
@@ -98,21 +87,20 @@ export const PeliculaPage = () => {
             });
             console.log('Review creada:', response.data);
         } catch (error) {
-            console.log(localStorage.getItem('userId'))
             console.error('Error al crear la review:', error);
         }
     };
 
     const handleReviewDelete = async (reviewId) => {
-        const review = await axios.get(`${VITE_BACKEND_URL}reviews/${reviewId}`);
-        if (review.data.usuarioId != localStorage.getItem("userId")){
-            alert("Solo puedes eliminar Reviews tuyas");
-            return;
-        }
         try {
+            const review = await axios.get(`${VITE_BACKEND_URL}reviews/${reviewId}`);
+            if (review.data.usuarioId !== localStorage.getItem("userId")) {
+                alert("Solo puedes eliminar tus propias reviews.");
+                return;
+            }
             await axios.delete(`${VITE_BACKEND_URL}reviews/${reviewId}`);
-            setReviews(prevReviews => Array.isArray(prevReviews) ? prevReviews.filter(review => review.id !== reviewId): []);
-            console.log('Review Eliminada:');
+            setReviews(prevReviews => Array.isArray(prevReviews) ? prevReviews.filter(review => review.id !== reviewId) : []);
+            console.log('Review eliminada:', reviewId);
         } catch (error) {
             console.log(error);
         }
@@ -123,23 +111,28 @@ export const PeliculaPage = () => {
             <div className='separador'></div>
             <div className='Contenido_pag_pelicula'>
                 <div className='contenedor_imagen_pag_pelicula'>
-                    <img src={peli_info.imagen} className='imagen_pag_pelicula' />
+                    <img src={peli_info.imagen} alt="Poster de la película" className='imagen_pag_pelicula' />
                 </div>
                 <div className='contenedor_info_pag_pelicula'>
                     <div className='row1_info_peli'>
                         <h1 className='Titulo_pelicula'>{peli_info.titulo}</h1>
                         <div className='contenedor_boton_edit_pelicula'>
-                                <button id={peli_info.id} className="cssbuttons-io" onClick={() => { navigate(`/pelicula/edit/${id}`, { state: { 
-                                  titulo: peli_info.titulo, 
-                                  sinopsis: peli_info.sinopsis, 
-                                  genero: peli_info.genero, 
-                                  director: peli_info.director, 
-                                  clasificacion: peli_info.clasificacion, 
-                                  imagen: peli_info.imagen } }) }}>
-                                    <span>Editar</span>
-                                </button>
-                            </div>
-                        <h2> {año}</h2>
+                            <button id={peli_info.id} className="cssbuttons-io" onClick={() => {
+                                navigate(`/pelicula/edit/${id}`, {
+                                    state: {
+                                        titulo: peli_info.titulo,
+                                        sinopsis: peli_info.sinopsis,
+                                        genero: peli_info.genero,
+                                        director: peli_info.director,
+                                        clasificacion: peli_info.clasificacion,
+                                        imagen: peli_info.imagen
+                                    }
+                                })
+                            }}>
+                                <span>Editar</span>
+                            </button>
+                        </div>
+                        <h2>{año}</h2>
                     </div>
                     <div className='row2_info_peli'>
                         <h2>Ranking: {peli_info.ranking}</h2>
@@ -150,33 +143,33 @@ export const PeliculaPage = () => {
                         <h2 className='Sinopsis_pelicula'>{peli_info.sinopsis}</h2>
                     </div>
                     <div className='review-form-container'>
-                        <h2> Hacer una review</h2>
+                        <h2>Hacer una review</h2>
                         <ReviewForm movieId={id} submitfunction={handleReviewSubmit} />
                     </div>
                 </div>
             </div>
             <hr className='decorator-separator-2-lista decorator-separator-yellow-lista' />
             <div className='div_reviews'>
-                    <h1 className='titulo_seccion_reviews'> Reviews de la Pelicula</h1>
-                    <div className='div_contenedor_reviews'>
-                        {Array.isArray(reviews) && reviews.map(review => (
-                            <ReviewCard
-                                deletefunction={handleReviewDelete}
-                                id={review.id}
-                                movieId = {id}
-                                movieImg={peli_info.imagen}
-                                fecha={review.fecha}
-                                userId={review.usuarioId}
-                                estado={review.estado}
-                                title={review.titulo}
-                                rating={review.calificacion}
-                                text={review.texto}
-                                
-                            />
-                        ))}
-                    </div>
-                    <hr className='decorator-separator-2-lista decorator-separator-red-lista' />
+                <h1 className='titulo_seccion_reviews'>Reviews de la Película</h1>
+                <div className='div_contenedor_reviews'>
+                    {Array.isArray(reviews) && reviews.map(review => (
+                        <ReviewCard
+                            key={review.id} // Añadir key prop
+                            deletefunction={handleReviewDelete}
+                            id={review.id}
+                            movieId={id}
+                            movieImg={peli_info.imagen}
+                            fecha={review.fecha}
+                            userId={review.usuarioId}
+                            estado={review.estado}
+                            title={review.titulo}
+                            rating={review.calificacion}
+                            text={review.texto}
+                        />
+                    ))}
                 </div>
+                <hr className='decorator-separator-2-lista decorator-separator-red-lista' />
+            </div>
         </div>
     );
 };

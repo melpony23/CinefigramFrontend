@@ -1,19 +1,19 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import './starRating.css'; 
+import PropTypes from 'prop-types';
+import './starRating.css';
 
-export const StarRating = (props) => {
-    const rating = props.rating;
-
+export const StarRating = ({ rating }) => {
   return (
     <div className="star-rating">
-      {[...Array(5)].map((star, index) => {
-        return (
-          <span key={index} className={index < rating ? 'star filled' : 'star'}>★</span>
-        );
-      })}
+      {[...Array(5)].map((_, index) => (
+        <span key={index} className={index < rating ? 'star filled' : 'star'}>★</span>
+      ))}
     </div>
   );
 };
 
+StarRating.propTypes = {
+  rating: PropTypes.number.isRequired,
+};
+
+export default StarRating;
 

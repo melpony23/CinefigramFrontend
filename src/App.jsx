@@ -1,10 +1,10 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar/Navbar';
-import { CrearCuenta } from './pages/CrearCuenta';
+import CrearCuenta from './pages/CrearCuenta';
 import { IniciarSesion } from './pages/IniciarSesion';
-import { Listas } from './pages/Listas';
-import { Comunidad } from './pages/Comunidad';
+import Listas from './pages/Listas';
+import  Comunidad  from './pages/Comunidad';
 import { Peliculas } from './pages/Peliculas';
 import { Nosotros } from './pages/Nosotros';
 import { PeliculaPage } from "./pages/PeliculaPage"
