@@ -1,112 +1,75 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect} from 'react';
+import './PerfilId.css';
 import axios from 'axios';
-import './Perfil.css';
-import ListaGrande_Card from '../components/ListaGrande-Card/ListaGrande-Card';
-import ReviewCard from '../components/ReviewCard/ReviewCard'; // Importar ReviewCard
-import Logro from '../components/Logro/Logro'; // Importar Logro
+import "./Comunidad.css";
+import { useParams } from 'react-router-dom';
 import VITE_BACKEND_URL from "/config";
+import { ReviewCard } from '../components/ReviewCard/ReviewCard';
+import ListaGrande_Card from '../components/ListaGrande-Card/ListaGrande-Card';
+import PortadaPlaylist from '../../assets/portada_playlist.png';
 
-const PerfilId = () => {
-    const { id } = useParams();
+export const PerfilId = () => {
+    const id = useParams().id;
     const [username, setUsername] = useState(null);
     const [fotoPerfil, setFotoPerfil] = useState(null);
-    const [descripcion, setDescripcion] = useState(null);
+    const [Comments, setComments] = useState([]);
     const [logros, setLogros] = useState([]);
-    const [gotLogros, setGotLogros] = useState(false);
-    const [listas, setListas] = useState([]);
-    const navigate = useNavigate();
-    const [gotListas, setGotListas] = useState(false);
-    const [reviewCount, setReviewCount] = useState(0);
+    const [descripcion, setDescripcion] = useState(null);
     const [reviews, setReviews] = useState([]);
-    const [gotReviews, setGotReviews] = useState(false);
+    
 
     useEffect(() => {
-        const fetchUserData = async () => {
+        const serUser = async () => {
             try {
                 const response = await axios.get(`${VITE_BACKEND_URL}userPublic/${id}`);
                 setUsername(response.data.username);
-                setFotoPerfil(response.data.fotoPerfil);
-                setDescripcion(response.data.descripcion);
+                setEmail(response.data.email); 
+                setFotoPerfil(response.data.fotoPerfil); 
+                setDescripcion(response.data.descripcion);  
             } catch (error) {
                 console.log(error);
-                // Manejar errores o actualizar estado en caso de error
             }
         };
-
-        fetchUserData();
-
+    
+        serUser();
+    
     }, [id]);
 
     useEffect(() => {
-        const fetchLogros = async () => {
+        const getReviews = async () => {
             try {
-                const response = await axios.get(`${VITE_BACKEND_URL}users/${id}/logros`);
-                setLogros(response.data);
-                setGotLogros(true);
+                const reviews = await axios.get(`${VITE_BACKEND_URL}reviews/usuario/${id}`);
+                setReviews(reviews.data);
             } catch (error) {
                 console.log(error);
-                // Manejar errores o actualizar estado en caso de error
             }
-        };
-
-        if (!gotLogros) {
-            fetchLogros();
         }
-    }, [id, gotLogros]);
+        getReviews();
+    }, [id])
 
     useEffect(() => {
-        const fetchListas = async () => {
+        const getComments = async () => {
             try {
-                const response = await axios.get(`${VITE_BACKEND_URL}playlists/usuario/${id}`);
-                setListas(response.data);
-                setGotListas(true);
+                const comments = await axios.get(`${VITE_BACKEND_URL}comments/usuario/${id}`);
+                setComments(comments.data);
             } catch (error) {
                 console.log(error);
-                // Manejar errores o actualizar estado en caso de error
             }
-        };
-
-        if (!gotListas) {
-            fetchListas();
         }
-    }, [id, gotListas]);
+        getComments();
+    }, [id])
 
     useEffect(() => {
-        const fetchReviewCount = async () => {
+        const getLogros = async () => {
             try {
-                const response = await axios.get(`${VITE_BACKEND_URL}reviews/usuario/${id}/count`);
-                setReviewCount(response.data.count);
+                const logros = await axios.get(`${VITE_BACKEND_URL}logros/usuarios/${id}`);
+                setLogros(logros.data);
             } catch (error) {
                 console.log(error);
-                // Manejar errores o actualizar estado en caso de error
             }
-        };
-
-        fetchReviewCount();
-
-    }, [id]);
-
-    useEffect(() => {
-        const fetchReviews = async () => {
-            try {
-                const response = await axios.get(`${VITE_BACKEND_URL}reviews/usuario/${id}`);
-                setReviews(response.data);
-                setGotReviews(true);
-            } catch (error) {
-                console.log(error);
-                // Manejar errores o actualizar estado en caso de error
-            }
-        };
-
-        if (!gotReviews) {
-            fetchReviews();
         }
-    }, [id, gotReviews]);
-
-    const handleReviewClick = (movieId) => {
-        navigate(`/pelicula/${movieId}`);
-    };
+        getLogros();
+    }, [id])
 
     const handleReviewDelete = async (reviewId) => {
         const review = await axios.get(`${VITE_BACKEND_URL}reviews/${reviewId}`);
@@ -116,13 +79,19 @@ const PerfilId = () => {
         }
         try {
             await axios.delete(`${VITE_BACKEND_URL}reviews/${reviewId}`);
-            setReviews(prevReviews => prevReviews.filter(review => review.id !== reviewId));
-            console.log('Review Eliminada:', reviewId);
-            window.location.reload();
+            setReviews(prevReviews => Array.isArray(prevReviews) ? prevReviews.filter(review => review.id !== reviewId): []);
+            console.log('Review Eliminada:');
         } catch (error) {
             console.log(error);
         }
     }
+      
+
+    const handleClickLogro = (logro) => {
+        alert(logro.descripcion)
+      };
+    
+
 
 
     return (
@@ -137,67 +106,56 @@ const PerfilId = () => {
                     <div className="info-usuario">
                         <h1>{username}</h1>
                         <div className="stats">
-                            <p>Reviews: {reviewCount}</p>
+                            <p>Reviews: {reviews.length}</p>
+                            <p>Comentarios: {Comments.length}</p>
+                            <p>Logros: {logros.length}</p>
                         </div>
-                        <br />
+                        <br></br>
                         <div>
-                            <p>Descripción: {descripcion}</p>
+                            <p>{descripcion}</p>
                         </div>
                     </div>
                 </div>
             </div>
-
             <h4 className='font-custome-tittle card-title'>Logros de {username}</h4>
-            <div className='contenedor_logros'>
-                {logros.length === 0 ? (
-                    <h2>No tiene logros todavía</h2>
-                ) : (
-                    logros.map(logro => (
-                        <Logro key={logro.id} titulo={logro.titulo} logo={logro.logo} />
-                    ))
-                )}
+            <br></br>
+            <div className='div-logros'>
+                {Array.isArray(logros) && logros.length > 0 ? (logros.map(logro => (
+                        <div className='logro' onClick={() => handleClickLogro(logro)}>
+                            <img src={logro.logo} alt='Usuario listado' />
+                            <p>{logro.titulo}</p>
+                        </div>
+                    ))) : (
+                        <p> Este usuario todavia no gana ningun logro</p>
+                    )}
             </div>
-
+            
+                        
             <h4 className='font-custome-tittle card-title'>Reviews de {username}</h4>
-            <div className='contenedor_reviews'>
-                {reviews.length === 0 ? (
-                    <h2>No tiene reviews todavía</h2>
-                ) : (
-                    reviews.map(review => (
-                        <ReviewCard
-                            key={review.id}
-                            deletefunction={handleReviewDelete}
-                            id={review.id}
-                            movieId={review.peliculaId}
-                            userId={review.usuarioId}
-                            estado={review.estado}
-                            title={review.titulo}
-                            rating={review.calificacion}
-                            text={review.texto}
-                            fecha={review.fecha}
-                            clickfunction={handleReviewClick}
-                        />
-                    ))
-                )}
+            <div className='carrusel-reviews'>
+                <div className='div_contenedor_reviews2'>
+                {Array.isArray(reviews) && reviews.length > 0 ? (reviews.map(review => (
+                            <ReviewCard
+                                deletefunction={handleReviewDelete}
+                                id={review.id}
+                                movieId = {review.peliculaId}
+                                fecha={review.fecha}
+                                userId={review.usuarioId}
+                                estado={review.estado}
+                                title={review.titulo}
+                                rating={review.calificacion}
+                                text={review.texto}
+                                
+                            />
+                        ))) : (
+                            <p>Este usuario no ha hecho reviews.</p>
+                        )}
+                </div>
             </div>
-
             <h4 className='font-custome-tittle card-title'>Listas de {username}</h4>
-            <div className='contenedor-playlist-perfil'>
-                {listas.length === 0 ? (
-                    <h2>No tiene listas todavía</h2>
-                ) : (
-                    listas.map(lista => (
-                        <ListaGrande_Card
-                            key={lista.id}
-                            id={lista.id}
-                            titulo={lista.titulo}
-                            autor={username}
-                            likes={2} 
-                            dislikes={2} 
-                            descripcion={lista.descripcion}
-                        />
-                    ))
-                )}
+            <div className='contenedor-playlis-perfil'>
+            <ListaGrande_Card imagen={PortadaPlaylist} titulo={'Favoritas de acción'} autor={username} likes={200} dislikes={2} num_peliculas={15} 
+            descripcion={'Compilado de mis películas de acción favoritas. Explosiones! Muerte! Boom Boom!!'}></ListaGrande_Card>
             </div>
         </div>
     );
