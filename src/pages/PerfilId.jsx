@@ -1,20 +1,25 @@
 import { useState, useEffect } from 'react';
-import './Perfil.css';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import VITE_BACKEND_URL from "/config";
-import ReviewCard from '../components/ReviewCard/ReviewCard';
-import djangoPoster from '../../assets/django.png';
-import bohemianRhapsodyPoster from '../../assets/bohemian-rhapsody.jpg';
+import './Perfil.css';
 import ListaGrande_Card from '../components/ListaGrande-Card/ListaGrande-Card';
-import PortadaPlaylist from '../../assets/portada_playlist.png';
+import ReviewCard from '../components/ReviewCard/ReviewCard'; // Importar ReviewCard
+import Logro from '../components/Logro/Logro'; // Importar Logro
+import VITE_BACKEND_URL from "/config";
 
-export const PerfilId = () => {
-    const id = useParams().id;
+const PerfilId = () => {
+    const { id } = useParams();
     const [username, setUsername] = useState(null);
     const [fotoPerfil, setFotoPerfil] = useState(null);
     const [descripcion, setDescripcion] = useState(null);
-    const movie = bohemianRhapsodyPoster;
+    const [logros, setLogros] = useState([]);
+    const [gotLogros, setGotLogros] = useState(false);
+    const [listas, setListas] = useState([]);
+    const navigate = useNavigate();
+    const [gotListas, setGotListas] = useState(false);
+    const [reviewCount, setReviewCount] = useState(0);
+    const [reviews, setReviews] = useState([]);
+    const [gotReviews, setGotReviews] = useState(false);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -33,6 +38,93 @@ export const PerfilId = () => {
 
     }, [id]);
 
+    useEffect(() => {
+        const fetchLogros = async () => {
+            try {
+                const response = await axios.get(`${VITE_BACKEND_URL}users/${id}/logros`);
+                setLogros(response.data);
+                setGotLogros(true);
+            } catch (error) {
+                console.log(error);
+                // Manejar errores o actualizar estado en caso de error
+            }
+        };
+
+        if (!gotLogros) {
+            fetchLogros();
+        }
+    }, [id, gotLogros]);
+
+    useEffect(() => {
+        const fetchListas = async () => {
+            try {
+                const response = await axios.get(`${VITE_BACKEND_URL}playlists/usuario/${id}`);
+                setListas(response.data);
+                setGotListas(true);
+            } catch (error) {
+                console.log(error);
+                // Manejar errores o actualizar estado en caso de error
+            }
+        };
+
+        if (!gotListas) {
+            fetchListas();
+        }
+    }, [id, gotListas]);
+
+    useEffect(() => {
+        const fetchReviewCount = async () => {
+            try {
+                const response = await axios.get(`${VITE_BACKEND_URL}reviews/usuario/${id}/count`);
+                setReviewCount(response.data.count);
+            } catch (error) {
+                console.log(error);
+                // Manejar errores o actualizar estado en caso de error
+            }
+        };
+
+        fetchReviewCount();
+
+    }, [id]);
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                const response = await axios.get(`${VITE_BACKEND_URL}reviews/usuario/${id}`);
+                setReviews(response.data);
+                setGotReviews(true);
+            } catch (error) {
+                console.log(error);
+                // Manejar errores o actualizar estado en caso de error
+            }
+        };
+
+        if (!gotReviews) {
+            fetchReviews();
+        }
+    }, [id, gotReviews]);
+
+    const handleReviewClick = (movieId) => {
+        navigate(`/pelicula/${movieId}`);
+    };
+
+    const handleReviewDelete = async (reviewId) => {
+        const review = await axios.get(`${VITE_BACKEND_URL}reviews/${reviewId}`);
+        if (review.data.usuarioId != localStorage.getItem("userId")){
+            alert("Solo puedes eliminar Reviews tuyas");
+            return;
+        }
+        try {
+            await axios.delete(`${VITE_BACKEND_URL}reviews/${reviewId}`);
+            setReviews(prevReviews => prevReviews.filter(review => review.id !== reviewId));
+            console.log('Review Eliminada:', reviewId);
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return (
         <div className='fondo-perfil'>
             <div className="perfil">
@@ -45,56 +137,67 @@ export const PerfilId = () => {
                     <div className="info-usuario">
                         <h1>{username}</h1>
                         <div className="stats">
-                            <p>Reviews: 10</p>
-                            <p>Seguidores: 20</p>
-                            <p>Seguidos: 15</p>
+                            <p>Reviews: {reviewCount}</p>
                         </div>
-                        <br></br>
+                        <br />
                         <div>
-                            <p>{descripcion}</p>
+                            <p>Descripción: {descripcion}</p>
                         </div>
                     </div>
                 </div>
             </div>
+
             <h4 className='font-custome-tittle card-title'>Logros de {username}</h4>
-            <br></br>
-            <p className='align-left'>--------------- Por implementar -------------------</p>
-            <h4 className='font-custome-tittle card-title'>Reviews de {username}</h4>
-            <div className='carrusel-reviews'>
-                <div className='div_contenedor_reviews2'>
-                    <ReviewCard
-                        movieImg={movie}
-                        username={username}
-                        userImg={fotoPerfil}
-                        title="Muy buena la pelicula!"
-                        rating={4}
-                        text="Muy buena pelicula. El final no me lo esperaba."
-                        fecha="12-06-2024"
-                    />
-                    <ReviewCard
-                        movieImg={djangoPoster}
-                        username={username}
-                        userImg={fotoPerfil}
-                        title="De lo mejor del Director"
-                        rating={5}
-                        text="Todo lo que uno esperaria de una pelicula de tarantino, buena accion, buena trama y buenos personajes. De lo mejor que tiene el director."
-                        fecha="12-06-2024"
-                    />
-                    <ReviewCard
-                        movieImg={movie}
-                        username={username}
-                        userImg={fotoPerfil}
-                        title="Muy buena la pelicula!"
-                        rating={4}
-                        text="Muy buena pelicula. El final no me lo esperaba, quien diria que freddie mercury muere."
-                        fecha="12-06-2024"
-                    />
-                </div>
+            <div className='contenedor_logros'>
+                {logros.length === 0 ? (
+                    <h2>No tiene logros todavía</h2>
+                ) : (
+                    logros.map(logro => (
+                        <Logro key={logro.id} titulo={logro.titulo} logo={logro.logo} />
+                    ))
+                )}
             </div>
+
+            <h4 className='font-custome-tittle card-title'>Reviews de {username}</h4>
+            <div className='contenedor_reviews'>
+                {reviews.length === 0 ? (
+                    <h2>No tiene reviews todavía</h2>
+                ) : (
+                    reviews.map(review => (
+                        <ReviewCard
+                            key={review.id}
+                            deletefunction={handleReviewDelete}
+                            id={review.id}
+                            movieId={review.peliculaId}
+                            userId={review.usuarioId}
+                            estado={review.estado}
+                            title={review.titulo}
+                            rating={review.calificacion}
+                            text={review.texto}
+                            fecha={review.fecha}
+                            clickfunction={handleReviewClick}
+                        />
+                    ))
+                )}
+            </div>
+
             <h4 className='font-custome-tittle card-title'>Listas de {username}</h4>
-            <div className='contenedor-playlis-perfil'>
-                <ListaGrande_Card imagen={PortadaPlaylist} titulo={'Favoritas de acción'} autor={username} likes={200} dislikes={2} num_peliculas={15}
-                    descripcion={'Compilado de mis películas de acción favoritas. Explosiones! Muerte! Boom Boom!!'}></ListaGrande_Card>
+            <div className='contenedor-playlist-perfil'>
+                {listas.length === 0 ? (
+                    <h2>No tiene listas todavía</h2>
+                ) : (
+                    listas.map(lista => (
+                        <ListaGrande_Card
+                            key={lista.id}
+                            id={lista.id}
+                            titulo={lista.titulo}
+                            autor={username}
+                            likes={2} 
+                            dislikes={2} 
+                            descripcion={lista.descripcion}
+                        />
+                    ))
+                )}
             </div>
         </div>
     );

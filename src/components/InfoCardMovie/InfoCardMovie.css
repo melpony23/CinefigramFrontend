@@ -1,12 +1,20 @@
-.flex-item {
-    margin: 0em; /* Elimina todos los márgenes de los elementos flexibles */
-  }
-
 .flex-container {
-   text-align: center;
-   justify-content: center;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  text-align: center; /* Centra el texto */
 }
 
-.number-action {
-  font-size: 0.7em;
+.flex-item {
+  display: flex;
+  flex-direction: column; /* Apila los elementos dentro de cada flex-item verticalmente */
+  align-items: center; /* Centra verticalmente los elementos dentro de cada flex-item */
+  padding: 0 10px; /* Espacio horizontal entre los flex-items */
+  padding-top: 5%;
+}
+
+.ranking-movie {
+  color: white; /* Cambia el color del texto */
+  font-size: 0.7em; /* Ajusta el tamaño de fuente */
+  margin-top: 5px; /* Ajusta el espacio entre los íconos y los números */
 }
