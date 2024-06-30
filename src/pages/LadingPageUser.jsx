@@ -6,8 +6,6 @@ import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import ListaChica_Card from '../components/ListaChica-Card/ListaChica-Card';
 import MovieList from '../components/MovieList/MovieList';
-import InfoCard from '../components/InfoCard/InfoCard';
-import playlistImage from '../../assets/portada_playlist.png';
 
 export const LandingPageUser = () => {
     const { token } = useContext(AuthContext); // Asegúrate de que AuthContext esté definido correctamente

@@ -3,13 +3,20 @@ import './ListaChica-Card.css';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+
 
 const ListaChica_Card = (props) => {
-    const {id, titulo, likes, dislikes } = props;
+    const { id, titulo, likes, dislikes } = props;
     const [imagen, setImagen] = useState([]);
     const [gotImagen, setGotImagen] = useState(false);
     const [autor, setAutor] = useState(null)
     const [gotAutor, setGotAutor] = useState(false);
+    const navigate = useNavigate();
+
+    function handlePosterClick(id) {
+        navigate(`/lista/${id}`);
+    }
 
     const config_get_imagen = {
         method: 'get',
@@ -59,10 +66,10 @@ const ListaChica_Card = (props) => {
 
 
     return (
-        <div className='Card_lista_chica'>
+        <div className='Card_lista_chica' onClick={() => handlePosterClick(id)}>
             <div className='div_imagen_lista_ch'>
-            <img src={imagen[0]} className='Imagen_lista0' />
-            <img src={imagen[1]} className='Imagen_lista1' />
+                <img src={imagen[0]} className='Imagen_lista0' />
+                <img src={imagen[1]} className='Imagen_lista1' />
             </div>
             <div className='div_info_playlist_ch'>
                 <div className='div_titulo_lista_c'>

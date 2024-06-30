@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import ListaGrande_Card from '../components/ListaGrande-Card/ListaGrande-Card';
 import PortadaPlaylist from '../../assets/portada_playlist.png';
+import ListaGrandeUser from '../components/ListaGrandeUser/ListaGrandeUser';
 
 export const ListasUser = () => {
     const [username, setUsername] = useState(null);
@@ -29,7 +30,6 @@ export const ListasUser = () => {
                 try {
                     const listas = await axios(config_get_listas);
                     setListas(listas.data);
-                    console.log(`Llegaron listas!!`);
                     setGotListas(true);
                 } catch (error) {
                     console.log(error);
@@ -47,20 +47,23 @@ export const ListasUser = () => {
 
     return (
         <div className='Big_contenedor_listas_user'>
+            <div className='separador1234'>
+            </div>
             <div className='titulo_listas_user'>
                 <h1>Tus listas</h1>
                 <h2>Revisa y crea listas para ti y para compartir con tus amigos</h2>
+                <div className='contenedor_boton_crear_lista'>
+                    <button className="cssbuttons-io" onClick={() => { navigate(`/crear-lista/${id}`) }}>
+                        <span>Crear lista</span>
+                    </button>
+                </div>
             </div>
             <div className='contenedor_listas_creadas'>
                 {listas.length == 0 ? (<h2>No tienes listas todavía. Crea una!</h2>) :
-                    (listas.map(lista => { return (<ListaGrande_Card id={lista.id} titulo={lista.titulo} likes={2} dislikes={2} descripcion={lista.descripcion}> </ListaGrande_Card>) }))
+                    (listas.map(lista => { return (<ListaGrandeUser id={lista.id} titulo={lista.titulo} descripcion={lista.descripcion} privacidad={lista.esPublica} show_privacidad={true}> </ListaGrandeUser>) }))
                 }
             </div>
-            <div className='contenedor_boton_crear_lista'>
-                <button className="cssbuttons-io" onClick={() => { navigate('/crear-lista') }}>
-                    <span>Crear lista</span>
-                </button>
-            </div>
+
         </div>
 
     );
