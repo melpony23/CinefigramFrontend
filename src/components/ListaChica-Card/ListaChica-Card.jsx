@@ -40,7 +40,7 @@ const ListaChica_Card = (props) => {
             }
         };
         getImagen();
-    }, [id, gotImagen]); 
+    }, [id, gotImagen]);
 
     useEffect(() => {
         const config_get_autor = {
@@ -69,8 +69,8 @@ const ListaChica_Card = (props) => {
         <div className='Card_lista_chica' onClick={() => handlePosterClick(id)}>
             <div className='div_imagen_lista_ch'>
 
-                <img src={imagen[0]} className='Imagen_lista0' alt="Imagen 0" />
-                <img src={imagen[1]} className='Imagen_lista1' alt="Imagen 1" />
+                {imagen[0] && <img src={imagen[0]} className='Imagen_lista0' alt="Imagen 0" />}
+                {imagen[1] && <img src={imagen[1]} className='Imagen_lista1' alt="Imagen 1" />}
 
             </div>
             <div className='div_info_playlist_ch'>
@@ -87,10 +87,10 @@ const ListaChica_Card = (props) => {
 
 // PropTypes para el componente
 ListaChica_Card.propTypes = {
-    id: PropTypes.number.isRequired, 
-    titulo: PropTypes.string.isRequired, 
-    likes: PropTypes.number.isRequired, 
-    dislikes: PropTypes.number.isRequired 
+    id: PropTypes.number.isRequired,
+    titulo: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
+    dislikes: PropTypes.number.isRequired
 };
 
 export default ListaChica_Card;
