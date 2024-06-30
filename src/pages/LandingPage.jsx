@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import MovieList from '../components/MovieList/MovieList';
@@ -6,10 +6,9 @@ import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import ListaChica_Card from '../components/ListaChica-Card/ListaChica-Card';
 
-export const LandingPage = () => {
+const LandingPage = () => {
     const [movies, setMovies] = useState([]);
     const [gotPeliculas, setGot] = useState(false);
-
     const [listas, setListas] = useState([]);
     const [gotListas, setGotListas] = useState(false);
 
@@ -19,12 +18,11 @@ export const LandingPage = () => {
         },
         method: 'get',
         url: `${VITE_BACKEND_URL}peliculas/populares`,
-    }
+    }), []); // No incluir VITE_BACKEND_URL en las dependencias de useMemo
 
     useEffect(() => {
         const getData = async () => {
             if (!gotPeliculas) {
-
                 try {
                     const peliculas = await axios(config_get_peliculas);
                     setMovies(peliculas.data);
@@ -37,7 +35,7 @@ export const LandingPage = () => {
             }
         }
         getData();
-    }, [])
+    }, [config_get_peliculas, gotPeliculas]);
 
     const config_get_listas = {
         method: 'get',
@@ -98,7 +96,6 @@ export const LandingPage = () => {
                             }
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

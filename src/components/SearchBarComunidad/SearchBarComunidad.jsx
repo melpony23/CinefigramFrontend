@@ -1,12 +1,11 @@
-import { useState } from 'react';
-import './SearchBar.css';
+import  { useState } from 'react';
+import PropTypes from 'prop-types';
+import './SearchBarComunidad.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
 
-const SearchBar = () => {
+const SearchBarComunidad = ({ onSearch }) => {
   const [query, setQuery] = useState('');
-  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setQuery(event.target.value);
@@ -14,9 +13,7 @@ const SearchBar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (query.trim() !== '') {
-      navigate(`search/${query}`); // Redirige a la página de búsqueda con el término de búsqueda
-    }
+    onSearch(query);
   };
 
   return (
@@ -35,4 +32,8 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+SearchBarComunidad.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+};
+
+export default SearchBarComunidad;

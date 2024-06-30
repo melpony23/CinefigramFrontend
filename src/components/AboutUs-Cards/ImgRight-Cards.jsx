@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './cards.css';
 import './responsive.css';
@@ -24,4 +24,11 @@ export const ImgRight = (props) => {
             </div>
         </div>
     );
+};
+
+// Definir PropTypes para las propiedades esperadas
+ImgRight.propTypes = {
+    imgUrl: PropTypes.string.isRequired,
+    integrante: PropTypes.string.isRequired,
+    descripcion: PropTypes.string.isRequired,
 };

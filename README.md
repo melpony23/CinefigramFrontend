@@ -68,7 +68,7 @@ Los usuarios objetivos son personas que sean amantes de las películas, es decir
 
 <img src="assets/Views/ViewsLandingPage/landing-page-celu.png" alt="Landing page celular" />
 
-<img src="assets/Views/ViewsLandingPage/ejemplo_aplicacion_landing.png" alt="Landing page aplicaciones" />
+<img src="assets/Views/ViewsLandingPage/ejemplo_aplicacion_landing.jpg" alt="Landing page aplicaciones" />
 
 ### Vistas Profile Page
 <img src="assets/Views/ViewsProfilePage/Captura de pantalla 2024-05-17 192937.png" alt="Profile page computador" />

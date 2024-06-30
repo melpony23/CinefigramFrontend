@@ -1,23 +1,20 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ReviewCard.css';
 import axios from 'axios';
 import VITE_BACKEND_URL from "/config";
 import {StarRating} from './starRating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faComment, faEdit } from '@fortawesome/free-regular-svg-icons';
 import { useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types'; // Importa PropTypes
 
 
 export const ReviewCard = (props) => {
     const navigate = useNavigate();
-    const userImg = props.userImg
     const id = props.id
     const clickfunction = props.clickfunction
-    const movieImg = props.movieImg
     const movieId = props.movieId
     const rating = props.rating
     const title = props.title
@@ -25,14 +22,10 @@ export const ReviewCard = (props) => {
     const userId = props.userId
     const estado = props.estado
     const text = props.text
-    const [like, setLike] = useState(2302);
-    const [isLike, setIsLike] = useState(false);
     const [user_info, setUser_info] = useState([]);
     const [gotUser_info, setGot] = useState(false);
     const [movie_info, setMovie_info] = useState([]);
     const [gotMovie_info, setGotMovie] = useState(false);
-
-
     
 
     useEffect(() => {
@@ -138,3 +131,21 @@ export const ReviewCard = (props) => {
     </div>
     );
 };
+
+ReviewCard.propTypes = {
+    userImg: PropTypes.string,
+    id: PropTypes.number,
+    clickfunction: PropTypes.func,
+    movieImg: PropTypes.string,
+    movieId: PropTypes.number,
+    rating: PropTypes.number,
+    title: PropTypes.string,
+    fecha: PropTypes.string,
+    userId: PropTypes.number,
+    estado: PropTypes.string,
+    text: PropTypes.string,
+    deletefunction: PropTypes.func,
+};
+
+
+export default ReviewCard;

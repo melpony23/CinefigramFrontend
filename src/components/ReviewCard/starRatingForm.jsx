@@ -1,7 +1,7 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 export const StarRatingForm = ({ rating, onRatingChange }) => {
   const handleClick = (newRating) => {
@@ -20,4 +20,9 @@ export const StarRatingForm = ({ rating, onRatingChange }) => {
       ))}
     </div>
   );
+};
+
+StarRatingForm.propTypes = {
+  rating: PropTypes.number.isRequired,
+  onRatingChange: PropTypes.func.isRequired,
 };
