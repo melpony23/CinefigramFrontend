@@ -1,0 +1,176 @@
+.fondo-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #07021e;
+}
+
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.banner-perfil {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(to right, black, red);
+    color: white;
+}
+
+.foto-perfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid white;
+}
+
+.foto-perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-usuario {
+    margin-left: 130px;
+    color: white;
+}
+
+.info-usuario h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+}
+
+.stats {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.stats p {
+    margin: 0;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
+/*FORMATO PARA REVIEWS. SE MUESTRAN PRIMEROS 3 Y LUEGO DESPUES IMPLEMENTAR BOTON DE VER MAS*/
+
+.carrusel-reviews {
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+   
+}
+
+.div_contenedor_reviews2 {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.div-logros {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.logro {
+    text-align: center;
+}
+
+.logro img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%; /* Para que la imagen sea circular */
+    margin-bottom: 10px;
+    border: 2px solid #FFFEFF; /* Borde blanco alrededor del círculo */
+}
+
+.logro p {
+    color: #FFFEFF;
+    font-size: 14px;
+}
+
+.logo-descripcion {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .logo-descripcion-contentenido {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+.div_contenedor_reviews .movie-image {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+}
+
+.div_contenedor_reviews .user-image {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+.div_contenedor_reviews .review-title {
+    flex: 1;
+    font-size: 1em;
+    color: #07021E;
+}
+  
+
+.font-custome-tittle  {
+    margin-top: 5%;
+    margin-right: auto;
+    padding-left: 7%;
+}
+
+.contenedor-playlis-perfil {
+    margin-right: 30%;
+    margin-bottom: 3%;
+    margin-top: 2%;
+}
