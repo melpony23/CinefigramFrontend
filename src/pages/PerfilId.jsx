@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import VITE_BACKEND_URL from "/config";
 import { ReviewCard } from '../components/ReviewCard/ReviewCard';
 import ListaGrande_Card from '../components/ListaGrande-Card/ListaGrande-Card';
-import PortadaPlaylist from '../../assets/portada_playlist.png';
 
 const PerfilId = () => {
     const id = useParams().id;
@@ -13,8 +12,35 @@ const PerfilId = () => {
     const [fotoPerfil, setFotoPerfil] = useState(null);
     const [comments, setComments] = useState([]);
     const [logros, setLogros] = useState([]);
+    const [gotListas, setGotListas] = useState(false);
     const [descripcion, setDescripcion] = useState(null);
+    const [listas, setListas] = useState([]);
     const [reviews, setReviews] = useState([]);
+
+    useEffect(() => {
+        const config_get_listas = {
+            method: 'get',
+            url: `${VITE_BACKEND_URL}playlists/usuario/${id}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        };
+
+        const getListas = async () => {
+            if (!gotListas) {
+                try {
+
+                    const response = await axios(config_get_listas);
+                    setListas(response.data);
+                  
+                    setGotListas(true);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        };
+        getListas();
+    }, [id, gotListas]);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -149,16 +175,16 @@ const PerfilId = () => {
             </div>
 
             <h4 className='font-custome-tittle card-title'>Listas de {username}</h4>
-            <div className='contenedor-playlis-perfil'>
-                <ListaGrande_Card
-                    imagen={PortadaPlaylist}
-                    titulo={'Favoritas de acción'}
-                    autor={username}
-                    likes={200}
-                    dislikes={2}
-                    num_peliculas={15}
-                    descripcion={'Compilado de mis películas de acción favoritas. ¡Explosiones! ¡Muerte! ¡Boom Boom!!'}
-                />
+            <div >
+                {listas.length == 0 ? (<h2>No tienes listas todavía. Crea una!</h2>) :
+                    (<div className='contenedor-playlist-perfil'>
+                        <ListaGrande_Card id={listas[0].id} titulo={listas[0].titulo} autor={username} descripcion={listas[0].descripcion}> </ListaGrande_Card>
+                        <ListaGrande_Card id={listas[1].id} titulo={listas[1].titulo} autor={username} descripcion={listas[1].descripcion}> </ListaGrande_Card>
+                    </div>
+
+                    )
+                }
+
             </div>
         </div>
     );
