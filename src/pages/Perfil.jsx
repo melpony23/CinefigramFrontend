@@ -46,10 +46,8 @@ export const Perfil = () => {
         const getListas = async () => {
             if (!gotListas) {
                 try {
-
                     const response = await axios(config_get_listas);
                     setListas(response.data);
-                  
                     setGotListas(true);
                 } catch (error) {
                     console.log(error);
@@ -185,19 +183,21 @@ export const Perfil = () => {
                     <h2>No tienes reviews todavía. ¡Escribe una!</h2>
                 ) : (
                     reviews.map(review => (
-                        <ReviewCard
-                            key={review.id}
-                            deletefunction={handleReviewDelete}
-                            id={review.id}
-                            movieId={review.peliculaId}
-                            userId={review.usuarioId}
-                            estado={review.estado}
-                            title={review.titulo}
-                            rating={review.calificacion}
-                            text={review.texto}
-                            fecha={review.fecha}
-                            clickfunction={handleReviewClick}
-                        />
+                        review && review.id ? (
+                            <ReviewCard
+                                key={review.id}
+                                deletefunction={handleReviewDelete}
+                                id={review.id}
+                                movieId={review.peliculaId}
+                                userId={review.usuarioId}
+                                estado={review.estado}
+                                title={review.titulo}
+                                rating={review.calificacion}
+                                text={review.texto}
+                                fecha={review.fecha}
+                                clickfunction={handleReviewClick}
+                            />
+                        ) : null
                     ))
                 )}
             </div>
@@ -205,15 +205,15 @@ export const Perfil = () => {
             <h4 className='font-custome-tittle card-title'>Listas de {username}</h4>
 
             <div >
-                {listas.length == 0 ? (<h2>No tienes listas todavía. Crea una!</h2>) :
+                {listas.length === 0 ? (<h2>No tienes listas todavía. Crea una!</h2>) :
                     (<div className='contenedor-playlist-perfil'>
-                        <ListaGrande_Card id={listas[0].id} titulo={listas[0].titulo} autor={username} descripcion={listas[0].descripcion}> </ListaGrande_Card>
-                        <ListaGrande_Card id={listas[1].id} titulo={listas[1].titulo} autor={username} descripcion={listas[1].descripcion}> </ListaGrande_Card>
+                        {listas.map(lista => (
+                            lista && lista.id ? (
+                                <ListaGrande_Card key={lista.id} id={lista.id} titulo={lista.titulo} autor={username} descripcion={lista.descripcion}> </ListaGrande_Card>
+                            ) : null
+                        ))}
                     </div>
-
-                    )
-                }
-
+                )}
             </div>
         </div>
     );
