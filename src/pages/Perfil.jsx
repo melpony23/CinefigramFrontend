@@ -30,10 +30,8 @@ const PerfilId = () => {
         const getListas = async () => {
             if (!gotListas) {
                 try {
-
                     const response = await axios(config_get_listas);
                     setListas(response.data);
-                  
                     setGotListas(true);
                 } catch (error) {
                     console.log(error);
@@ -176,27 +174,17 @@ const PerfilId = () => {
             </div>
 
             <h4 className='font-custome-tittle card-title'>Listas de {username}</h4>
-            <div>
-                {listas.length === 0 ? (
-                    <h2>No tienes listas todavía. Crea una!</h2>
-                ) : listas.length === 1 ? (
-                    <div className='contenedor-playlist-perfil'>
-                        <ListaGrande_Card id={listas[0].id} titulo={listas[0].titulo} autor={username} descripcion={listas[0].descripcion} />
+            <div >
+                {listas.length === 0 ? (<h2>No tienes listas todavía. Crea una!</h2>) :
+                    (<div className='contenedor-playlist-perfil'>
+                        {listas[0] && <ListaGrande_Card id={listas[0].id} titulo={listas[0].titulo} autor={username} descripcion={listas[0].descripcion} />}
+                        {listas[1] && <ListaGrande_Card id={listas[1].id} titulo={listas[1].titulo} autor={username} descripcion={listas[1].descripcion} />}
                     </div>
-                ) : (
-                    <div className='contenedor-playlist-perfil'>
-                        <ListaGrande_Card id={listas[0].id} titulo={listas[0].titulo} autor={username} descripcion={listas[0].descripcion} />
-                        <ListaGrande_Card id={listas[1].id} titulo={listas[1].titulo} autor={username} descripcion={listas[1].descripcion} />
-                    </div>
-                )}
+                    )
+                }
             </div>
         </div>
     );
 };
 
 export default PerfilId;
-
-
-
-
-
