@@ -13,121 +13,102 @@ export const LandingPageUser = () => {
     const [error, setError] = useState(false);
 
     const [movies, setMovies] = useState([]);
-    const [gotPeliculas, setGot] = useState(false);
+    const [gotPeliculas, setGotPeliculas] = useState(false);
     const [username, setUsername] = useState(null);
 
     const [moviesDestacadas, setMoviesDestacadas] = useState([]);
-    const [gotPeliculasDestacadas, setGotDestacadas] = useState(false);
+    const [gotPeliculasDestacadas, setGotPeliculasDestacadas] = useState(false);
 
     const [listas, setListas] = useState([]);
     const [gotListas, setGotListas] = useState(false);
 
     useEffect(() => {
-        const config_get_peliculas_destacadas = {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'get',
-            url: `${VITE_BACKEND_URL}peliculas/populares`,
-            withCredentials: true
-        };
-
         const getData = async () => {
             if (!gotPeliculasDestacadas) {
                 try {
-                    const peliculas = await axios(config_get_peliculas_destacadas);
-                    setMoviesDestacadas(peliculas.data);
-                    setGotDestacadas(true);
+                    const response = await axios.get(`${VITE_BACKEND_URL}peliculas/populares`, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        withCredentials: true
+                    });
+                    setMoviesDestacadas(response.data);
+                    setGotPeliculasDestacadas(true);
                 } catch (error) {
                     console.log(error);
+                    setError(true);
                 }
             }
         };
 
         getData();
-    }, [gotPeliculasDestacadas]); // Dependencia: gotPeliculasDestacadas
+    }, [gotPeliculasDestacadas]);
 
     useEffect(() => {
-        const config_get_peliculas = {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'get',
-            url: `${VITE_BACKEND_URL}peliculas`,
-        };
-
         const getData = async () => {
             if (!gotPeliculas) {
                 try {
-                    const peliculas = await axios(config_get_peliculas);
-                    setMovies(peliculas.data);
-                    setGot(true);
+                    const response = await axios.get(`${VITE_BACKEND_URL}peliculas`, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    setMovies(response.data);
+                    setGotPeliculas(true);
                 } catch (error) {
                     console.log(error);
+                    setError(true);
                 }
             }
         };
 
         getData();
-    }, [gotPeliculas]); // Dependencia: gotPeliculas
+    }, [gotPeliculas]);
 
     useEffect(() => {
-        const config_get_listas = {
-            method: 'get',
-            url: `${VITE_BACKEND_URL}playlists/`,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        };
-
-        const getListas = async () => {
+        const getData = async () => {
             if (!gotListas) {
                 try {
-                    const listas = await axios(config_get_listas);
-                    setListas(listas.data);
-                    console.log(`Llegaron listas!!`);
+                    const response = await axios.get(`${VITE_BACKEND_URL}playlists/`, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    setListas(response.data);
                     setGotListas(true);
                 } catch (error) {
                     console.log(error);
+                    setError(true);
                 }
             }
         };
 
-        getListas();
-    }, [gotListas]); // Dependencia: gotListas
+        getData();
+    }, [gotListas]);
 
     useEffect(() => {
-        const config = {
-            method: 'get',
-            url: `${VITE_BACKEND_URL}scope/protecteduser`,
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-            withCredentials: true
-        };
-
-        axios(config)
-            .then((response) => {
-                console.log('Enviaste un token bueno y estás logueado');
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log('Hubo un error, no estás logueado');
-                console.log(error);
+        const checkLoggedIn = async () => {
+            try {
+                const response = await axios.get(`${VITE_BACKEND_URL}scope/protecteduser`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                    withCredentials: true
+                });
+                console.log('Usuario logueado:', response.data);
+                const username = localStorage.getItem('username');
+                if (username) {
+                    setUsername(username);
+                }
+            } catch (error) {
+                console.log('Error al verificar login:', error);
                 setError(true);
                 navigate('/login');
-            });
+            }
+        };
 
-    }, [token, navigate]); // Dependencias: token y navigate
-
-    useEffect(() => {
-        const username = localStorage.getItem('username');
-
-        if (username) {
-            setUsername(username);
-        }
-
-    }, []);
+        checkLoggedIn();
+    }, [token, navigate]);
 
     if (error) {
         return <div className="error-message">Error al cargar la página. Por favor, inténtelo de nuevo.</div>;
@@ -167,9 +148,11 @@ export const LandingPageUser = () => {
                         <h4 className='font-custome-tittle card-title-2'>Listas populares</h4>
                         <hr className='decorator-separator-2 decorator-separator-yellow' />
                         <div>
-                            {listas.length === 0 ? <h2>No hay listas para mostrar</h2> :
-                                <ListaChica_Card id={listas[0].id} titulo={listas[0].titulo} likes={2} dislikes={2} />
-                            }
+                            {listas.length === 0 ? (
+                                <h2>No hay listas para mostrar</h2>
+                            ) : (
+                                listas[0] && <ListaChica_Card id={listas[0].id} titulo={listas[0].titulo} likes={2} dislikes={2} />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -191,9 +174,11 @@ export const LandingPageUser = () => {
                         <h4 className='font-custome-tittle card-title-2'>Listas populares</h4>
                         <hr className='decorator-separator-2 decorator-separator-yellow' />
                         <div>
-                            {listas.length === 0 ? <h2>No hay listas para mostrar</h2> :
-                                <ListaChica_Card id={listas[1].id} titulo={listas[1].titulo} likes={2} dislikes={2} />
-                            }
+                            {listas.length < 2 ? (
+                                <h2>No hay listas para mostrar</h2>
+                            ) : (
+                                listas[1] && <ListaChica_Card id={listas[1].id} titulo={listas[1].titulo} likes={2} dislikes={2} />
+                            )}
                         </div>
                     </div>
                 </div>

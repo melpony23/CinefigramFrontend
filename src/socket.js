@@ -19,8 +19,6 @@ socket.on('disconnect', () => {
 export default socket;
 
 
-// export default socket;
-
 // import io from 'socket.io-client';
 
 // const socket = io('http://localhost:3000'); // Reemplaza con la URL de tu servidor WebSocket
